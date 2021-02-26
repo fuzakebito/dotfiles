@@ -1,0 +1,82 @@
+!! ~/.Xresources
+
+!!
+!! rxvt-unicode (urxvt)
+!!
+
+URxvt.scrollBar:      false
+URxvt.cursorBlink:          true
+URxvt.cursorUnderline:      true
+URxvt.pointerBlank:         true
+URxvt.visualBell:           true
+URxvt.saveLines:            0
+
+!! Font list and Spacing
+URxvt.font:                 xft:HackGen35Nerd:style=Regular:size=250
+URxvt.letterSpace:           -4
+!URxvt.lineSpace:            0
+
+!! Color Scheme and Opacity - gruvbox-dark https://github.com/morhetz/gruvbox
+URxvt.depth:                32
+URxvt.background:           #2c2c2c
+URxvt.foreground:   #afafaf
+URxvt.cursorColor:  #0290C4
+!! black
+URxvt.color0: #1f1f1f
+URxvt.color8: #414141
+
+!! red
+URxvt.color1: #C40202
+URxvt.color9: #DE5050
+
+!! green
+URxvt.color2: #009688
+URxvt.color10: #00897B
+
+!! yellow
+URxvt.color3: #FF9800
+URxvt.color11: #FB8C00
+
+!! blue
+URxvt.color4: #2196F3
+URxvt.color12: #1E88E5
+
+!! magenta
+URxvt.color5: #9C27B0
+URxvt.color13: #8E24AA
+
+!! cyan
+URxvt.color6: #00BCD4
+URxvt.color14: #00ACC1
+
+!! white
+URxvt.color7: #C4C4C4
+URxvt.color15: #DEDEDE
+
+!setting border
+URxvt.internalBorder:  0
+
+! Perl extension config
+!URxvt.perl-ext: tabbed
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.tabbed.new-button: false
+URxvt.tabbed.tabbar-fg: 15
+URxvt.tabbed.tabbar-bg: -1
+URxvt.tabbed.tab-fg: 0
+URxvt.tabbed.tab-bg: 6
+URxvt.tabbed.active-fg: 1
+URxvt.tabbed.actives-fg: 5
+URxvt.tabbed.actived-fg: 6
+
+!Xcursor
+Xcursor.size: 20
+
+!Xft
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: false
+Xft.hintstyle: hintnone
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.lcdfilter: lcdlight
