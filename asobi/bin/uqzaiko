@@ -1,0 +1,211 @@
+#! /usr/bin/ruby
+# encoding: utf-8
+require 'optparse'
+require 'json'
+require 'pp'
+def getstock(urlcode)
+  raw = `curl -s -m 2 --retry 10 'https://www.uniqlo.com/jp/api/commerce/v5/ja/products/E#{urlcode}-000/price-groups/00/stock'`
+  json = JSON.parse(raw)
+  ary = json.to_a
+  stock = ary[1][1]
+  return stock
+end
+def get00(urlcode)
+  raw = `curl -s -m 2 --retry 10 'https://www.uniqlo.com/jp/api/commerce/v5/ja/products/E#{urlcode}-000/price-groups/00'`
+  json = JSON.parse(raw)
+  ary = json.to_a
+  return ary
+end
+def process00(ary)
+  puts("\n#{ary[1][1]["name"]}")
+  l2s = ary[1][1]["l2s"]
+  list = []
+  for n1 in 0...l2s.length do
+    obj = l2s[n1]
+    color = "#{obj["color"]["displayCode"]} #{obj["color"]["name"]}"
+    size = obj["size"]["name"]
+    id = obj["l2Id"]
+    new = [color,size,id]
+    list << new
+  end
+  return list
+end
+def colorFilter(list,color)
+  list_new = []
+  list.each do |l|
+    if l[0].include?(color) then
+      list_new << l
+    end
+  end
+  return list_new
+end
+def sizeFilter(list,size)
+  list_new = []
+  list.each do |l|
+    if l[1] == size then
+      list_new << l
+    end
+  end
+  return list_new
+end
+def stockFilter(list,stock)
+  for n1 in 0...list.length do
+    if stock[list[n1][2]]["quantity"] == 0 then
+      list[n1] = nil
+    end
+  end
+  list.compact!
+  return list
+end
+def filter(list,stock,params)
+  if params.key?(:c) then
+    list = colorFilter(list,params[:c])
+  end
+  if params.key?(:s) then
+    list = sizeFilter(list,params[:s])
+  end
+  if params.key?(:o) then
+    list = stockFilter(list,stock)
+  end
+  return list
+end
+def print_mode1(list,stock)
+  for n1 in 0...list.length do
+    if n1 == 0 then
+      puts list[n1][0]
+    elsif list[n1 - 1][0] != list[n1][0] then
+      puts "\n#{list[n1][0]}"
+    end
+    if stock["#{list[n1][2]}"] != nil then
+      puts "size: #{list[n1][1]}, in stock: #{stock[list[n1][2]]["quantity"]}"
+    end
+  end
+end
+def print_mode2(list,stock)
+  colorQuantityList = []
+  for n1 in 0...list.length do
+    if stock["#{list[n1][2]}"] != nil then
+      colorAndQuantity = [list[n1][0],list[n1][1],stock[list[n1][2]]["quantity"]]
+    end
+    colorQuantityList << colorAndQuantity
+  end
+  pp colorQuantityList
+end
+def getSections(list)
+  sections = []
+  listEndIdx = list.length
+  for n1 in 0...listEndIdx do
+    if n1 == 0 then
+      sections << [n1,listEndIdx]
+    elsif list[n1 - 1][0] != list[n1][0] then
+      sections[-1][1] = n1 - 1
+      sections << [n1,listEndIdx]
+    end
+  end
+  return sections
+end
+def getParsed(list,stock,sections)
+  parsed = []
+  sections.each do |s|
+    eachColor = [list[s[0]][0],[],[]]
+    for i in s[0]...s[1] do
+      eachColor[1] << list[i][1]
+      eachColor[2] << stock[list[i][2]]["quantity"]
+    end
+    parsed << eachColor
+  end
+  return parsed
+end
+def getSizeList(parsed)
+  sizes = []
+  parsed.each do |p|
+    sizes = sizes | p[1]
+  end
+  if sizes[0] == sizes[0].to_i.to_s || sizes[0] == sizes[0].to_f.to_s then
+    sizes = sizes.sort{|a, b| a.to_i <=> b.to_i }
+  else
+    regSizeList = ["XS","S","M","L","XL","XXL","3XL","4XL"]
+    sizes = regSizeList & sizes
+  end
+  return sizes
+end
+def mktable(list,stock)
+  sections = getSections(list)
+  parsed = getParsed(list,stock,sections)
+  sizes = getSizeList(parsed)
+  table = [['']]
+  parsed.each do |p|
+    table[0] << p[0]
+  end
+  sizes.each do |s|
+    row = [s]
+    parsed.each do |p|
+      idx = p[1].index(s)
+      if idx == nil then
+        row << "0"
+      else
+        row << p[2][idx]
+      end
+    end
+    table << row
+  end
+  return table
+end
+def print_mode3(list,stock)
+  pp mktable(list,stock)
+end
+def main(urlcode,params)
+  ary00 = get00(urlcode)
+  stock = getstock(urlcode)
+  list = process00(ary00)
+  printf("\n")
+  if params.length != 0 then
+    list = filter(list,stock,params)
+  end
+  if !(params.key?(:m)) || params[:m] == 1 then
+    print_mode1(list,stock)
+  elsif params[:m] == 2 then
+    print_mode2(list,stock)
+  elsif params[:m] == 3 then
+    print_mode3(list,stock)
+  else
+    puts "Invalid mode number! Falling back to mode 1."
+    print_mode1(list,stock)
+  end
+end
+def input()
+  params = {}
+  opt = OptionParser.new
+  opt.on('-m', '--mode [mode 1|2]', 'Specifies the display mode 1|2') {|v| params[:m] = v.to_i}
+  opt.on('-c', '--color [color]', 'Specifies the color') {|v| params[:c] = v}
+  opt.on('-s', '--size [size]', 'Specifies the size') {|v| params[:s] = v}
+  opt.on('-o', '--omit', 'Omit the display of products with zero stock.') {|v| params[:o] = true}
+  opt.parse!(ARGV)
+  if ARGV.size == 0 then
+    loop do
+      puts "Input the item number. Just type Enter to exit."
+      a = gets.chomp
+      if a == '' then
+        break
+      end
+      a = a[/[0-9]{6}/]
+      if a == nil then
+        print "\nWrong Number!\n\n"
+        next
+      end
+      main(a,params)
+      sleep 0.2
+      printf("\n")
+    end
+  else
+    a = ARGV[0][/[0-9]{6}/]
+    if a == nil then
+      print "\nWrong Number!\n\n"
+    else
+      main(a,params)
+      sleep 0.2
+      printf("\n")
+    end
+  end
+end
+input()

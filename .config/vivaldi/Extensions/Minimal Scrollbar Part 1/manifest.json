@@ -1,0 +1,21 @@
+{
+  "name": "Minimal Scrollbar Mod",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "It is a new Minimal Scrollbar that fixes a bug that the original version (https://chrome.google.com/webstore/detail/minimal-scrollbar/ekopmclclddpoipchmcbhifohhbmjafd) is not overlaid properly",
+  "permissions": ["storage"],
+  "icons": {
+    "48": "icons/minimalscrollbar-48.png",
+    "128": "icons/minimalscrollbar-128.png"
+  },
+  "options_page": "pages/option.html",
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": [ "\u003Call_urls\u003E" ],
+      "js": ["script.min.js"],
+      "css": [ "style.min.css" ],
+      "run_at": "document_start"
+    }
+  ]
+}

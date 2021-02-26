@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+$f=`echo $1 | sed 's/\.[^\.]*$//'`
+pngquant --speed 1 --quality 0-99 "$f".png
+zopflipng -m --lossy_transparent --lossy_8bit "$f"-fs8.png "$f"-comp.png

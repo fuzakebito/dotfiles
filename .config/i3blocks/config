@@ -1,0 +1,34 @@
+[check update]
+command=~/.config/i3blocks/update.sh
+interval=60
+
+[load average]
+label= 
+command=echo "$(uptime | sed 's/.*load average: \(.*\)/\1/' | cut -d, -f1)/$(grep 'processor' /proc/cpuinfo | wc -l)"
+interval=1
+
+[memory]
+label= 
+command=free -h | awk 'match($0, /^Mem/){print $3 " / " $2}'
+interval=1
+
+[lightness]
+label=☀ 
+command=light -G
+interval=once
+signal=2
+
+[volume]
+label= 
+command=pactl list sinks |grep -w -o -m 2 -e '[0-9]*%' -e 'yes' -e 'no' |head -2 |sed -ne 's%no%\n\#d3d9f3%;s%yes%\n\#00BCD4%;1!G;h;$p'
+interval=1
+
+[date]
+label=
+command=date +'%m/%d(%a) %H:%M'
+interval=1
+
+[battery]
+command=~/.config/i3blocks/battery.sh
+format=json
+interval=persist

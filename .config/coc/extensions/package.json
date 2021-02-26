@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "coc-html": ">=1.3.2",
+    "coc-json": ">=1.3.2",
+    "coc-julia": ">=0.7.0",
+    "coc-solargraph": ">=1.1.8",
+    "coc-texlab": ">=2.3.0",
+    "coc-tsserver": ">=1.6.6"
+  }
+}

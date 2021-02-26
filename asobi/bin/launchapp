@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+def grep_packages(grep_word)
+  package_list      = `adb shell pm list package`
+  grep_package_list = package_list.split(/\s+/).map { |line| line.sub(/^package:/, '') }.select { |line| line.include?(grep_word) }
+
+  if grep_package_list.size == 1
+    return grep_package_list[0]
+  elsif grep_package_list.size > 1
+    return `echo #{grep_package_list.join(" ")} | xargs -n 1 echo | peco`.chomp
+  else
+    raise "not found packages to match with #{ grep_word }"
+  end
+end
+
+def run_command(command)
+  puts command
+  `#{command}`
+end
+
+def fetch_package_and_classname(manifestFile)
+  base_package = `xmllint #{manifestFile} --xpath 'string(/manifest/@package)'`
+  classname = `xmllint #{manifestFile} --xpath 'string(//action[@*[namespace-uri()="http://schemas.android.com/apk/res/android" and local-name()="name"]="android.intent.action.MAIN"]/parent::node()/parent::node()/@*[1])'`
+
+  return  classname.start_with?('.')? base_package + classname : classname
+end
+
+package = ARGV.size > 0 ? grep_packages(ARGV[0]) : grep_packages("")
+raise "not found package" if package == ""
+
+puts package
+
+package_and_classname=`adb shell pm dump #{ package } | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
+
+if package_and_classname.length <= 0
+  package_and_classname = package + "/" + fetch_package_and_classname('app/src/main/AndroidManifest.xml')
+end
+
+run_command "adb shell am start -n #{ package_and_classname }"

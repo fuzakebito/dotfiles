@@ -1,0 +1,6 @@
+{
+    "suggest.noselect": true,
+    "suggest.preferCompleteThanJumpPlaceholder": true,
+    "languageserver": {
+    }
+}

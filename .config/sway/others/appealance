@@ -1,0 +1,34 @@
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    #status_command i3blocks
+	mode invisible
+
+    colors {
+        background #1c1c1c
+        statusline #d3d9f3
+        separator #666666
+
+        focused_workspace  #00BCD4 #00BCD4 #1c1c1c
+        active_workspace   #8a8a8a #8a8a8a #1c1c1c
+        inactive_workspace #303030 #303030 #8a8a8a
+        urgent_workspace   #FF9800 #FF9800 #1c1c1c
+        binding_mode       #00BCD4 #00BCD4 #1c1c1c
+    }
+}
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Materia-dark'
+    gsettings set $gnome-schema icon-theme 'breeze-dark'
+    gsettings set $gnome-schema font-name 'Jost* 11'
+}
+exec_always waybar
+
+gaps inner 8
+default_border pixel 0
+default_floating_border pixel 0

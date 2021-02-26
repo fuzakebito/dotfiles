@@ -1,0 +1,46 @@
+colors:
+  # Default colors
+  primary:
+    background: '#262626'
+    foreground: '#afafaf'
+
+  # Normal colors
+  normal:
+    black:   '#1f1f1f'
+    red:     '#C40202'
+    green:   '#009688'
+    yellow:  '#FF9800'
+    blue:    '#2196F3'
+    magenta: '#9C27B0'
+    cyan:    '#00BCD4'
+    white:   '#C4C4C4'
+
+  # Bright colors
+  bright:
+    black:   '#414141'
+    red:     '#DE5050'
+    green:   '#00897B'
+    yellow:  '#FB8C00'
+    blue:    '#1E88E5'
+    magenta: '#8E24AA'
+    cyan:    '#00ACC1'
+    white:   '#DEDEDE'
+
+font:
+  size: 11
+  normal:
+    family: HackGen35Nerd Console
+  bold:
+    family: HackGen35Nerd Console
+  italic:
+    family: HackGen35Nerd Console
+  offset:
+    x: 1
+    y: 1
+
+cursor:
+  style: Underline
+  thickness: 0.3
+
+shell:
+  program: /usr/bin/tmux
