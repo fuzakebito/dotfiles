@@ -1,8 +1,10 @@
 ### Output configuration
-output HDMI-A-1 transform 90 pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg fill
-output eDP-1 pos 1080 667 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch
-#output HDMI-A-1  pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg fill
-#output eDP-1 pos 1920 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch
+#output HDMI-A-1 transform 90 pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg fill
+#output eDP-1 pos 1080 667 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch
+output HDMI-A-1  pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg fill
+output eDP-1 pos 1920 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch
+#output HDMI-A-1  pos 0 0 res 3840x2160 bg ~/Downloads/pexels-valiphotos-589840.jpg fill
+#output eDP-1 pos 3840 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch
 
 ### Idle configuration
 #

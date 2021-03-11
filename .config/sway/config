@@ -207,9 +207,20 @@ mode "notification" {
 	bindsym e mode "default"
     bindsym $mod+i exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "default"'
 }
+mode "display" {
+    ### Output configuration
+    bindsym 1 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg fill; swaymsg output eDP-1 pos 1080 667 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch'
+    bindsym 2 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch; swaymsg output eDP-1 pos 1920 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch'
+    bindsym 3 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 3840x2160 bg ~/Downloads/pexels-valiphotos-589840.jpg fill; swaymsg output eDP-1 pos 2160 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch'
+    bindsym 4 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 res 3840x2160 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch; swaymsg output eDP-1 pos 3840 0 bg ~/Downloads/pexels-valiphotos-589840.jpg stretch'
+
+	bindsym Escape mode "default"
+}
+
 
 bindsym $mod+r mode "resize"
 bindsym $mod+o mode "open"
 bindsym $mod+i exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "notification"'
+bindsym $mod+m mode "display"
 
 include others/*
