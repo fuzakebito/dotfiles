@@ -69,11 +69,14 @@
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "{usage}% ",
+		"interval": 2,
+        "format": "CPU:{usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+		"interval": 2,
+        "format": "Mem:{}%"
+        // "format": "{}% "
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -85,7 +88,7 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "Display:{percent}% {icon}",
         "format-icons": ["", ""]
     },
     "battery": {

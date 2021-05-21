@@ -1,4 +1,3 @@
-set -U fish_user_paths /home/fuzakebito/asobi/bin /home/fuzakebito/.local/lib/python3.9/site-packages /home/fuzakebito/.gem/ruby/2.7.0/bin /home/fuzakebito/.local/bin $fish_user_paths
 set -x FZF_DEFAULT_COMMAND fd --type f
 set -x FZF_CTRL_T_COMMAND fd --type f
 set -x FZF_ALT_C_COMMAND fd --type d
