@@ -4,3 +4,4 @@ exec fcitx-autostart
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id 'export GDK_BACKEND=x11 ; deadd-notification-center'
+exec --no-startup-id /snap/g-assist/current/g-assist
