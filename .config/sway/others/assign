@@ -12,13 +12,12 @@ workspace 10 output HDMI-A-1
 for_window [class="feh"] fullscreen enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol"] floating enable, resize set 600 400
-for_window [app_id="pavucontrol"] floating enable, resize set 600 400
+for_window [app_id="pavucontrol"] floating enable, resize set 800 800
 for_window [class="Fcitx-config-gtk3"] floating enable, resize set 600 400
 for_window [class="mozc_tool"] floating enable, resize set 600 400
 for_window [class="Blueman-manager"] floating enable, resize set 600 400
 for_window [class="minecraft-launcher"] floating enable, resize set 600 400
 for_window [class="anbox"] floating enable, resize set 600 800
 for_window [class="QjackCtl"] floating enable
-for_window [class="Google Assistant"] floating enable
 for_window [class="ピクチャー　イン　ピクチャー"] floating enable
 assign [class="zoom"] 2

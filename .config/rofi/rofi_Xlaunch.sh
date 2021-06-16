@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export LANG=en_US.UTF-8
 export GDK_BACKEND=x11
 export QT_QPA_PLATFORM=xcb
 export SDL_VIDEODRIVER=x11
