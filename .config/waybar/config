@@ -76,12 +76,12 @@
         "tooltip": false
     },
     "memory": {
-		"interval": 3,
+		"interval": 1,
         "format": "<small>Mem:</small>{}%"
         // "format": "{}% "
     },
     "temperature": {
-		"interval": 10,
+		"interval": 5,
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
