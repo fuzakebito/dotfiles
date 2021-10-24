@@ -1,0 +1,331 @@
+{
+    "order": {
+        "e": [],
+        "items": [
+            {
+                "id": "CLOCK_36SNW7MNEVK",
+                "order": 1
+            },
+            {
+                "id": "DATE_183AQFVON78",
+                "order": 2
+            }
+        ],
+        "n": [],
+        "ne": [],
+        "nw": [
+            {
+                "id": "SEARCH_1QUHAEPMFGX",
+                "order": 1
+            },
+            {
+                "id": "COVID_A1RCK0TIITC",
+                "order": 2
+            }
+        ],
+        "s": [
+            {
+                "id": "WEATHER_KS096NVA56",
+                "order": 1
+            }
+        ],
+        "se": [],
+        "sw": [],
+        "w": []
+    },
+    "design": {
+        "background": "#222",
+        "brightness": 10,
+        "colorsId": 0,
+        "customFont": "Jost*",
+        "customFontWeight": 20,
+        "font": 0,
+        "foreground": "#CCC",
+        "hideLogo": true,
+        "hideMenu": true,
+        "imageBlend": 10,
+        "imageSize": 10,
+        "patternId": 4200,
+        "scaling": 14,
+        "scalingMethod": false
+    },
+    "messages": {
+        "enabled": false,
+        "id": "MESSAGE_1CUETHV7L63",
+        "marginHeight": 0,
+        "marginWidth": 2,
+        "messageList": [
+            {
+                "id": "MESSAGETEXT_1PCCEZ3K991",
+                "text": "Hello world!"
+            }
+        ],
+        "offset": 0,
+        "position": "c",
+        "random": false,
+        "scaling": 8,
+        "textAlign": "center",
+        "width": 100
+    },
+    "i18n": {
+        "lang": "en-US"
+    },
+    "bookmark": {
+        "apps": false,
+        "bookmarksManager": false,
+        "chromeTab": false,
+        "enabled": false,
+        "history": false,
+        "icons": true,
+        "mostVisited": false
+    },
+    "quickLink": {
+        "apps": false,
+        "bookmarksManager": false,
+        "chromeTab": false,
+        "enabled": false,
+        "history": false,
+        "icons": true,
+        "id": "QUICKLINK_C5HDR1KCPMG",
+        "links": [
+            {
+                "id": "LINK_1EXP1722D1K",
+                "label": "Gmail",
+                "url": "https://gmail.com/"
+            },
+            {
+                "id": "LINK_2EEUNROCLLG",
+                "label": "YouTube",
+                "url": "https://www.youtube.com/"
+            }
+        ],
+        "marginHeight": 3,
+        "marginWidth": 2,
+        "mostVisited": false,
+        "offset": 0,
+        "padding": 5,
+        "position": "n",
+        "scaling": 10,
+        "textAlign": "center",
+        "vertical": false,
+        "width": 100
+    },
+    "time": {
+        "clocks": [
+            {
+                "analog": {
+                    "enabled": false,
+                    "style": 10
+                },
+                "binary": {
+                    "dim": false,
+                    "enabled": false
+                },
+                "brackets": {
+                    "dim": false,
+                    "enabled": true,
+                    "left": "{",
+                    "offset": -4,
+                    "padding": 2,
+                    "right": "}",
+                    "scaling": 8
+                },
+                "delimiter": {
+                    "blink": false,
+                    "dim": true,
+                    "enabled": true,
+                    "offset": 0,
+                    "scaling": 10,
+                    "symbol": ":"
+                },
+                "id": "CLOCK_36SNW7MNEVK",
+                "label": {
+                    "dim": false,
+                    "enabled": false,
+                    "offset": 0,
+                    "scaling": 10,
+                    "text": "Main clock"
+                },
+                "marginHeight": 0,
+                "marginWidth": 2,
+                "meridiem": {
+                    "am": "a.m.",
+                    "dim": false,
+                    "enabled": true,
+                    "offset": -4,
+                    "pm": "p.m.",
+                    "scaling": 11
+                },
+                "offset": 6,
+                "padding": 10,
+                "position": "c",
+                "relativeTime": {
+                    "dim": false,
+                    "enabled": false,
+                    "offset": 0,
+                    "scaling": 10
+                },
+                "scaling": 8,
+                "seconds": {
+                    "dim": false,
+                    "enabled": true,
+                    "offset": 0,
+                    "scaling": 20
+                },
+                "span": 40,
+                "timezone": "Automatic",
+                "twentyFour": false,
+                "twoDigit": false
+            }
+        ]
+    },
+    "covidData": {
+        "countries": [
+            {
+                "code": "JP",
+                "enableActive": true,
+                "enableCountryName": false,
+                "enableDeaths": true,
+                "enableFlag": false,
+                "enablePer1M": false,
+                "enableRecovered": true,
+                "enableToday": true,
+                "flagImage": "https://disease.sh/assets/img/flags/jp.png",
+                "id": "COVID_A1RCK0TIITC",
+                "marginHeight": 7,
+                "marginWidth": 15,
+                "name": "default",
+                "offset": 0,
+                "padding": 7,
+                "position": "nw",
+                "textScaling": 12,
+                "width": 100
+            }
+        ],
+        "enabled": true
+    },
+    "date": {
+        "day": {
+            "enabled": true,
+            "twoDigit": false
+        },
+        "dayOfWeek": {
+            "abbr": true,
+            "enabled": true
+        },
+        "dimDelimiter": false,
+        "enabled": true,
+        "format": 20,
+        "id": "DATE_183AQFVON78",
+        "marginHeight": 5,
+        "marginWidth": 19,
+        "month": {
+            "abbr": true,
+            "enabled": true,
+            "twoDigit": false
+        },
+        "offset": 12,
+        "position": "c",
+        "scaling": 7,
+        "short": {
+            "delimiter": "/",
+            "enabled": true
+        },
+        "timezone": "Automatic",
+        "week": {
+            "enabled": false,
+            "iso": false,
+            "label": "Week",
+            "offset": 0,
+            "scaling": 9
+        },
+        "year": {
+            "enabled": true,
+            "twoDigit": false
+        }
+    },
+    "search": {
+        "autocomplete": true,
+        "enabled": true,
+        "engine": 10,
+        "id": "SEARCH_1QUHAEPMFGX",
+        "label": "Search the web...",
+        "marginHeight": 5,
+        "marginWidth": 10,
+        "offset": 0,
+        "position": "nw",
+        "scaling": 3,
+        "width": 21
+    },
+    "weather": {
+        "celsius": true,
+        "current": {
+            "astro": {
+                "moonPhase": true,
+                "sunrise": true,
+                "sunset": true
+            },
+            "enabled": true,
+            "humidity": {
+                "enabled": true
+            },
+            "icon": {
+                "enabled": true,
+                "size": 35
+            },
+            "pressure": {
+                "enabled": true
+            },
+            "temp": {
+                "currently": true,
+                "degree": true,
+                "feelsLike": true
+            },
+            "wind": {
+                "enabled": true
+            }
+        },
+        "enabled": true,
+        "forecast": {
+            "day": {
+                "enabled": true
+            },
+            "days": 3,
+            "enabled": true,
+            "horizontal": false,
+            "icon": {
+                "enabled": true,
+                "size": 13
+            },
+            "temp": {
+                "degree": true,
+                "high": true,
+                "low": true
+            }
+        },
+        "id": "WEATHER_KS096NVA56",
+        "location": {
+            "url": "ushiku-ibaraki-japan"
+        },
+        "marginHeight": 3,
+        "marginWidth": 4,
+        "metric": true,
+        "offset": 0,
+        "padding": 3,
+        "position": "s",
+        "preciseDigits": true,
+        "scaling": 13,
+        "twentyFour": false,
+        "windUnits": false
+    },
+    "misc": {
+        "disableSelect": true,
+        "enableAnalytics": true,
+        "schema": "1.1",
+        "title": {
+            "clockUsed": 1,
+            "text": "Hello world!",
+            "type": 10
+        }
+    }
+}
