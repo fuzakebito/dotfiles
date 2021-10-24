@@ -37,12 +37,13 @@ ln -s $dotfiles/.config/vivaldi-settings $HOME/.config/vivaldi-settings
 ln -s $dotfiles/.config/waybar $HOME/.config/waybar
 #xfce4-volumed
 ln -s $dotfiles/.config/xfce4-volumed $HOME/.config/xfce4-volumed
-#xkeysnal
-ln -s $dotfiles/.config/xkeysnal $HOME/.config/xkeysnal
+#xkeysnail
+ln -s $dotfiles/.config/xkeysnail $HOME/.config/xkeysnail
 #yay
 ln -s $dotfiles/.config/yay $HOME/.config/yay
 #mozc
-ln -s $dotfiles/.mozc $HOME/.mozc
+mkdir -p $HOME/.mozc
+ln -s $dotfiles/.mozc/user_dictionary.db $HOME/.mozc/user_dictionary.db
 #asobi
 mkdir -p $HOME/asobi
 ln -s $dotfiles/asobi/bin $HOME/asobi/bin
@@ -53,7 +54,7 @@ ln -s $dotfiles/.bashrc $HOME/.bashrc
 #zsh
 ln -s $dotfiles/.zshrc $HOME/.zshrc
 #tmux
-ln -s $dotfiles/.tmux-conf $HOME/.tmux-conf
+ln -s $dotfiles/.tmux.conf $HOME/.tmux.conf
 #xprofile,Xresources
 ln -s $dotfiles/.xprofile $HOME/.xprofile
 ln -s $dotfiles/.Xresources $HOME/.Xresources
