@@ -224,3 +224,4 @@ bindsym $mod+i exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mo
 bindsym $mod+m mode "display"
 
 include others/*
+include /etc/sway/config.d/*
