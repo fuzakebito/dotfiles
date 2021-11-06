@@ -1,5 +1,6 @@
 exec xrdb $HOME/.Xresources
 exec_always mako
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec fcitx-autostart
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id kdeconnect-indicator
