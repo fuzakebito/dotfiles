@@ -1,3 +1,4 @@
+fish_vi_key_bindings
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -x BAT_THEME base16
 alias inst "yay -S"
