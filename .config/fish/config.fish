@@ -1,6 +1,4 @@
-set -x FZF_DEFAULT_COMMAND fd --type f
-set -x FZF_CTRL_T_COMMAND fd --type f
-set -x FZF_ALT_C_COMMAND fd --type d
+set -U FZF_LEGACY_KEYBINDINGS 0
 set -x BAT_THEME base16
 alias inst "yay -S"
 alias unst "yay -Rns"
