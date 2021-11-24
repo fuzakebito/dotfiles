@@ -5,12 +5,12 @@ echo $dotfiles
 echo $HOME
 mkdir -p $HOME/.config
 #alacritty
-ln -sf $dotfiles/.config/alacritty $HOME/.config/alacritty
+ln -sf $dotfiles/.config/alacritty $HOME/.config/
 #fcitx
 mkdir -p $HOME/.config/fcitx
-ln -sf $dotfiles/.config/fcitx/skin $HOME/.config/fcitx/skin
-ln -sf $dotfiles/.config/fcitx/config $HOME/.config/fcitx/config
-ln -sf $dotfiles/.config/fcitx/profile $HOME/.config/fcitx/profile
+ln -sf $dotfiles/.config/fcitx/skin $HOME/.config/fcitx/
+ln -sf $dotfiles/.config/fcitx/config $HOME/.config/fcitx/
+ln -sf $dotfiles/.config/fcitx/profile $HOME/.config/fcitx/
 #fish
 mkdir -p $HOME/.config/fish/functions
 ln -sf $dotfiles/.config/fish/functions/fish_greeting.fish $HOME/.config/fish/functions/fish_greeting.fish
@@ -19,36 +19,36 @@ ln -sf $dotfiles/.config/fish/functions/fish_prompt.fish $HOME/.config/fish/func
 ln -sf $dotfiles/.config/fish/config.fish $HOME/.config/fish/config.fish
 ln -sf $dotfiles/.config/fish/fish_plugins $HOME/.config/fish/fish_plugins
 #i3
-ln -sf $dotfiles/.config/i3 $HOME/.config/i3
-ln -sf $dotfiles/.config/i3blocks $HOME/.config/i3blocks
+ln -sf $dotfiles/.config/i3 $HOME/.config/
+ln -sf $dotfiles/.config/i3blocks $HOME/.config/
 #picom
-ln -sf $dotfiles/.config/picom $HOME/.config/picom
+ln -sf $dotfiles/.config/picom $HOME/.config/
 #rofi
-ln -sf $dotfiles/.config/rofi $HOME/.config/rofi
+ln -sf $dotfiles/.config/rofi $HOME/.config/
 #sway
-ln -sf $dotfiles/.config/sway $HOME/.config/sway
+ln -sf $dotfiles/.config/sway $HOME/.config/
 #systemd
-ln -sf $dotfiles/.config/systemd $HOME/.config/systemd
+ln -sf $dotfiles/.config/systemd $HOME/.config/
 #thefuck
-ln -sf $dotfiles/.config/thefuck $HOME/.config/thefuck
+ln -sf $dotfiles/.config/thefuck $HOME/.config/
 #vivaldi-settings
-ln -sf $dotfiles/.config/vivaldi-settings $HOME/.config/vivaldi-settings
+ln -sf $dotfiles/.config/vivaldi-settings $HOME/.config/
 #waybar
-ln -sf $dotfiles/.config/waybar $HOME/.config/waybar
+ln -sf $dotfiles/.config/waybar $HOME/.config/
 #xfce4-volumed
-ln -sf $dotfiles/.config/xfce4-volumed $HOME/.config/xfce4-volumed
+ln -sf $dotfiles/.config/xfce4-volumed $HOME/.config/
 #xkeysnail
-ln -sf $dotfiles/.config/xkeysnail $HOME/.config/xkeysnail
+ln -sf $dotfiles/.config/xkeysnail $HOME/.config/
 #yay
-ln -sf $dotfiles/.config/yay $HOME/.config/yay
+ln -sf $dotfiles/.config/yay $HOME/.config/
 #mozc
 mkdir -p $HOME/.mozc
 ln -sf $dotfiles/.mozc/user_dictionary.db $HOME/.mozc/user_dictionary.db
 #asobi
 mkdir -p $HOME/asobi
-ln -sf $dotfiles/asobi/bin $HOME/asobi/bin
+ln -sf $dotfiles/asobi/bin $HOME/asobi/
 #bin
-ln -sf $dotfiles/bin $HOME/bin
+ln -sf $dotfiles/bin $HOME/
 #bash
 ln -sf $dotfiles/.bashrc $HOME/.bashrc
 #zsh
