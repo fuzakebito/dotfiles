@@ -21,6 +21,10 @@ ln -sf $dotfiles/.config/fish/fish_plugins $HOME/.config/fish/fish_plugins
 #i3
 ln -sf $dotfiles/.config/i3 $HOME/.config/
 ln -sf $dotfiles/.config/i3blocks $HOME/.config/
+#neovim
+mkdir -p $HOME/.config/nvim
+ln -sf $dotfiles/.config/nvim/init.vim $HOME/.config/nvim/
+ln -sf $dotfiles/.config/nvim/init $HOME/.config/nvim/
 #picom
 ln -sf $dotfiles/.config/picom $HOME/.config/
 #rofi
