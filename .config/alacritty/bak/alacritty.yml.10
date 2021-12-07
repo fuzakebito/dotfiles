@@ -10,9 +10,9 @@ colors:
     red:     '#ba3e48'
     green:   '#41947d'
     yellow:  '#bc884e'
-    blue:    '#6a7cae'
+    blue:    '#6183a8'
     magenta: '#906d8f'
-    cyan:    '#688796'
+    cyan:    '#688c96'
     white:   '#C2C2C2'
 
   # Bright colors
@@ -21,9 +21,9 @@ colors:
     red:     '#cc4e56'
     green:   '#52a48c'
     yellow:  '#cb965b'
-    blue:    '#7a8bbe'
+    blue:    '#6e90b6'
     magenta: '#a07c9f'
-    cyan:    '#7797a6'
+    cyan:    '#779ca6'
     white:   '#DEDEDE'
 
 font:
