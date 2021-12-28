@@ -74,7 +74,7 @@ function fish_prompt --description 'Write out the prompt'
     set_color brwhite
 
 	if string length -q -- fish_vcs_prompt
-	    if test $last_pipestatus != 0
+	    if test "$last_pipestatus" -ne 0
 	        set_color -b brblack
             printf ''
 	        set_color normal
@@ -97,7 +97,7 @@ function fish_prompt --description 'Write out the prompt'
 	    set_color normal
         printf '%s' (fish_vcs_prompt)
 	    set_color brblack
-	    if test $last_pipestatus != 0
+	    if test "$last_pipestatus" -ne 0
 		    set_color -b yellow
             printf ''
 		    set_color black
