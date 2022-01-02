@@ -12,9 +12,11 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 " vim-plug plugins
 call plug#begin()
+" help-ja
+Plug 'vim-jp/vimdoc-ja'
 " lightline
 Plug 'itchyny/lightline.vim'
-let g:lightline = {'colorscheme': 'popice'}
+let g:lightline = {'colorscheme': 'edge'}
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " copilot
@@ -36,10 +38,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'cocopon/colorswatch.vim'
 
 "colorschemes
-Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
-Plug 'cocopon/iceberg.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/edge'
+let g:edge_diagnostic_text_highlight = 1
+let g:edge_diagnostic_line_highlight = 1
+let g:edge_better_performance = 1
 
 " vimtex
 Plug 'lervag/vimtex'

@@ -5,7 +5,8 @@ set guicursor=
 set tabstop=4
 set shiftwidth=4
 set smartindent
-colorscheme popice
+set helplang=ja
 syntax enable
 
 runtime! init/*.vim
+colorscheme edge

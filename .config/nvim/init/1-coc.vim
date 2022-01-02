@@ -1,7 +1,8 @@
 " coc extensions
 let g:coc_global_extensions = [
 	  \'coc-explorer',
-	  \'coc-vimtex'
+	  \'coc-vimtex',
+	  \'coc-grammarly'
 \]
 
 " coc-explorer

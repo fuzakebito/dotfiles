@@ -1,0 +1,13 @@
+[Unit]
+Description=xremap
+
+[Service]
+KillMode=process
+ExecStartPre=/usr/bin/sway +SI:localuser:root
+ExecStart=/home/fuzakebito/.cargo/bin/xremap /home/fuzakebito/.config/xremap/config.yml
+Type=simple
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=graphical.target
