@@ -62,4 +62,8 @@ let g:vimtex_compiler_latexmk = {
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
 
+" markdown
+Plug 'skanehira/preview-markdown.vim'
+let g:preview_markdown_auto_update = 1
+
 call plug#end()

@@ -6,7 +6,7 @@ set tabstop=4
 set shiftwidth=4
 set smartindent
 set helplang=ja
-syntax enable
+syntax off
 
 runtime! init/*.vim
 colorscheme edge

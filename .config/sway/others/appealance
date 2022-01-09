@@ -9,9 +9,9 @@ bar {
 	mode invisible
 
     colors {
-        background #1c1c1c
-        statusline #d3d9f3
-        separator #666666
+        background #202020
+        statusline #afaaa3
+        separator #414141
 
         focused_workspace  #00BCD4 #00BCD4 #1c1c1c
         active_workspace   #8a8a8a #8a8a8a #1c1c1c
@@ -20,6 +20,15 @@ bar {
         binding_mode       #00BCD4 #00BCD4 #1c1c1c
     }
 }
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #414141 #ffffff #afaaa3 #414141   #414141
+client.focused_inactive #414141 #ffffff #afaaa3 #414141   #414141
+client.unfocused        #414141 #ffffff #afaaa3 #414141   #414141
+client.urgent           #414141 #ffffff #afaaa3 #414141   #414141
+client.placeholder      #000000 #ffffff #afaaa3 #000000   #414141
+
+client.background       #ffffff
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
@@ -33,4 +42,4 @@ exec_always waybar
 
 gaps inner 8
 default_border pixel 0
-default_floating_border pixel 0
+default_floating_border pixel 1
