@@ -1,0 +1,51 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+depends = ['kyazdani42/nvim-web-devicons']
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+  let g:coc_global_extensions = [
+    \'coc-explorer',
+    \'coc-vimtex',
+    \'coc-grammarly'
+  \]
+  nnoremap <space>e <Cmd>CocCommand explorer<CR>
+'''
+
+[[plugins]]
+repo = 'github/copilot.vim'
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+hook_add = '''
+  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = 'TSUpdate'
+
+[[plugins]]
+repo = 'karb94/neoscroll.nvim'
+
+[[plugins]]
+repo = 'sainnhe/edge'
+hook_add = '''
+  let g:edge_diagnostic_text_highlight = 1
+  let g:edge_diagnostic_line_highlight = 1
+  let g:edge_better_performance = 1
+'''

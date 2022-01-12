@@ -1,0 +1,31 @@
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_cmd = ['h','help']
+hook_post_source = 'set helplang=ja'
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+hook_source = '''
+  let g:vimtex_compiler_latexmk = {
+    \'background': 1,
+    \'build_dir': '',
+    \'continuous': 1,
+    \'options': [
+      \'-pdfdvi', 
+      \'-verbose',
+      \'-file-line-error',
+      \'-synctex=1',
+      \'-interaction=nonstopmode',
+    \],
+    \}
+  let g:vimtex_view_general_viewer = 'zathura'
+  let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
+'''
+
+[[plugins]]
+repo = 'skanehira/preview-markdown.vim'
+on_ft = ['markdown']
+hook_source = '''
+  let g:preview_markdown_auto_update = 1
+'''
