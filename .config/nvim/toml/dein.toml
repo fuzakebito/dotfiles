@@ -16,7 +16,69 @@ hook_add = '''
     \'coc-vimtex',
     \'coc-grammarly'
   \]
-  nnoremap <space>e <Cmd>CocCommand explorer<CR>
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+  nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
+  autocmd FileType fern set nonumber
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+depends = ['fern.vim']
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+depends = ['fern.vim']
+hook_add = '''
+let g:fern#renderer = "nerdfont"
+let g:fern#renderer#nerdfont#leading = "│ "
+let g:fern#renderer#nerdfont#root_symbol = ""
+let g:fern#renderer#nerdfont#leaf_symbol = ""
+let g:fern#renderer#nerdfont#expanded_symbol = ""
+let g:fern#renderer#nerdfont#collapsed_symbol = ""
+"let g:fern#renderer#nerdfont#leading = " "
+"let g:fern#renderer#nerdfont#root_symbol = "⏷ "
+"let g:fern#renderer#nerdfont#leaf_symbol = "   "
+"let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
+"let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
+function! s:fern_highlight() abort
+  highlight link FernRootSymbol   Comment
+  highlight link FernRootText     Comment
+  highlight link FernLeafSymbol   Grey
+  highlight link FernLeafText     None
+  highlight link FernBranchSymbol Grey
+  highlight link FernBranchText   Directory
+endfunction
+autocmd FileType fern call s:fern_highlight()
+'''
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+augroup END
+'''
+
+[[plugins]]
+repo = 'yuki-yano/fern-preview.vim'
+depends = ['lambdalisue/fern.vim']
+hook_add = '''
+  function! s:fern_settings() abort
+    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+  endfunction
+  augroup fern-settings
+    autocmd!
+    autocmd FileType fern call s:fern_settings()
+  augroup END
+>>>>>>> 27dcd21241ce8f41f010167ce3705c63248ebdd3
 '''
 
 [[plugins]]
@@ -54,3 +116,6 @@ hook_add = '''
   let g:edge_diagnostic_line_highlight = 1
   let g:edge_better_performance = 1
 '''
+
+[[plugins]]
+repo = 'dylnmc/synstack.vim'
