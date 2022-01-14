@@ -3,21 +3,67 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-depends = ['kyazdani42/nvim-web-devicons']
 
 [[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
+repo = 'lambdalisue/nerdfont.vim'
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 hook_add = '''
   let g:coc_global_extensions = [
-    \'coc-explorer',
     \'coc-vimtex',
     \'coc-grammarly'
   \]
-  nnoremap <space>e <Cmd>CocCommand explorer<CR>
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+hook_add = '''
+  nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
+  autocmd FileType fern set nonumber
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+depends = ['fern.vim']
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+depends = ['fern.vim']
+hook_add = '''
+let g:fern#renderer = "nerdfont"
+'''
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+augroup END
+'''
+
+[[plugins]]
+repo = 'yuki-yano/fern-preview.vim'
+depends = ['lambdalisue/fern.vim']
+hook_add = '''
+  function! s:fern_settings() abort
+    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+  endfunction
+  augroup fern-settings
+    autocmd!
+    autocmd FileType fern call s:fern_settings()
+  augroup END
+'''
+
+[[plugins]]
+repo = 'antoinemadec/FixCursorHold.nvim'
+hook_add = '''
+  let g:cursorhold_updatetime = 100
 '''
 
 [[plugins]]
