@@ -78,7 +78,6 @@ hook_add = '''
     autocmd!
     autocmd FileType fern call s:fern_settings()
   augroup END
->>>>>>> 27dcd21241ce8f41f010167ce3705c63248ebdd3
 '''
 
 [[plugins]]
