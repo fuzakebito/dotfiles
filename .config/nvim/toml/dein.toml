@@ -33,6 +33,25 @@ repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 depends = ['fern.vim']
 hook_add = '''
 let g:fern#renderer = "nerdfont"
+let g:fern#renderer#nerdfont#leading = "│ "
+let g:fern#renderer#nerdfont#root_symbol = ""
+let g:fern#renderer#nerdfont#leaf_symbol = ""
+let g:fern#renderer#nerdfont#expanded_symbol = ""
+let g:fern#renderer#nerdfont#collapsed_symbol = ""
+"let g:fern#renderer#nerdfont#leading = " "
+"let g:fern#renderer#nerdfont#root_symbol = "⏷ "
+"let g:fern#renderer#nerdfont#leaf_symbol = "   "
+"let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
+"let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
+function! s:fern_highlight() abort
+  highlight link FernRootSymbol   Comment
+  highlight link FernRootText     Comment
+  highlight link FernLeafSymbol   Grey
+  highlight link FernLeafText     None
+  highlight link FernBranchSymbol Grey
+  highlight link FernBranchText   Directory
+endfunction
+autocmd FileType fern call s:fern_highlight()
 '''
 
 [[plugins]]
@@ -95,3 +114,6 @@ hook_add = '''
   let g:edge_diagnostic_line_highlight = 1
   let g:edge_better_performance = 1
 '''
+
+[[plugins]]
+repo = 'dylnmc/synstack.vim'
