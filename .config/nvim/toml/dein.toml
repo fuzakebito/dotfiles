@@ -5,6 +5,9 @@ repo = 'Shougo/dein.vim'
 repo = 'nvim-lualine/lualine.nvim'
 
 [[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
 repo = 'lambdalisue/nerdfont.vim'
 
 [[plugins]]
