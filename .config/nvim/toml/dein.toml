@@ -33,35 +33,52 @@ depends = ['fern.vim']
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 depends = ['fern.vim']
 hook_add = '''
-let g:fern#renderer = "nerdfont"
-let g:fern#renderer#nerdfont#leading = "│ "
-let g:fern#renderer#nerdfont#root_symbol = ""
-let g:fern#renderer#nerdfont#leaf_symbol = ""
-let g:fern#renderer#nerdfont#expanded_symbol = ""
-let g:fern#renderer#nerdfont#collapsed_symbol = ""
-"let g:fern#renderer#nerdfont#leading = " "
-"let g:fern#renderer#nerdfont#root_symbol = "⏷ "
-"let g:fern#renderer#nerdfont#leaf_symbol = "   "
-"let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
-"let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
-function! s:fern_highlight() abort
-  highlight link FernRootSymbol   Comment
-  highlight link FernRootText     Comment
-  highlight link FernLeafSymbol   Grey
-  highlight link FernLeafText     None
-  highlight link FernBranchSymbol Grey
-  highlight link FernBranchText   Directory
-endfunction
-autocmd FileType fern call s:fern_highlight()
+  let g:fern#renderer = "nerdfont"
+  function! Fern_renderer_ornament(choice)
+    if a:choice == 1
+      let g:fern#renderer#nerdfont#leading = "│ "
+      let g:fern#renderer#nerdfont#root_symbol = ""
+      let g:fern#renderer#nerdfont#leaf_symbol = ""
+      let g:fern#renderer#nerdfont#expanded_symbol = ""
+      let g:fern#renderer#nerdfont#collapsed_symbol = ""
+    elseif a:choice == 2
+      let g:fern#renderer#nerdfont#leading = " "
+      let g:fern#renderer#nerdfont#root_symbol = "⏷ "
+      let g:fern#renderer#nerdfont#leaf_symbol = "   "
+      let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
+      let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
+    elseif a:choice == 3
+      let g:fern#renderer#nerdfont#leading = " │"
+      let g:fern#renderer#nerdfont#root_symbol = "⏷ "
+      let g:fern#renderer#nerdfont#leaf_symbol = "   "
+      let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
+      let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
+    endif
+  endfunction
+  call Fern_renderer_ornament(1)
+  function! s:fern_highlight() abort
+    highlight! link FernRootSymbol   Comment
+    highlight! link FernRootText     Comment
+    highlight! link FernLeafSymbol   Grey
+    highlight! link FernLeafText     None
+    highlight! link FernBranchSymbol Grey
+    highlight! link FernBranchText   Directory
+    highlight! link FernMarkedLine   None
+    highlight! link FernMarkedText   Purple
+  endfunction
+  augroup fern-highlight
+    autocmd!
+    autocmd FileType fern call s:fern_highlight()
+  augroup END
 '''
 
 [[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
 hook_add = '''
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-augroup END
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+  augroup END
 '''
 
 [[plugins]]
