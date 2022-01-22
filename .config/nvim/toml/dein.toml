@@ -3,6 +3,15 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
+hook_add = '''
+lua << EOF
+require('lualine').setup {
+  options = {
+    theme = 'edge'
+  }
+}
+EOF
+'''
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
@@ -14,18 +23,29 @@ repo = 'lambdalisue/nerdfont.vim'
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 hook_add = '''
-  let g:coc_global_extensions = [
-    \'coc-explorer',
-    \'coc-vimtex',
-    \'coc-grammarly'
-  \]
+let g:coc_global_extensions = [
+  \'coc-explorer',
+  \'coc-vimtex',
+  \'coc-grammarly'
+\]
 '''
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
-  nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
-  autocmd FileType fern set nonumber
+nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
+autocmd FileType fern set nonumber
+function! s:fern_highlight() abort
+  highlight! link FernRootSymbol   Comment
+  highlight! link FernRootText     Comment
+  highlight! link FernLeafSymbol   Grey
+  highlight! link FernLeafText     None
+  highlight! link FernBranchSymbol Grey
+  highlight! link FernBranchText   Directory
+  highlight! link FernMarkedLine   None
+  highlight! link FernMarkedText   Purple
+endfunction
+autocmd FileType fern call s:fern_highlight()
 '''
 
 [[plugins]]
@@ -36,74 +56,66 @@ depends = ['fern.vim']
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 depends = ['fern.vim']
 hook_add = '''
-  let g:fern#renderer = "nerdfont"
-  function! Fern_renderer_ornament(choice)
-    if a:choice == 1
-      let g:fern#renderer#nerdfont#leading = "│ "
-      let g:fern#renderer#nerdfont#root_symbol = ""
-      let g:fern#renderer#nerdfont#leaf_symbol = ""
-      let g:fern#renderer#nerdfont#expanded_symbol = ""
-      let g:fern#renderer#nerdfont#collapsed_symbol = ""
-    elseif a:choice == 2
-      let g:fern#renderer#nerdfont#leading = " "
-      let g:fern#renderer#nerdfont#root_symbol = "⏷ "
-      let g:fern#renderer#nerdfont#leaf_symbol = "   "
-      let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
-      let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
-    elseif a:choice == 3
-      let g:fern#renderer#nerdfont#leading = " │"
-      let g:fern#renderer#nerdfont#root_symbol = "⏷ "
-      let g:fern#renderer#nerdfont#leaf_symbol = "   "
-      let g:fern#renderer#nerdfont#expanded_symbol = " ⏷ "
-      let g:fern#renderer#nerdfont#collapsed_symbol = " ⏵ "
-    endif
-  endfunction
-  call Fern_renderer_ornament(1)
-  function! s:fern_highlight() abort
-    highlight! link FernRootSymbol   Comment
-    highlight! link FernRootText     Comment
-    highlight! link FernLeafSymbol   Grey
-    highlight! link FernLeafText     None
-    highlight! link FernBranchSymbol Grey
-    highlight! link FernBranchText   Directory
-    highlight! link FernMarkedLine   None
-    highlight! link FernMarkedText   Purple
-  endfunction
-  augroup fern-highlight
-    autocmd!
-    autocmd FileType fern call s:fern_highlight()
-  augroup END
+let g:fern#renderer = "nerdfont"
 '''
 
 [[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
 hook_add = '''
-  augroup my-glyph-palette
-    autocmd! *
-    autocmd FileType fern call glyph_palette#apply()
-  augroup END
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+augroup END
+'''
+
+[[plugins]]
+repo = 'fuzakebito/fern-renderer-devicons.nvim'
+depends = ['lambdalisue/fern.vim']
+hook_add = '''
+function! Fern_renderer_ornament(choice)
+  if a:choice == 1
+    let g:fern#renderer#nvim_devicons#leading = "│ "
+    let g:fern#renderer#nvim_devicons#root_symbol = ""
+    let g:fern#renderer#nvim_devicons#leaf_symbol = ""
+    let g:fern#renderer#nvim_devicons#expanded_symbol = ""
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = ""
+  elseif a:choice == 2
+    let g:fern#renderer#nvim_devicons#leading = " "
+    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+  elseif a:choice == 3
+    let g:fern#renderer#nvim_devicons#leading = " │"
+    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+  endif
+endfunction
+call Fern_renderer_ornament(1)
 '''
 
 [[plugins]]
 repo = 'yuki-yano/fern-preview.vim'
 depends = ['lambdalisue/fern.vim']
 hook_add = '''
-  function! s:fern_settings() abort
-    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-  endfunction
-  augroup fern-settings
-    autocmd!
-    autocmd FileType fern call s:fern_settings()
-  augroup END
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
 '''
 
 [[plugins]]
 repo = 'antoinemadec/FixCursorHold.nvim'
 hook_add = '''
-  let g:cursorhold_updatetime = 100
+let g:cursorhold_updatetime = 100
 '''
 
 [[plugins]]
@@ -115,25 +127,61 @@ repo = 'nvim-lua/plenary.nvim'
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 hook_add = '''
-  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-  nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 '''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = 'TSUpdate'
+hook_add = '''
+lua << EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+'''
 
 [[plugins]]
 repo = 'karb94/neoscroll.nvim'
+hook_add = '''
+lua << EOF
+require('neoscroll').setup({
+    -- All these keys will be mapped to their corresponding default scrolling animation
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+    hide_cursor = true,          -- Hide cursor while scrolling
+    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = 'sine',        -- Default easing function
+    pre_hook = nil,              -- Function to run before the scrolling animation starts
+    post_hook = nil,              -- Function to run after the scrolling animation ends
+})
+EOF
+'''
 
 [[plugins]]
 repo = 'sainnhe/edge'
 hook_add = '''
-  let g:edge_diagnostic_text_highlight = 1
-  let g:edge_diagnostic_line_highlight = 1
-  let g:edge_better_performance = 1
+let g:edge_diagnostic_text_highlight = 1
+let g:edge_diagnostic_line_highlight = 1
+let g:edge_better_performance = 1
+let g:edge_style = 'default'
 '''
 
 [[plugins]]
