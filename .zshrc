@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 HISTFILE=~/.zsh_hist
 HISTSIZE=1000
 SAVEHIST=100000
@@ -13,6 +20,7 @@ bindkey "^[[B" history-beginning-search-forward
 setopt autocd extendedglob
 unsetopt beep
 bindkey -v
+KEYTIMEOUT=2
 
 export PATH=$PATH:/home/fuzakebito/asobi/bin
 
@@ -24,8 +32,6 @@ alias vim='nvim'
 alias toilet='toilet -w $(tput cols)'
 alias :q='exit'
 function Calendar(){curl -X POST -H 'Content-Type: application/json' -d '{"value1":"'$1'","value2":"'$2'","value3":"'$3'"}' https://maker.ifttt.com/trigger/AddCalendar/with/key/dZ0JXWCjtZ1F8p5iwtgB0D}
-
-eval "$(starship init zsh)"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -47,6 +53,10 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust \
-    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-syntax-highlighting \
+    romkatv/powerlevel10k
 
 ### End of Zinit's installer chunk
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
