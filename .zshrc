@@ -59,4 +59,5 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+ZLE_RPROMPT_INDENT=0
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
