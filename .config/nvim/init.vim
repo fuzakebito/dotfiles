@@ -63,4 +63,4 @@ if has('vim_starting') && dein#check_install()
 endif
 " }}}
 
-colorscheme edge
+" colorscheme edge

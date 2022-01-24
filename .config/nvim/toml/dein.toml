@@ -185,4 +185,17 @@ let g:edge_style = 'default'
 '''
 
 [[plugins]]
+repo = 'RRethy/nvim-base16'
+hook_add = '''
+lua << EOF
+require('base16-colorscheme').setup({
+  base00 = '#27262c', base01 = '#34333e', base02 = '#3b3947', base03 = '#42404e',
+  base04 = '#7e7b8b', base05 = '#bebdc6', base06 = '#c8c7cd', base07 = '#d1d0d7',
+  base08 = '#cc5655', base09 = '#d4896b', base0A = '#c99a68', base0B = '#4aad78',
+  base0C = '#5aaaaf', base0D = '#809fd1', base0E = '#aa88c8', base0F = '#a06949',
+})
+EOF
+'''
+
+[[plugins]]
 repo = 'dylnmc/synstack.vim'

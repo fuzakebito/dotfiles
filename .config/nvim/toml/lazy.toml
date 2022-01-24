@@ -29,3 +29,10 @@ on_ft = ['markdown']
 hook_source = '''
 let g:preview_markdown_auto_update = 1
 '''
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_cmd = ['ColorizerAttachToBuffer']
+hook_source = '''
+lua require 'colorizer'.setup()
+'''
