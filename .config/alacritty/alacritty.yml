@@ -2,14 +2,14 @@ colors:
   # Default colors
   primary:
     background: '#27262c'
-    foreground: '#bebdc6'
+    foreground: '#abaab9'
 
   # Normal colors
   normal:
     #black/white
     # l = 22
-    black:   '#34333e'
-    white:   '#bebdc6'
+    black:   '#35343d'
+    white:   '#bebdc9'
     # l = 52
     red:     '#cc5655'
     # l = 62
@@ -32,7 +32,7 @@ colors:
     blue:    '#93b2e5'
     magenta: '#bd9bdc'
     cyan:    '#6ebdc2'
-    white:   '#d1d0d7'
+    white:   '#d1d1d9'
 
 font:
   size: 11
