@@ -7,7 +7,9 @@ hook_add = '''
 lua << EOF
 require('lualine').setup {
   options = {
-    theme = 'edge'
+    theme = 'antibalus',
+    component_separators = { left = ' ', right = ' '},
+    section_separators = { left = ' ', right = ' '},
   }
 }
 EOF
@@ -173,15 +175,6 @@ require('neoscroll').setup({
     post_hook = nil,              -- Function to run after the scrolling animation ends
 })
 EOF
-'''
-
-[[plugins]]
-repo = 'sainnhe/edge'
-hook_add = '''
-let g:edge_diagnostic_text_highlight = 1
-let g:edge_diagnostic_line_highlight = 1
-let g:edge_better_performance = 1
-let g:edge_style = 'default'
 '''
 
 [[plugins]]
