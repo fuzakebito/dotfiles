@@ -55,7 +55,7 @@ ln -sf $dotfiles/bin $HOME/
 ln -sf $dotfiles/.bashrc $HOME/.bashrc
 #zsh
 ln -sf $dotfiles/.zshrc $HOME/.zshrc
-ln -sf $dotfiles/.p10k.zsh $HOME/.p10k.zsh
+ln -sf $dotfiles/.zsh $HOME/
 #tmux
 ln -sf $dotfiles/.tmux.conf $HOME/.tmux.conf
 #xprofile,Xresources
