@@ -25,6 +25,9 @@ snippets:
   - name: expand ls to exa
     keyword: ls
     snippet: exa
+  - name: git tree view
+    keyword: gls
+    snippet: exa -Tla --git --git-ignore -I .git
   - name: install package by yay
     keyword: inst
     snippet: yay -S
