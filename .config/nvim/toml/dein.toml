@@ -182,3 +182,9 @@ repo = 'dylnmc/synstack.vim'
 
 [[plugins]]
 repo = 'fuzakebito/antibalus.vim'
+
+[[plugins]]
+repo = 'skanehira/jumpcursor.vim'
+hook_add = '''
+nmap <leader>j <Plug>(jumpcursor-jump)
+'''

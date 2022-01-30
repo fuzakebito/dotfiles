@@ -54,7 +54,8 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust \
     zsh-users/zsh-syntax-highlighting \
-    romkatv/powerlevel10k
+    romkatv/powerlevel10k \
+    unixorn/fzf-zsh-plugin
 
 ### End of Zinit's installer chunk
 
