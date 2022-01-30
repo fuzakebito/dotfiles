@@ -22,6 +22,21 @@ snippets:
     context:
       lbuffer: '^git\s+checkout\s+'
     evaluate: true # eval snippet
+  - name: expand ls to exa
+    keyword: ls
+    snippet: exa
+  - name: install package by yay
+    keyword: inst
+    snippet: yay -S
+  - name: remove package by yay
+    keyword: unst
+    snippet: yay -Rns
+  - name: remove no longer needed
+    keyword: autoremove
+    snippet: sudo sh -c 'pacman -Qdtq | pacman -Rs -'
+  - name: expand :q to exit
+    keyword: :q
+    snippet: exit
 
 completions:
   - name: kill

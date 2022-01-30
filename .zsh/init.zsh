@@ -19,14 +19,8 @@ export PATH=$PATH:/home/fuzakebito/asobi/bin
 export BAT_THEME=base16
 # }}}
 # alias {{{
-alias ls='exa -F --icons'
 alias exa='exa -F --icons'
-alias inst='yay -S'
-alias unst='yay -Rns'
-alias atrm='sudo pacman -Qdtq | sudo pacman -Rs'
-alias vim='nvim'
 alias toilet='toilet -w $(tput cols)'
-alias :q='exit'
 # }}}
 # functions {{{
 function Calendar(){curl -X POST -H 'Content-Type: application/json' -d '{"value1":"'$1'","value2":"'$2'","value3":"'$3'"}' https://maker.ifttt.com/trigger/AddCalendar/with/key/dZ0JXWCjtZ1F8p5iwtgB0D}
