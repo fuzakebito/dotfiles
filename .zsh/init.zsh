@@ -11,6 +11,7 @@ setopt share_history
 setopt autocd
 setopt extendedglob
 setopt noflowcontrol
+setopt correct
 unsetopt beep
 # vi mode
 bindkey -v
