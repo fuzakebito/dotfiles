@@ -8,5 +8,9 @@ zinit ice wait lucid depth"1" blockf \
   atload="source ${plugrc}/zeno_atload.zsh"
 zinit light yuki-yano/zeno.zsh
 
+zinit ice wait lucid depth"1" \
+  atload="eval \"$(fasd --init posix-alias zsh-hook)\""
+zinit snippet OMZP::fasd
+
 zinit ice wait lucid depth"1"
 zinit light zdharma-continuum/fast-syntax-highlighting

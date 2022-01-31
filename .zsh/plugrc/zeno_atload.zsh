@@ -14,5 +14,5 @@ bindkey '^i' zeno-completion
 # (default: fzf-completion if exists; otherwise expand-or-complete)
 # export ZENO_COMPLETION_FALLBACK=expand-or-complete
 bindkey '^r'   zeno-history-selection
-bindkey '^x^s' zeno-insert-snippet
+bindkey '^s' zeno-insert-snippet
 bindkey '^g' zeno-ghq-cd

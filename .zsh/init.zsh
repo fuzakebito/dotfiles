@@ -19,7 +19,7 @@ export PATH=$PATH:/home/fuzakebito/asobi/bin
 export BAT_THEME=base16
 # }}}
 # alias {{{
-alias exa='exa -F --icons'
+alias exa='exa -F --icons --git'
 alias toilet='toilet -w $(tput cols)'
 # }}}
 # functions {{{
