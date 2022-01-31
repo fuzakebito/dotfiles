@@ -8,7 +8,9 @@ setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt hist_no_store
 setopt share_history
-setopt autocd extendedglob
+setopt autocd
+setopt extendedglob
+setopt noflowcontrol
 unsetopt beep
 # vi mode
 bindkey -v
