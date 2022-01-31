@@ -15,7 +15,7 @@ window#waybar {
 
 window#waybar > box {
   background-color: #27262c;
-  padding: 2px 0 2px 0;
+  padding: 2px;
   margin: 7px 8px 0px 8px;
 }
 
@@ -166,7 +166,7 @@ label:focus {
 
 #tray {
   margin-left: -3px;
-  margin-right: -1px;
+  margin-right: -3px;
 }
 
 #idle_inhibitor {
