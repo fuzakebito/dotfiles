@@ -31,8 +31,6 @@ zinit light-mode for \
 # }}}
 source ~/.zsh/zinit-plugins.zsh
 
-source ~/.zsh/post_zinit.zsh
-
 # Load p10k prompt
 ZLE_RPROMPT_INDENT=0
 source ~/.zsh/p10k.zsh
