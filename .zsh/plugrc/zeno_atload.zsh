@@ -13,6 +13,6 @@ bindkey '^i' zeno-completion
 # fallback if completion not matched
 # (default: fzf-completion if exists; otherwise expand-or-complete)
 # export ZENO_COMPLETION_FALLBACK=expand-or-complete
-bindkey '^r'   zeno-history-selection
+bindkey '^r' zeno-history-selection
 bindkey '^s' zeno-insert-snippet
 bindkey '^g' zeno-ghq-cd
