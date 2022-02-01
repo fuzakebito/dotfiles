@@ -1,4 +1,4 @@
-export ZENO_HOME=~/.zsh/zeno
+export ZENO_HOME=$HOME/.zsh/zeno
 
 # if disable deno cache command when plugin loaded
 # export ZENO_DISABLE_EXECUTE_CACHE_COMMAND=1

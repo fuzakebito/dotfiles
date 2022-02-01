@@ -1,6 +1,6 @@
 # vim: fdm=marker
 # options {{{
-HISTFILE=~/.zsh_hist
+HISTFILE=$HOME/.zsh_hist
 HISTSIZE=1000
 SAVEHIST=100000
 setopt EXTENDED_HISTORY

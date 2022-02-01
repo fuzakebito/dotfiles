@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # }}}
 
-source ~/.zsh/init.zsh
+source $HOME/.zsh/init.zsh
 
 # Install Zinit {{{
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -29,8 +29,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 # }}}
-source ~/.zsh/zinit-plugins.zsh
+source $HOME/.zsh/zinit-plugins.zsh
+source $HOME/.zsh/zinit-snippets.zsh
 
 # Load p10k prompt
 ZLE_RPROMPT_INDENT=0
-source ~/.zsh/p10k.zsh
+source $HOME/.zsh/p10k.zsh
