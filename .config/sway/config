@@ -155,6 +155,10 @@ mouse_warping container
 #Display brightness
     bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 1%+ && pkill -SIGRTMIN+2 i3blocks
     bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%- && pkill -SIGRTMIN+2 i3blocks
+#Audio control
+    bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+    bindsym XF86AudioNext exec --no-startup-id playerctl next
+    bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 #
 # Resizing containers:
