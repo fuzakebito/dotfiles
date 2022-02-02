@@ -34,7 +34,7 @@ snippets:
   - name: remove package by yay
     keyword: unst
     snippet: yay -Rns
-  - name: remove no longer needed
+  - name: remove package no longer needed
     keyword: autoremove
     snippet: sudo sh -c 'pacman -Qdtq | pacman -Rs -'
   - name: expand :q to exit
@@ -50,3 +50,27 @@ completions:
       --multi: true
       --prompt: "'Kill Process> '"
     callback: "awk '{print $2}'"
+  - name: install package by pacman
+    patterns:
+      - "^pacman -S $"
+    sourceCommand: "pacman -Sl"
+    options:
+      --multi: true
+      --prompt: "'Package to install> '"
+    callback: "awk '{print $2}'"
+  - name: install package by yay
+    patterns:
+      - "^yay -S $"
+    sourceCommand: "yay -Sl"
+    options:
+      --multi: true
+      --prompt: "'Package to install> '"
+    callback: "awk '{print $2}'"
+  - name: remove package
+    patterns:
+      - "^yay -Rns $"
+    sourceCommand: "pacman -Qe"
+    options:
+      --multi: true
+      --prompt: "'Package to remove> '"
+    callback: "awk '{print $1}'"

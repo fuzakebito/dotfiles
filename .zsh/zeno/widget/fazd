@@ -1,0 +1,25 @@
+#autoload
+
+emulate -L zsh
+
+local current_session dir options repository session
+local -a out
+
+out=( "${(f)^$(fasd -l)}"(N-/) )
+[[ -n $HOME ]] && out=( "${(@)out//#$HOME/~}" )
+
+if [[ $#out == 0 ]]; then
+  return 1
+fi
+
+options=${ZENO_ENABLE_FZF_TMUX:+${ZENO_FZF_TMUX_OPTIONS}}
+options+=" --prompt='cd>' --preview 'exa -1Fa --color=never --icons \$(eval echo {})'"
+options+=" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up"
+dir=$(echo "${(F)out}" | eval "${ZENO_FZF_COMMAND} $options")
+
+if [[ -z $dir ]]; then
+  return 1
+fi
+
+BUFFER="cd ${dir// /\\ }"
+zle accept-line
