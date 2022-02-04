@@ -33,6 +33,7 @@ endif
 let s:vim_config_dir = fnamemodify(expand('<sfile>'), ':h')
 let s:dein_home = s:CACHE . '/dein'
 let s:dein_dir = s:dein_home . '/repos/github.com/Shougo/dein.vim'
+let g:dein#types#git#clone_depth = 1
 " install dein {{{
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_dir)

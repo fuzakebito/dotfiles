@@ -1,5 +1,4 @@
-[[plugins]]
-repo = 'Shougo/dein.vim'
+[[plugins]] repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
@@ -17,6 +16,13 @@ EOF
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
+hook_add = '''
+lua << EOF
+require'nvim-web-devicons'.setup {
+ default = true;
+}
+EOF
+'''
 
 [[plugins]]
 repo = 'lambdalisue/nerdfont.vim'
@@ -55,13 +61,6 @@ repo = 'lambdalisue/fern-git-status.vim'
 depends = ['fern.vim']
 
 [[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-depends = ['fern.vim']
-hook_add = '''
-let g:fern#renderer = "nerdfont"
-'''
-
-[[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
 hook_add = '''
 augroup my-glyph-palette
@@ -74,6 +73,7 @@ augroup END
 repo = 'fuzakebito/fern-renderer-devicons.nvim'
 depends = ['lambdalisue/fern.vim']
 hook_add = '''
+let g:fern#renderer = "nvim_devicons"
 function! Fern_renderer_ornament(choice)
   if a:choice == 1
     let g:fern#renderer#nvim_devicons#leading = "│ "
