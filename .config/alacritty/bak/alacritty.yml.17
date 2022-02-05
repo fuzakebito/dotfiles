@@ -1,0 +1,54 @@
+colors:
+  # Default colors
+  primary:
+    background: '#27262c'
+    foreground: '#abaab9'
+
+  # Normal colors
+  normal:
+    #black/white
+    # l = 22
+    black:   '#35343d'
+    white:   '#bebdc9'
+    # l = 52
+    red:     '#cc5655'
+    # l = 62
+    magenta: '#aa88c8'
+    # l = 64
+    green:   '#4aad78'
+    # l = 65
+    cyan:    '#5aaaaf'
+    blue:    '#809fd1'
+    # l = 67
+    yellow:  '#c99a68'
+
+  # Bright colors
+  bright:
+    # l = 28
+    black:   '#42404e'
+    red:     '#e16966'
+    green:   '#5ec18a'
+    yellow:  '#dead7a'
+    blue:    '#93b2e5'
+    magenta: '#bd9bdc'
+    cyan:    '#6ebdc2'
+    white:   '#d1d1d9'
+
+font:
+  size: 11
+  normal:
+    family: HackGen35Nerd Console
+  bold:
+    family: HackGen35Nerd Console
+  italic:
+    family: HackGen35Nerd Console
+  offset:
+    x: 1
+    y: -1
+
+cursor:
+  style: Underline
+  thickness: 0.3
+
+shell:
+  program: /usr/bin/tmux
