@@ -17,11 +17,7 @@ EOF
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
 hook_add = '''
-lua << EOF
-require'nvim-web-devicons'.setup {
- default = true;
-}
-EOF
+lua require'nvim-web-devicons'.setup {default = true}
 '''
 
 [[plugins]]
