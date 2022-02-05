@@ -57,6 +57,7 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to install> '"
+      --preview: "pacman -Si \\$(awk '{print \\$2}' <<< {})"
     callback: "awk '{print $2}'"
   - name: install package by yay
     patterns:
@@ -65,6 +66,7 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to install> '"
+      --preview: "yay -Si \\$(awk '{print \\$2}' <<< {})"
     callback: "awk '{print $2}'"
   - name: remove package
     patterns:
@@ -73,4 +75,5 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to remove> '"
+      --preview: "yay -Si \\$(awk '{print \\$1}' <<< {})"
     callback: "awk '{print $1}'"
