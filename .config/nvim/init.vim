@@ -23,6 +23,7 @@ nnoremap <Leader> <Nop>
 xnoremap <Leader> <Nop>
 " }}}
 " dein init {{{
+source ~/.token/token.vim
 " prepare CACHE {{{
 let s:CACHE = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 if !isdirectory($CACHE)
