@@ -22,7 +22,7 @@ export PATH=$PATH:/home/fuzakebito/asobi/bin
 export BAT_THEME=base16
 # }}}
 # alias {{{
-alias exa='exa -F --icons --git'
+alias exa='exa -F --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 # }}}
 # functions {{{
@@ -33,4 +33,11 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+# }}}
+# hooks {{{
+chpwd() {
+    if [[ $(pwd) != $HOME ]]; then;
+        exa -a
+    fi
+}
 # }}}
