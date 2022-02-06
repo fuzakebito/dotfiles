@@ -14,8 +14,8 @@ zinit ice wait lucid depth"1" blockf \
   atload="source ${plugrc}/zeno_atload.zsh"
 zinit light yuki-yano/zeno.zsh
 
-zinit ice wait lucid depth"1"
+zinit ice wait lucid depth"1" atinit="zpcompinit; zpcdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-zinit ice wait lucid depth"1"
+zinit ice wait lucid depth"1" atinit="zpcompinit; zpcdreplay"
 zinit light Aloxaf/fzf-tab
