@@ -57,6 +57,7 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to install> '"
+      --nth: "2"
       --preview: "read _ i _ <<< {}; pacman -Sii \\$i"
     callback: "awk '{print $2}'"
   - name: install package by yay
@@ -66,6 +67,7 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to install> '"
+      --nth: "2"
       --preview: "read _ i _ <<< {}; yay -Sii \\$i"
     callback: "awk '{print $2}'"
   - name: remove package
@@ -75,5 +77,6 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to remove> '"
+      --nth: "2"
       --preview: "read i _ <<< {}; yay -Sii \\$i"
     callback: "awk '{print $1}'"
