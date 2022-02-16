@@ -125,10 +125,12 @@ repo = 'nvim-lua/plenary.nvim'
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 hook_add = '''
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nmap <Leader>f [tsc-p]
+xmap <Leader>f [tsc-p]
+nnoremap <silent> [tsc-p]f <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <silent> [tsc-p]g <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <silent> [tsc-p]b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <silent> [tsc-p]h <cmd>lua require('telescope.builtin').help_tags()<cr>
 '''
 
 [[plugins]]
