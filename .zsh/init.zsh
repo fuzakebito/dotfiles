@@ -20,6 +20,14 @@ KEYTIMEOUT=2
 # env {{{
 export PATH=$PATH:/home/fuzakebito/asobi/bin
 export BAT_THEME=base16
+# colorize
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 # }}}
 # alias {{{
 alias exa='exa -F --group-directories-first --icons --git'
