@@ -59,6 +59,13 @@ if dein#min#load_state(s:dein_home)
   call dein#end()
   call dein#save_state()
 endif
+" load current dir as a plugin {{{
+ if !empty($plug_dev)
+   let &runtimepath = getcwd() .. ',' .. &runtimepath
+ endif
+" }}}
+ 
+ call dein#call_hook('source')
 " auto install plugins
 if has('vim_starting') && dein#check_install()
   call dein#install()
