@@ -13,7 +13,7 @@ if [[ $#out == 0 ]]; then
 fi
 
 options=${ZENO_ENABLE_FZF_TMUX:+${ZENO_FZF_TMUX_OPTIONS}}
-options+=" --prompt='cd>' --preview 'exa -1Fa --color=never --icons \$(eval echo {})'"
+options+=" --prompt='cd>' --preview 'exa -1Fa --icons \$(eval echo {})'"
 options+=" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up"
 dir=$(echo "${(F)out}" | eval "${ZENO_FZF_COMMAND} $options")
 
