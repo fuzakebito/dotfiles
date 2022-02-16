@@ -45,9 +45,6 @@ font:
     family: HackGen35Nerd Console
   italic:
     family: HackGen35Nerd Console
-  offset:
-    x: 1
-    y: -1
 
 cursor:
   style: Underline
