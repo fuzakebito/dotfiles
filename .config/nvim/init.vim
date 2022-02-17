@@ -10,6 +10,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set helplang=ja
+language messages en_US.UTF-8
 
 " Vim keybindings {{{
 nmap <space>n :<C-u>setlocal relativenumber!<CR>
