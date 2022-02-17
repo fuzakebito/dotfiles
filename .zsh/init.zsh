@@ -41,6 +41,9 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[3~" delete-char
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
 # }}}
 # hooks {{{
 chpwd() {
