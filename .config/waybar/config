@@ -52,14 +52,6 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    "custom/waybar-mpris": {
-    "return-type": "json",
-    "exec": "waybar-mpris --position --autofocus",
-    "on-click": "waybar-mpris --send toggle",
-    "on-scroll-up": "waybar-mpris --send next",
-    "on-scroll-down": "waybar-mpris --send prev",
-    "escape": true,
-},
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
