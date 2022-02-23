@@ -6,27 +6,27 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     #status_command i3blocks
-	mode invisible
+    mode invisible
 
     colors {
-        background #202020
-        statusline #afaaa3
-        separator #414141
+        background #27262c
+        statusline #abaab9
+        separator #42404e
 
-        focused_workspace  #00BCD4 #00BCD4 #1c1c1c
-        active_workspace   #8a8a8a #8a8a8a #1c1c1c
-        inactive_workspace #303030 #303030 #8a8a8a
-        urgent_workspace   #FF9800 #FF9800 #1c1c1c
-        binding_mode       #00BCD4 #00BCD4 #1c1c1c
+        focused_workspace  #5aaaaf #5aaaaf #27262c
+        active_workspace   #7e7b8b #7e7b8b #27262c
+        inactive_workspace #35343d #35343d #7e7b8b
+        urgent_workspace   #cc5655 #cc5655 #27262c
+        binding_mode       #5aaaaf #5aaaaf #27262c
     }
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #414141 #ffffff #afaaa3 #414141   #414141
-client.focused_inactive #414141 #ffffff #afaaa3 #414141   #414141
-client.unfocused        #414141 #ffffff #afaaa3 #414141   #414141
-client.urgent           #414141 #ffffff #afaaa3 #414141   #414141
-client.placeholder      #000000 #ffffff #afaaa3 #000000   #414141
+client.focused          #42404e #ffffff #abaab9 #42404e   #42404e
+client.focused_inactive #42404e #ffffff #abaab9 #42404e   #42404e
+client.unfocused        #42404e #ffffff #abaab9 #42404e   #42404e
+client.urgent           #42404e #ffffff #abaab9 #42404e   #42404e
+client.placeholder      #000000 #ffffff #abaab9 #000000   #42404e
 
 client.background       #ffffff
 
