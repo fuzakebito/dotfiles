@@ -22,6 +22,7 @@ augroup END
 let g:mapleader = "\<Space>"
 nnoremap <Leader> <Nop>
 xnoremap <Leader> <Nop>
+autocmd InsertLeave * call system('fcitx5-remote -o')
 " }}}
 " dein init {{{
 source ~/.token/token.vim
