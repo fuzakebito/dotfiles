@@ -23,6 +23,9 @@
     //         "default": ""
     //     }
     // },
+    "sway/window": {
+      "icon": false
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
