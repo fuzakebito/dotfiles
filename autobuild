@@ -41,6 +41,8 @@ ln -sf $dotfiles/.config/waybar $HOME/.config/
 ln -sf $dotfiles/.config/xfce4-volumed $HOME/.config/
 #xkeysnail
 ln -sf $dotfiles/.config/xkeysnail $HOME/.config/
+#xremap
+ln -sf $dotfiles/.config/xremap $HOME/.config/
 #yay
 ln -sf $dotfiles/.config/yay $HOME/.config/
 #mozc

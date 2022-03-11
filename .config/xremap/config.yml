@@ -1,0 +1,32 @@
+modmap:
+  - name: Global
+    remap:
+      RIGHTMETA: LEFTMETA
+      KATAKANAHIRAGANA: ENTER
+      CAPSLOCK:
+        held: RIGHTMETA
+        alone: ESC
+        alone_timeout_millis: 200
+      HENKAN:
+        held: LEFTSHIFT
+        alone: HENKAN
+        alone_timeout_millis: 200
+      MUHENKAN:
+        held: LEFTCTRL
+        alone: MUHENKAN
+        alone_timeout_millis: 200
+      SEMICOLON:
+        held: LEFTMETA
+        alone: SEMICOLON
+        alone_timeout_millis: 200
+
+keymap:
+  - name: Global
+    remap:
+      SUPER_R-h: LEFT
+      SUPER_R-j: DOWN
+      SUPER_R-k: UP
+      SUPER_R-l: RIGHT
+      SUPER_R-D: BACKSPACE
+      SUPER_R-A: HOME
+      SUPER_R-E: END
