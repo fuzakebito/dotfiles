@@ -18,7 +18,7 @@ bindkey -v
 KEYTIMEOUT=2
 # }}}
 # env {{{
-export PATH=$PATH:/home/fuzakebito/asobi/bin
+export PATH=$HOME/asobi/bin:$HOME/.local/bin:$PATH
 export BAT_THEME=base16
 # colorize
 export LESS_TERMCAP_mb=$'\e[1;32m'
