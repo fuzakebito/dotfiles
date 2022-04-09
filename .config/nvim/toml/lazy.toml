@@ -19,6 +19,7 @@ let g:vimtex_compiler_latexmk = {
     \'-interaction=nonstopmode',
   \],
   \}
+let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
 '''
