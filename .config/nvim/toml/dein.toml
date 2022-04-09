@@ -41,7 +41,7 @@ let g:coc_global_extensions = [
 repo = 'lambdalisue/fern.vim'
 hook_add = '''
 nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
-autocmd FileType fern set nonumber
+autocmd FileType fern set nonu
 function! s:fern_highlight() abort
   highlight! link FernRootSymbol   Comment
   highlight! link FernRootText     Comment

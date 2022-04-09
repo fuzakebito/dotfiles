@@ -1,6 +1,5 @@
 " vim: fdm=marker
 set number
-set relativenumber
 set termguicolors
 set mouse=a
 set guicursor=
@@ -14,11 +13,6 @@ language messages en_US.UTF-8
 
 " Vim keybindings {{{
 nmap <space>n :<C-u>setlocal relativenumber!<CR>
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
 let g:mapleader = "\<Space>"
 nnoremap <Leader> <Nop>
 xnoremap <Leader> <Nop>
