@@ -1,4 +1,7 @@
 snippets:
+  - name: git add
+    keyword: ga
+    snippet: git add
   # snippet and keyword abbrev
   - name: git status
     keyword: gs
@@ -28,6 +31,9 @@ snippets:
   - name: git tree view
     keyword: gls
     snippet: exa -Tla --git --git-ignore -I .git
+  - name: bd
+    keyword: bd
+    snippet: cd ..
   - name: install package by yay
     keyword: inst
     snippet: yay -S
