@@ -9,5 +9,7 @@ Type=simple
 Restart=always
 RestartSec=3s
 
+Environment=DISPLAY=:0
+
 [Install]
 WantedBy=graphical.target
