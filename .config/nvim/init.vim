@@ -16,7 +16,7 @@ nmap <space>n :<C-u>setlocal relativenumber!<CR>
 let g:mapleader = "\<Space>"
 nnoremap <Leader> <Nop>
 xnoremap <Leader> <Nop>
-autocmd InsertLeave * call system('fcitx5-remote -o &')
+autocmd InsertLeave * call system('fcitx5-remote -c &')
 " }}}
 " dein init {{{
 source ~/.token/token.vim
