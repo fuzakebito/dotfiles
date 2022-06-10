@@ -18,7 +18,7 @@ bindkey -v
 KEYTIMEOUT=2
 # }}}
 # env {{{
-export PATH=$HOME/asobi/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/asobi/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
 export BAT_THEME=base16
 # colorize
 export LESS_TERMCAP_mb=$'\e[1;32m'
