@@ -32,7 +32,7 @@ client.background       #ffffff
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Materia-dark'
+    gsettings set $gnome-schema gtk-theme 'Qogir-manjaro-dark'
     gsettings set $gnome-schema icon-theme 'breeze-dark'
     gsettings set $gnome-schema font-name 'Jost* 11'
     gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
