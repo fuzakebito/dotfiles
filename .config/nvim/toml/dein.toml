@@ -1,191 +1,43 @@
-[[plugins]] repo = 'Shougo/dein.vim'
-
+# dein {{{
 [[plugins]]
-repo = 'thinca/vim-quickrun'
+repo = 'Shougo/dein.vim'
+# }}}
 
+# denops {{{
 [[plugins]]
-repo = 'nvim-lualine/lualine.nvim'
-hook_add = '''
-lua << EOF
-require('lualine').setup {
-  options = {
-    theme = 'antibalus',
-    component_separators = { left = ' ', right = ' '},
-    section_separators = { left = ' ', right = ' '},
-  }
-}
-EOF
-'''
+repo = 'vim-denops/denops.vim'
+# }}}
 
-[[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
-hook_add = '''
-lua require'nvim-web-devicons'.setup()
-'''
+# lualine {{{
+# [[plugins]]
+# repo = 'nvim-lualine/lualine.nvim'
+# lua_add = '''
+# require('lualine').setup {
+#   options = {
+#     theme = 'antibalus',
+#     component_separators = { left = ' ', right = ' '},
+#     section_separators = { left = ' ', right = ' '},
+#   }
+# }
+# '''
+# }}}
 
-[[plugins]]
-repo = 'lambdalisue/nerdfont.vim'
-
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-hook_add = '''
-let g:coc_global_extensions = [
-  \'coc-explorer',
-  \'coc-vimtex',
-  \'coc-grammarly'
-\]
-'''
-
-[[plugins]]
-repo = 'lambdalisue/fern.vim'
-hook_add = '''
-nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
-autocmd FileType fern set nonu
-function! s:fern_highlight() abort
-  highlight! link FernRootSymbol   Comment
-  highlight! link FernRootText     Comment
-  highlight! link FernLeafSymbol   Grey
-  highlight! link FernLeafText     None
-  highlight! link FernBranchSymbol Grey
-  highlight! link FernBranchText   Directory
-  highlight! link FernMarkedLine   None
-  highlight! link FernMarkedText   Purple
-endfunction
-autocmd FileType fern call s:fern_highlight()
-'''
-
-[[plugins]]
-repo = 'lambdalisue/fern-git-status.vim'
-depends = ['fern.vim']
-
-[[plugins]]
-repo = 'lambdalisue/glyph-palette.vim'
-hook_add = '''
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-augroup END
-'''
-
-[[plugins]]
-repo = 'fuzakebito/fern-renderer-devicons.nvim'
-depends = ['lambdalisue/fern.vim']
-hook_add = '''
-let g:fern#renderer = "nvim_devicons"
-function! Fern_renderer_ornament(choice)
-  if a:choice == 1
-    let g:fern#renderer#nvim_devicons#leading = "│ "
-    let g:fern#renderer#nvim_devicons#root_symbol = ""
-    let g:fern#renderer#nvim_devicons#leaf_symbol = ""
-    let g:fern#renderer#nvim_devicons#expanded_symbol = ""
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = ""
-  elseif a:choice == 2
-    let g:fern#renderer#nvim_devicons#leading = " "
-    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
-    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
-    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
-  elseif a:choice == 3
-    let g:fern#renderer#nvim_devicons#leading = " │"
-    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
-    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
-    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
-  endif
-endfunction
-call Fern_renderer_ornament(1)
-'''
-
-[[plugins]]
-repo = 'yuki-yano/fern-preview.vim'
-depends = ['lambdalisue/fern.vim']
-hook_add = '''
-function! s:fern_settings() abort
-  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-endfunction
-augroup fern-settings
-  autocmd!
-  autocmd FileType fern call s:fern_settings()
-augroup END
-'''
-
+# FixCursorHold {{{
 [[plugins]]
 repo = 'antoinemadec/FixCursorHold.nvim'
 hook_add = '''
 let g:cursorhold_updatetime = 100
 '''
+# }}}
 
+# gruvbox-material {{{
 [[plugins]]
-repo = 'github/copilot.vim'
-
-[[plugins]]
-repo = 'nvim-lua/plenary.nvim'
-
-[[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-hook_add = '''
-nmap <Leader>f [tsc-p]
-xmap <Leader>f [tsc-p]
-nnoremap <silent> [tsc-p]f <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <silent> [tsc-p]g <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <silent> [tsc-p]b <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <silent> [tsc-p]h <cmd>lua require('telescope.builtin').help_tags()<cr>
+repo = 'sainnhe/gruvbox-material'
+on_event = 'UIEnter'
+hook_source = '''
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 '''
+# }}}
 
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = 'TSUpdate'
-hook_add = '''
-lua << EOF
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = {}, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
-'''
-
-[[plugins]]
-repo = 'karb94/neoscroll.nvim'
-hook_add = '''
-lua << EOF
-require('neoscroll').setup({
-    -- All these keys will be mapped to their corresponding default scrolling animation
-    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-    hide_cursor = true,          -- Hide cursor while scrolling
-    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-    use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-    easing_function = 'sine',        -- Default easing function
-    pre_hook = nil,              -- Function to run before the scrolling animation starts
-    post_hook = nil,              -- Function to run after the scrolling animation ends
-})
-EOF
-'''
-
-[[plugins]]
-repo = 'dylnmc/synstack.vim'
-
-[[plugins]]
-repo = 'fuzakebito/antibalus.vim'
-
-[[plugins]]
-repo = 'skanehira/jumpcursor.vim'
-hook_add = '''
-nmap <leader>j <Plug>(jumpcursor-jump)
-'''
+# vim: fdm=marker

@@ -1,0 +1,136 @@
+# nvim-lspconfig {{{
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+if = 'has("nvim")'
+on_event = 'BufRead'
+lua_source = '''
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<space>le', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>lq', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>lwa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>lwr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>lwl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>lD', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>lrn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>lca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>lf', vim.lsp.buf.formatting, bufopts)
+end
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+require('lspconfig')['texlab'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['vimls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['sumneko_lua'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+require('lspconfig')['taplo'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['marksman'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['pyright'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['solargraph'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['zls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['denols'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+require('lspconfig')['gopls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+'''
+# }}}
+
+# mason {{{
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+# }}}
+
+# mason-lspconfig {{{
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+depends = 'mason.nvim'
+on_cmd = ['LspInstall']
+lua_source = '''
+require("mason-lspconfig").setup({
+  -- まだインストールされていない場合、自動的にインストールするサーバーのリストです。例: { "rust_analyzer@nightly", "sumneko_lua" }
+  -- この設定は `automatic_installation` の設定とは関係ありません。
+  ensure_installed = {},
+
+  -- (lspconfigで)設定されたサーバーがまだインストールされていない場合、自動的にインストールするかどうかを設定します。
+  -- この設定は `ensure_installed` の設定とは関係ありません。
+  -- 以下のいずれかになります。
+  -- - false: サーバーは自動的にインストールされません。
+  -- - true: lspconfigで設定されたすべてのサーバーが自動的にインストールされます。
+  -- - { exclude: string[] }: リストで提供されるものを除き、lspconfig でセットアップされたすべてのサーバーが自動的にインストールされます。
+  -- 例: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+  automatic_installation = true,
+})
+'''
+# }}}
+
+# vim: fdm=marker

@@ -1,48 +1,38 @@
+# vimdoc-ja {{{
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-on_cmd = ['h','help']
+on_cmd = ['h', 'help']
 hook_post_source = 'set helplang=ja'
+# }}}
 
+# treesitter {{{
 [[plugins]]
-repo = 'lervag/vimtex'
-on_ft = ['tex']
-hook_source = '''
-let g:vimtex_compiler_latexmk = {
-  \'background': 1,
-  \'build_dir': '',
-  \'continuous': 1,
-  \'options': [
-    \'-pdfdvi', 
-    \'-verbose',
-    \'-file-line-error',
-    \'-synctex=1',
-    \'-interaction=nonstopmode',
-  \],
-  \}
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
-'''
-
-[[plugins]]
-repo = 'skanehira/preview-markdown.vim'
-on_ft = ['markdown']
-hook_source = '''
-let g:preview_markdown_auto_update = 1
-'''
-
-[[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
-on_cmd = ['ColorizerAttachToBuffer']
-hook_source = '''
-lua require 'colorizer'.setup()
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+on_event = 'BufRead'
+hook_post_update = 'TSUpdate'
+lua_source = '''
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  auto_install = true,
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 '''
 
 [[plugins]]
 repo = 'nvim-treesitter/playground'
 on_cmd = ['TSPlaygroundToggle']
-hook_source = '''
-lua << EOF
+lua_source = '''
 require "nvim-treesitter.configs".setup {
   playground = {
     enable = true,
@@ -63,7 +53,6 @@ require "nvim-treesitter.configs".setup {
     },
   }
 }
-EOF
 function! s:TSHighlightEnableAuto()
     augroup TSAuto
         autocmd!
@@ -72,3 +61,399 @@ function! s:TSHighlightEnableAuto()
 endfunction
 command! -nargs=0 -bar TSAuto call s:TSHighlightEnableAuto()
 '''
+# }}}
+
+# telescope {{{
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary.nvim', 'nvim-web-devicons']
+on_lua = 'telescope'
+hook_add = '''
+nmap <Leader>f [tsc-p]
+xmap <Leader>f [tsc-p]
+nnoremap <silent> [tsc-p]f <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').find_files()<cr>
+nnoremap <silent> [tsc-p]g <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').live_grep()<cr>
+nnoremap <silent> [tsc-p]b <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').buffers()<cr>
+nnoremap <silent> [tsc-p]h <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').help_tags()<cr>
+'''
+# }}}
+
+# fern {{{
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+on_cmd = 'Fern'
+hook_add = '''
+nnoremap <silent> <Leader>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
+autocmd FileType fern set nonu
+function! s:fern_highlight() abort
+  highlight! link FernRootSymbol   Comment
+  highlight! link FernRootText     Comment
+  highlight! link FernLeafSymbol   Grey
+  highlight! link FernLeafText     None
+  highlight! link FernBranchSymbol Grey
+  highlight! link FernBranchText   Directory
+  highlight! link FernMarkedLine   None
+  highlight! link FernMarkedText   Purple
+endfunction
+autocmd FileType fern call s:fern_highlight()
+'''
+
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+on_source = 'fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+on_source = 'fern.vim'
+hook_add = '''
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+augroup END
+'''
+
+[[plugins]]
+repo = 'fuzakebito/fern-renderer-devicons.nvim'
+on_source = 'fern.vim'
+depends = 'nvim-web-devicons'
+hook_add = '''
+let g:fern#renderer = "nvim_devicons"
+function! Fern_renderer_ornament(choice)
+  if a:choice == 1
+    let g:fern#renderer#nvim_devicons#leading = "│ "
+    let g:fern#renderer#nvim_devicons#root_symbol = ""
+    let g:fern#renderer#nvim_devicons#leaf_symbol = ""
+    let g:fern#renderer#nvim_devicons#expanded_symbol = ""
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = ""
+  elseif a:choice == 2
+    let g:fern#renderer#nvim_devicons#leading = " "
+    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+  elseif a:choice == 3
+    let g:fern#renderer#nvim_devicons#leading = " │"
+    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+  endif
+endfunction
+call Fern_renderer_ornament(1)
+'''
+
+[[plugins]]
+repo = 'yuki-yano/fern-preview.vim'
+on_source = 'fern.vim'
+hook_add = '''
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
+'''
+# }}}
+
+# searchx {{{
+[[plugins]]
+repo = 'hrsh7th/vim-searchx'
+on_map = { n = '<Cmd>call searchx' }
+hook_add = '''
+" Overwrite / and ?.
+nnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
+nnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
+xnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
+xnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
+cnoremap ; <Cmd>call searchx#select()<CR>
+
+" Move to next/prev match.
+nnoremap N <Cmd>call searchx#prev_dir()<CR>
+nnoremap n <Cmd>call searchx#next_dir()<CR>
+xnoremap N <Cmd>call searchx#prev_dir()<CR>
+xnoremap n <Cmd>call searchx#next_dir()<CR>
+nnoremap <C-k> <Cmd>call searchx#prev()<CR>
+nnoremap <C-j> <Cmd>call searchx#next()<CR>
+xnoremap <C-k> <Cmd>call searchx#prev()<CR>
+xnoremap <C-j> <Cmd>call searchx#next()<CR>
+cnoremap <C-k> <Cmd>call searchx#prev()<CR>
+cnoremap <C-j> <Cmd>call searchx#next()<CR>
+
+" Clear highlights
+nnoremap <C-l> <Cmd>call searchx#clear()<CR>
+'''
+hook_source = '''
+let g:searchx = {}
+
+" Auto jump if the recent input matches to any marker.
+let g:searchx.auto_accept = v:true
+
+" The scrolloff value for moving to next/prev.
+let g:searchx.scrolloff = &scrolloff
+
+" To enable scrolling animation.
+let g:searchx.scrolltime = 500
+
+" To enable auto nohlsearch after cursor is moved
+let g:searchx.nohlsearch = {}
+let g:searchx.nohlsearch.jump = v:true
+
+" Marker characters.
+let g:searchx.markers = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs')
+
+" Convert search pattern.
+function g:searchx.convert(input) abort
+  if a:input !~# '\k'
+    return '\V' .. a:input
+  endif
+  return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
+endfunction
+'''
+# }}}
+
+# neoscroll {{{
+[[plugins]]
+repo = 'karb94/neoscroll.nvim'
+on_event = 'WinScrolled'
+lua_source = '''
+require('neoscroll').setup({
+  -- All these keys will be mapped to their corresponding default scrolling animation
+  mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+              '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+  hide_cursor = true,          -- Hide cursor while scrolling
+  stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+  use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+  respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+  cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+  easing_function = 'sine',        -- Default easing function
+  pre_hook = nil,              -- Function to run before the scrolling animation starts
+  post_hook = nil,              -- Function to run after the scrolling animation ends
+})
+'''
+# }}}
+
+# guise {{{
+[[plugins]]
+repo = 'lambdalisue/guise.vim'
+on_event = 'TermEnter'
+# }}}
+
+# lexima {{{
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_event = 'InsertEnter'
+# }}}
+
+# jumpcursor {{{
+[[plugins]]
+repo = 'skanehira/jumpcursor.vim'
+on_map = { n = '<Plug>(jumpcursor-jump)' }
+hook_add = '''
+nmap <leader>j <Plug>(jumpcursor-jump)
+'''
+# }}}
+
+# gin {{{
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+on_cmd = 'Gin'
+# }}}
+
+# copilot {{{
+[[plugins]]
+repo = 'github/copilot.vim'
+on_event = 'TextChangedI'
+# }}}
+
+# denops-translate {{{
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_cmd = 'Translate'
+# }}}
+
+# quickrun {{{
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+# }}}
+
+# ccc.nvim {{{
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+on_cmd = 'Ccc'
+lua_source = '''
+local ccc = require("ccc")
+ccc.setup({
+  inputs = {
+    ccc.input.rgb,
+    ccc.input.hsl,
+    ccc.input.cmyk,
+    ccc.input.lab,
+  },
+})
+'''
+# }}}
+
+# synstack {{{
+[[plugins]]
+repo = 'dylnmc/synstack.vim'
+on_cmd = ['SynAuto', 'SynPopup', '<plug>(SynStack)']
+# }}}
+
+# which-key {{{
+[[plugins]]
+repo = 'folke/which-key.nvim'
+on_lua = 'which-key'
+lua_source = '''
+require("which-key").setup {
+}
+'''
+# }}}
+
+# scouter {{{
+[[plugins]]
+repo = 'thinca/vim-scouter'
+on_cmd = 'Scouter'
+# }}}
+
+# dependency plugins
+
+# nvim-web-devicons {{{
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+lua_source = '''
+require'nvim-web-devicons'.setup()
+'''
+# }}}
+
+# plenary {{{
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+# }}}
+
+# filetype plugins
+
+# vimtex {{{
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+hook_source = '''
+let g:vimtex_compiler_latexmk = {
+  \'background': 1,
+  \'build_dir': '',
+  \'continuous': 1,
+  \'options': [
+    \'-pdfdvi', 
+    \'-verbose',
+    \'-file-line-error',
+    \'-synctex=1',
+    \'-interaction=nonstopmode',
+  \],
+  \}
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
+'''
+# }}}
+
+# markdown preview {{{
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && yarn install"'
+hook_source = '''
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editable for preview page, default: v:false
+" disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0,
+    \ 'toc': {}
+    \ }
+
+" use a custom markdown style must be absolute path
+" like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+" like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+" set default theme (dark or light)
+" By default the theme is define according to the preferences of the system
+let g:mkdp_theme = 'light'
+
+" example
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
+'''
+# }}}
+
+# zenn markdown preview {{{
+[[plugins]]
+repo = 'kkiyama117/zenn-vim'
+on_cmd = 'Zenn'
+hook_source = '''
+" same prefix from command in monaqa's article
+const g:zenn#article#slug = {
+  \ "use_template": v:true,
+  \ "format": "%F"
+  \}
+
+" open the new article after 'zenn#new_article' with the command
+const g:zenn#article#edit_new_cmd = "new"
+
+" npm install zenn-cli@latest
+command! -nargs=0 ZennUpdate call zenn#update()
+
+" Run npx zenn preview
+" call |:ZennPreview| or |:ZennPreview {port} |
+command! -nargs=* ZennPreview call zenn#preview(<f-args>)
+
+" Stop zenn preview process 
+command! -nargs=0 ZennStopPreview call zenn#stop_preview()
+
+" Create zenn new article
+" call |:ZennPreview [{slug},{title},{type}, {emoji}] |
+command! -nargs=* ZennNewArticle call zenn#new_article(<f-args>)
+
+" Create zenn new book
+" call |:ZennPreview [{slug}] |
+command! -nargs=* ZennNewBook call zenn#new_book(<f-args>)
+'''
+# }}}
+
+# vim: fdm=marker
