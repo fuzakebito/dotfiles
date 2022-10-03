@@ -99,9 +99,6 @@ autocmd FileType fern call s:fern_highlight()
 '''
 
 [[plugins]]
-repo = 'lambdalisue/nerdfont.vim'
-
-[[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
 on_source = 'fern.vim'
 
@@ -116,7 +113,7 @@ augroup END
 '''
 
 [[plugins]]
-repo = 'fuzakebito/fern-renderer-devicons.nvim'
+repo = 'fuzmare/fern-renderer-devicons.nvim'
 on_source = 'fern.vim'
 depends = 'nvim-web-devicons'
 hook_add = '''
@@ -173,7 +170,8 @@ nnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
 xnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
 xnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
 cnoremap ; <Cmd>call searchx#select()<CR>
-
+'''
+hook_source = '''
 " Move to next/prev match.
 nnoremap N <Cmd>call searchx#prev_dir()<CR>
 nnoremap n <Cmd>call searchx#next_dir()<CR>
@@ -188,8 +186,7 @@ cnoremap <C-j> <Cmd>call searchx#next()<CR>
 
 " Clear highlights
 nnoremap <C-l> <Cmd>call searchx#clear()<CR>
-'''
-hook_source = '''
+
 let g:searchx = {}
 
 " Auto jump if the recent input matches to any marker.
@@ -266,6 +263,12 @@ repo = 'lambdalisue/gin.vim'
 on_cmd = 'Gin'
 # }}}
 
+# askpass {{{
+[[plugins]]
+repo = 'lambdalisue/askpass.vim'
+on_source = ['gin.vim']
+# }}}
+
 # copilot {{{
 [[plugins]]
 repo = 'github/copilot.vim'
@@ -276,6 +279,15 @@ on_event = 'TextChangedI'
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_cmd = 'Translate'
+# }}}
+
+# tint.nvim {{{
+[[plugins]]
+repo = 'levouh/tint.nvim'
+on_event = 'WinNew'
+lua_source = '''
+require("tint").setup()
+'''
 # }}}
 
 # quickrun {{{

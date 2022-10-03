@@ -52,6 +52,11 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': 'vsnip',
     \   'dup': v:true
     \ },
+    \ 'mocword': {
+    \   'mark': 'mocword',
+    \   'minAutoCompleteLength': 3,
+    \   'isVolatile': v:true,
+    \ },
     \ 'cmdline': {
     \   'mark': 'cmdline',
     \   'forceCompletionPattern': '\S/\S*',
@@ -98,8 +103,6 @@ inoremap <C-o>   <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 inoremap <silent><expr> <C-l>   ddc#map#extend()
 inoremap <silent><expr> <C-x><C-f> ddc#manual_complete('path')
-
-call ddc#enable()
 " }}}
 
 " Command line mode completion {{{
@@ -109,7 +112,8 @@ function! CommandlinePre() abort
   " Note: It disables default command line completion!
   cnoremap <expr> <Tab>
   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-  \ ddc#manual_complete()
+  \ exists('b:ddc_cmdline_completion') ?
+  \ ddc#manual_complete() : nr2char(&wildcharm)
   cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
   cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
@@ -147,6 +151,8 @@ function! CommandlinePost() abort
   endif
 endfunction
 " }}}
+
+call ddc#enable()
 '''
 # }}}
 
@@ -154,8 +160,9 @@ endfunction
 [[plugins]]
 repo = 'Shougo/pum.vim'
 hook_source = '''
-call pum#set_option('max_width', 80)
+call pum#set_option('border', 'single')
 call pum#set_option('use_complete', v:true)
+call pum#set_option('scrollbar_char','')
 '''
 # }}}
 
@@ -229,7 +236,6 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 on_map = { ic = '<Plug>(skkeleton-toggle)' }
-on_source = 'ddc.vim'
 depends = ['ddc.vim']
 hook_add = '''
 imap <C-j> <Plug>(skkeleton-toggle)
