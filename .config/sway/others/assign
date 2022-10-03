@@ -20,4 +20,6 @@ for_window [class="minecraft-launcher"] floating enable, resize set 600 400
 for_window [class="anbox"] floating enable, resize set 600 800
 for_window [class="QjackCtl"] floating enable
 for_window [class="ピクチャー　イン　ピクチャー"] floating enable
+for_window [title="Alacritty-floating"] floating enable
+for_window [title="foot-floating"] floating enable
 assign [class="zoom"] 2

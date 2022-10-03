@@ -10,7 +10,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term Exec=env WINIT_UNIX_BACKEND=x11 FONTCONFIG_PATH=$HOME/.config/alacritty/fonts alacritty
+# set $term Exec=env WINIT_UNIX_BACKEND=x11 FONTCONFIG_PATH=$HOME/.config/fc-local/hintfull footclient
+set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -26,16 +27,19 @@ mouse_warping container
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Popup vim
+    # bindsym $mod+i exec $term -t Alacritty-floating -e nvim
+    bindsym $mod+i exec 'swaymsg default_border pixel 1; $term -T foot-floating -e zsh ~/.config/sway/scripts/edit-clipboard.zsh & (sleep 0.05 ; swaymsg default_border pixel 0)'
+
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
-	bindsym $mod+Shift+d exec $xmenu
+	  bindsym $mod+Shift+d exec $xmenu
 
     # Start wmfocus
-	bindsym $mod+e exec wmfocus --fill -f "Squared display:300" --bgcolor "rgba(44,44,44,0.5)"
-
+	  bindsym $mod+e exec wmfocus --fill -f "Squared display:300" --bgcolor "rgba(44,44,44,0.5)"
 
     # start vivaldi
     bindsym $mod+F1 exec vivaldi-stable
@@ -224,7 +228,7 @@ mode "display" {
 
 bindsym $mod+r mode "resize"
 bindsym $mod+o mode "open"
-bindsym $mod+i exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "notification"'
+bindsym $mod+n exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "notification"'
 bindsym $mod+m mode "display"
 
 include others/*
