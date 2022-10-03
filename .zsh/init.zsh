@@ -1,7 +1,7 @@
 # vim: fdm=marker
 # options {{{
 HISTFILE=$HOME/.zsh_hist
-HISTSIZE=1000
+HISTSIZE=100000
 SAVEHIST=100000
 setopt EXTENDED_HISTORY
 setopt hist_ignore_all_dups
@@ -18,7 +18,8 @@ bindkey -v
 KEYTIMEOUT=2
 # }}}
 # env {{{
-export PATH=$HOME/asobi/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=$HOME/asobi/bin:$HOME/.bun/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+export EDITOR=nvim
 export BAT_THEME=base16
 # colorize
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -44,6 +45,9 @@ bindkey "^[[B" history-beginning-search-forward
 bindkey "^[[3~" delete-char
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
 # }}}
 # hooks {{{
 chpwd() {

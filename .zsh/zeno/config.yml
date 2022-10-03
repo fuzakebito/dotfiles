@@ -83,6 +83,6 @@ completions:
     options:
       --multi: true
       --prompt: "'Package to remove> '"
-      --nth: "2"
+      --nth: "1"
       --preview: "read i _ <<< {}; yay -Sii \\$i"
     callback: "awk '{print $1}'"

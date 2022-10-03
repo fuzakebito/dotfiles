@@ -1,0 +1,43 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+zeno = { value = 'zsh-defer source $HOME/.zsh/plugrc/zeno_atinit.zsh; zsh-defer source "{{ file }}"; zsh-defer source $HOME/.zsh/plugrc/zeno_atload.zsh', each = true }
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.powerlevel10k]
+github = 'romkatv/powerlevel10k'
+use = ['{{ name }}.zsh-theme']
+
+[plugins.syntax-highlight]
+github = 'z-shell/F-Sy-H'
+apply = ["defer"]
+
+[plugins.zeno]
+github = 'yuki-yano/zeno.zsh'
+use = ['zeno.zsh']
+apply = ["zeno"]
+
+# [plugins.zsh-autocomplete]
+# github = 'marlonrichert/zsh-autocomplete'
+# apply = ["defer"]
+
+[plugins.fzf-tab]
+github = 'Aloxaf/fzf-tab'
+apply = ["defer"]
+
+# vim: fdm=marker

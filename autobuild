@@ -58,6 +58,7 @@ ln -sf $dotfiles/.bashrc $HOME/.bashrc
 #zsh
 ln -sf $dotfiles/.zshrc $HOME/.zshrc
 ln -sf $dotfiles/.zsh $HOME/
+ln -sf $dotfiles/.sheldon $HOME/
 #tmux
 ln -sf $dotfiles/.tmux.conf $HOME/.tmux.conf
 #xprofile,Xresources

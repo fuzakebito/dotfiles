@@ -1,0 +1,61 @@
+version = "0.6.6"
+home = "/home/fuzakebito"
+config_dir = "/home/fuzakebito/.sheldon"
+data_dir = "/home/fuzakebito/.sheldon"
+config_file = "/home/fuzakebito/.sheldon/plugins.toml"
+lock_file = "/home/fuzakebito/.sheldon/plugins.lock"
+clone_dir = "/home/fuzakebito/.sheldon/repos"
+download_dir = "/home/fuzakebito/.sheldon/downloads"
+
+[[plugins]]
+name = "zsh-defer"
+source_dir = "/home/fuzakebito/.sheldon/repos/github.com/romkatv/zsh-defer"
+files = ["/home/fuzakebito/.sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh"]
+apply = ["source"]
+
+[[plugins]]
+name = "powerlevel10k"
+source_dir = "/home/fuzakebito/.sheldon/repos/github.com/romkatv/powerlevel10k"
+files = ["/home/fuzakebito/.sheldon/repos/github.com/romkatv/powerlevel10k/powerlevel10k.zsh-theme"]
+apply = ["source"]
+
+[[plugins]]
+name = "syntax-highlight"
+source_dir = "/home/fuzakebito/.sheldon/repos/github.com/z-shell/F-Sy-H"
+files = ["/home/fuzakebito/.sheldon/repos/github.com/z-shell/F-Sy-H/F-Sy-H.plugin.zsh"]
+apply = ["defer"]
+
+[[plugins]]
+name = "zeno"
+source_dir = "/home/fuzakebito/.sheldon/repos/github.com/yuki-yano/zeno.zsh"
+files = ["/home/fuzakebito/.sheldon/repos/github.com/yuki-yano/zeno.zsh/zeno.zsh"]
+apply = ["zeno"]
+
+[[plugins]]
+name = "fzf-tab"
+source_dir = "/home/fuzakebito/.sheldon/repos/github.com/Aloxaf/fzf-tab"
+files = ["/home/fuzakebito/.sheldon/repos/github.com/Aloxaf/fzf-tab/fzf-tab.plugin.zsh"]
+apply = ["defer"]
+[templates.PATH]
+value = "export PATH=\"{{ dir }}:$PATH\""
+each = false
+
+[templates.path]
+value = "path=( \"{{ dir }}\" $path )"
+each = false
+
+[templates.fpath]
+value = "fpath=( \"{{ dir }}\" $fpath )"
+each = false
+
+[templates.source]
+value = "source \"{{ file }}\""
+each = true
+
+[templates.defer]
+value = "zsh-defer source \"{{ file }}\""
+each = true
+
+[templates.zeno]
+value = "zsh-defer source $HOME/.zsh/plugrc/zeno_atinit.zsh; zsh-defer source \"{{ file }}\"; zsh-defer source $HOME/.zsh/plugrc/zeno_atload.zsh"
+each = true
