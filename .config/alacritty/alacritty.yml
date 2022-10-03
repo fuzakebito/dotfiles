@@ -10,41 +10,35 @@ colors:
   # Normal colors
   normal:
     #black/white
-    # l = 22
     black:   '#35343d'
-    white:   '#bebdc9'
-    # l = 52
-    red:     '#cc5655'
-    # l = 62
-    magenta: '#aa88c8'
-    # l = 64
-    green:   '#4aad78'
-    # l = 65
-    cyan:    '#5aaaaf'
-    blue:    '#809fd1'
-    # l = 67
-    yellow:  '#c99a68'
+    red:     '#cf6770'
+    green:   '#61ae89'
+    yellow:  '#c89b7c'
+    blue:    '#9099d2'
+    magenta: '#af8dce'
+    cyan:    '#60afb4'
+    white:   '#c4c2cf'
 
   # Bright colors
   bright:
     # l = 28
     black:   '#42404e'
-    red:     '#e16966'
-    green:   '#5ec18a'
-    yellow:  '#dead7a'
-    blue:    '#93b2e5'
-    magenta: '#bd9bdc'
-    cyan:    '#6ebdc2'
+    red:     '#e77c84'
+    green:   '#76c49e'
+    yellow:  '#d6ac8e'
+    blue:    '#a6aee9'
+    magenta: '#c3a0e2'
+    cyan:    '#74c3c8'
     white:   '#d1d1d9'
 
 font:
   size: 11
   normal:
-    family: HackGen35Nerd Console
+    family: HackGen35 Console NF
   bold:
-    family: HackGen35Nerd Console
+    family: HackGen35 Console NF
   italic:
-    family: HackGen35Nerd Console
+    family: HackGen35 Console NF
 
 cursor:
   style: Underline
