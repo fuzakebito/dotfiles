@@ -236,12 +236,6 @@ require('neoscroll').setup({
 '''
 # }}}
 
-# guise {{{
-[[plugins]]
-repo = 'lambdalisue/guise.vim'
-on_event = 'TermEnter'
-# }}}
-
 # lexima {{{
 [[plugins]]
 repo = 'cohama/lexima.vim'
