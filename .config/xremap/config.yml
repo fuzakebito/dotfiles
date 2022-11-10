@@ -1,10 +1,11 @@
+virtual_modifiers:
+  - CapsLock
 modmap:
   - name: Global
     remap:
-      RIGHTMETA: LEFTMETA
       KATAKANAHIRAGANA: ENTER
       CAPSLOCK:
-        held: RIGHTMETA
+        held: CAPSLOCK
         alone: ESC
         alone_timeout_millis: 200
       HENKAN:
@@ -23,10 +24,10 @@ modmap:
 keymap:
   - name: Global
     remap:
-      SUPER_R-h: LEFT
-      SUPER_R-j: DOWN
-      SUPER_R-k: UP
-      SUPER_R-l: RIGHT
-      SUPER_R-D: BACKSPACE
-      SUPER_R-A: HOME
-      SUPER_R-E: END
+      CapsLock-h: LEFT
+      CapsLock-j: DOWN
+      CapsLock-k: UP
+      CapsLock-l: RIGHT
+      CapsLock-D: BACKSPACE
+      CapsLock-A: HOME
+      CapsLock-E: END
