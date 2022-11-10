@@ -2,12 +2,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 # }}}
-
 # denops {{{
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 # }}}
-
 # lualine {{{
 # [[plugins]]
 # repo = 'nvim-lualine/lualine.nvim'
@@ -21,7 +19,6 @@ repo = 'vim-denops/denops.vim'
 # }
 # '''
 # }}}
-
 # FixCursorHold {{{
 [[plugins]]
 repo = 'antoinemadec/FixCursorHold.nvim'
@@ -29,7 +26,6 @@ hook_add = '''
 let g:cursorhold_updatetime = 100
 '''
 # }}}
-
 # gruvbox-material {{{
 [[plugins]]
 repo = 'sainnhe/gruvbox-material'
@@ -39,5 +35,4 @@ let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 '''
 # }}}
-
 # vim: fdm=marker

@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>lrn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>lca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>lf', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>lf', vim.lsp.buf.format, bufopts)
 end
 
 local lsp_flags = {
@@ -104,12 +104,10 @@ require('lspconfig')['gopls'].setup {
 }
 '''
 # }}}
-
 # mason {{{
 [[plugins]]
 repo = 'williamboman/mason.nvim'
 # }}}
-
 # mason-lspconfig {{{
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
@@ -132,5 +130,4 @@ require("mason-lspconfig").setup({
 })
 '''
 # }}}
-
 # vim: fdm=marker

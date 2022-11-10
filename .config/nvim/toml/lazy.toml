@@ -4,7 +4,6 @@ repo = 'vim-jp/vimdoc-ja'
 on_cmd = ['h', 'help']
 hook_post_source = 'set helplang=ja'
 # }}}
-
 # treesitter {{{
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
@@ -62,22 +61,18 @@ endfunction
 command! -nargs=0 -bar TSAuto call s:TSHighlightEnableAuto()
 '''
 # }}}
-
 # telescope {{{
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_lua = 'telescope'
 hook_add = '''
-nmap <Leader>f [tsc-p]
-xmap <Leader>f [tsc-p]
-nnoremap <silent> [tsc-p]f <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').find_files()<cr>
-nnoremap <silent> [tsc-p]g <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').live_grep()<cr>
-nnoremap <silent> [tsc-p]b <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').buffers()<cr>
-nnoremap <silent> [tsc-p]h <cmd>lua if not vim.g.loaded_telescope then require('telescope') end require('telescope.builtin').help_tags()<cr>
+nnoremap <silent> <Leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <silent> <Leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <silent> <Leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <silent> <Leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 '''
 # }}}
-
 # fern {{{
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
@@ -158,7 +153,6 @@ augroup fern-settings
 augroup END
 '''
 # }}}
-
 # searchx {{{
 [[plugins]]
 repo = 'hrsh7th/vim-searchx'
@@ -214,7 +208,6 @@ function g:searchx.convert(input) abort
 endfunction
 '''
 # }}}
-
 # neoscroll {{{
 [[plugins]]
 repo = 'karb94/neoscroll.nvim'
@@ -235,13 +228,11 @@ require('neoscroll').setup({
 })
 '''
 # }}}
-
 # lexima {{{
 [[plugins]]
 repo = 'cohama/lexima.vim'
 on_event = 'InsertEnter'
 # }}}
-
 # jumpcursor {{{
 [[plugins]]
 repo = 'skanehira/jumpcursor.vim'
@@ -250,46 +241,41 @@ hook_add = '''
 nmap <leader>j <Plug>(jumpcursor-jump)
 '''
 # }}}
-
 # gin {{{
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 on_cmd = 'Gin'
 # }}}
-
 # askpass {{{
 [[plugins]]
 repo = 'lambdalisue/askpass.vim'
 on_source = ['gin.vim']
 # }}}
-
 # copilot {{{
 [[plugins]]
 repo = 'github/copilot.vim'
 on_event = 'TextChangedI'
 # }}}
-
 # denops-translate {{{
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_cmd = 'Translate'
 # }}}
-
 # tint.nvim {{{
 [[plugins]]
 repo = 'levouh/tint.nvim'
 on_event = 'WinNew'
 lua_source = '''
-require("tint").setup()
+require("tint").setup({
+  highlight_ignore_patterns = { "WinSeparator", "Status.*" },  -- Highlight group patterns to ignore, see `string.find`
+})
 '''
 # }}}
-
 # quickrun {{{
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
 # }}}
-
 # ccc.nvim {{{
 [[plugins]]
 repo = 'uga-rosa/ccc.nvim'
@@ -306,13 +292,11 @@ ccc.setup({
 })
 '''
 # }}}
-
 # synstack {{{
 [[plugins]]
 repo = 'dylnmc/synstack.vim'
 on_cmd = ['SynAuto', 'SynPopup', '<plug>(SynStack)']
 # }}}
-
 # which-key {{{
 [[plugins]]
 repo = 'folke/which-key.nvim'
@@ -322,15 +306,12 @@ require("which-key").setup {
 }
 '''
 # }}}
-
 # scouter {{{
 [[plugins]]
 repo = 'thinca/vim-scouter'
 on_cmd = 'Scouter'
 # }}}
-
 # dependency plugins
-
 # nvim-web-devicons {{{
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
@@ -338,14 +319,11 @@ lua_source = '''
 require'nvim-web-devicons'.setup()
 '''
 # }}}
-
 # plenary {{{
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 # }}}
-
 # filetype plugins
-
 # vimtex {{{
 [[plugins]]
 repo = 'lervag/vimtex'
@@ -368,7 +346,6 @@ let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_view_general_options = "-x \"nvr +%{line} %{input}\" --synctex-forward @line:0:@tex @pdf"
 '''
 # }}}
-
 # markdown preview {{{
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
@@ -427,7 +404,6 @@ nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
 '''
 # }}}
-
 # zenn markdown preview {{{
 [[plugins]]
 repo = 'kkiyama117/zenn-vim'
@@ -461,5 +437,35 @@ command! -nargs=* ZennNewArticle call zenn#new_article(<f-args>)
 command! -nargs=* ZennNewBook call zenn#new_book(<f-args>)
 '''
 # }}}
-
+# applications
+# Ghosttext {{{
+[[plugins]]
+repo = 'gamoutatsumi/dps-ghosttext.vim'
+on_cmd = 'GhostStart'
+# }}}
+# gitter {{{
+[[plugins]]
+repo = '4513ECHO/denops-gitter.vim'
+on_path = 'gitter://room/[^/]*/[^/]*'
+# }}}
+# twihi {{{
+[[plugins]]
+repo = 'skanehira/denops-twihi.vim'
+on_cmd = 'Twihi'
+hook_source = '''
+function! s:twihi_keymap() abort
+  nmap <buffer> <silent> <C-g>y <Plug>(twihi:tweet:yank)
+  nmap <buffer> <silent> <C-g>f <Plug>(twihi:tweet:like)
+  nmap <buffer> <silent> <C-o> <Plug>(twihi:tweet:open)
+  nmap <buffer> <silent> <C-r> <Plug>(twihi:reply)
+  nmap <buffer> <silent> <C-t> <Plug>(twihi:retweet:comment)
+  nmap <buffer> <silent> <C-j> <Plug>(twihi:tweet:next)
+  nmap <buffer> <silent> <C-k> <Plug>(twihi:tweet:prev)
+endfunction
+augroup twihi_keymap
+  au!
+  au FileType twihi-timeline call <SID>twihi_keymap()
+augroup END
+'''
+# }}}
 # vim: fdm=marker
