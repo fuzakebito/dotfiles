@@ -1,5 +1,3 @@
-command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
-
 autocmd TermOpen * startinsert
 
 " term mode window controll {{{
@@ -63,10 +61,47 @@ endfunction
 
 augroup restore_terminal_mode
   autocmd!
-  autocmd TermEnter term://* call s:save_terminal_mode()
-  autocmd TermLeave term://* call s:save_terminal_mode()
-  autocmd BufEnter term://* call s:restore_terminal_mode()
+  autocmd TermEnter '__terminal__' call s:save_terminal_mode()
+  autocmd TermLeave '__terminal__' call s:save_terminal_mode()
+  autocmd BufEnter '__terminal__' call s:restore_terminal_mode()
 augroup END
 " }}}
+
+let s:termname = '__terminal__'
+function! s:open() abort
+  if bufexists(s:termname)
+    if has('nvim')
+      botright split | resize 20
+    else
+      botright split
+    endif
+    call execute('buffer ' .. s:termname)
+    startinsert
+  else
+    if has('nvim')
+      botright split | resize 20 | terminal
+    else
+      botright terminal
+    endif
+    startinsert
+    call execute('file ' .. s:termname)
+    setl nobuflisted
+  endif
+endfunction
+function! s:close(pane) abort
+  call execute(a:pane . 'wincmd c')
+endfunction
+function! s:toggle() abort
+  let pane = bufwinnr(s:termname)
+  if pane > -1
+    call s:close(pane)
+  else
+    call s:open()
+  endif
+endfunction
+
+call s:toggle()
+command! -nargs=0 TerminalToggle call s:toggle()
+nnoremap <silent> <C-w>t :<C-u>TerminalToggle<CR>
 
 " vim: fdm=marker

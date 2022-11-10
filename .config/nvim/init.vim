@@ -18,11 +18,9 @@ nnoremap <Leader> <Nop>
 xnoremap <Leader> <Nop>
 autocmd InsertLeave * call system('fcitx5-remote -c &')
 " }}}
-
 " splitted scripts {{{
-autocmd CmdlineEnter * ++once source ~/.config/nvim/scripts/terminal.vim
+nnoremap <silent> <C-w>t :<C-u>source ~/.config/nvim/scripts/terminal.vim<cr>
 " }}}
-
 " dein init {{{
 source ~/.token/token.vim
 " prepare CACHE {{{
