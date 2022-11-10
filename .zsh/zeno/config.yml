@@ -34,12 +34,12 @@ snippets:
   - name: bd
     keyword: bd
     snippet: cd ..
-  - name: install package by yay
+  - name: install package by paru
     keyword: inst
-    snippet: yay -S
-  - name: remove package by yay
+    snippet: paru -S
+  - name: remove package by paru
     keyword: unst
-    snippet: yay -Rns
+    snippet: paru -Rns
   - name: remove package no longer needed
     keyword: autoremove
     snippet: sudo sh -c 'pacman -Qdtq | pacman -Rs -'
@@ -66,23 +66,23 @@ completions:
       --nth: "2"
       --preview: "read _ i _ <<< {}; pacman -Sii \\$i"
     callback: "awk '{print $2}'"
-  - name: install package by yay
+  - name: install package by paru
     patterns:
-      - "^yay -S $"
-    sourceCommand: "yay -Sl"
+      - "^paru -S $"
+    sourceCommand: "paru -Sl"
     options:
       --multi: true
       --prompt: "'Package to install> '"
       --nth: "2"
-      --preview: "read _ i _ <<< {}; yay -Sii \\$i"
+      --preview: "read _ i _ <<< {}; paru -Sii \\$i"
     callback: "awk '{print $2}'"
   - name: remove package
     patterns:
-      - "^yay -Rns $"
+      - "^paru -Rns $"
     sourceCommand: "pacman -Qe"
     options:
       --multi: true
       --prompt: "'Package to remove> '"
       --nth: "1"
-      --preview: "read i _ <<< {}; yay -Sii \\$i"
+      --preview: "read i _ <<< {}; paru -Sii \\$i"
     callback: "awk '{print $1}'"
