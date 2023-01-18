@@ -1,0 +1,7 @@
+# ddu.vim {{{
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = 'denops.vim'
+on_cmd = ['Ddu']
+# }}}
+# vim: fdm=marker

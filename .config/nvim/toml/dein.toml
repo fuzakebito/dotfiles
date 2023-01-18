@@ -7,32 +7,55 @@ repo = 'Shougo/dein.vim'
 repo = 'vim-denops/denops.vim'
 # }}}
 # lualine {{{
-# [[plugins]]
-# repo = 'nvim-lualine/lualine.nvim'
-# lua_add = '''
-# require('lualine').setup {
-#   options = {
-#     theme = 'antibalus',
-#     component_separators = { left = ' ', right = ' '},
-#     section_separators = { left = ' ', right = ' '},
-#   }
-# }
-# '''
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+lua_add = '''
+require('lualine').setup {
+  options = {
+    theme = 'antibalus',
+    component_separators = { left = ' ', right = ' '},
+    section_separators = { left = ' ', right = ' '},
+  }
+}
+'''
 # }}}
 # FixCursorHold {{{
+# [[plugins]]
+# repo = 'antoinemadec/FixCursorHold.nvim'
+# hook_add = '''
+# let g:cursorhold_updatetime = 100
+# '''
+# }}}
+# antibalus {{{
 [[plugins]]
-repo = 'antoinemadec/FixCursorHold.nvim'
-hook_add = '''
-let g:cursorhold_updatetime = 100
+repo = 'fuzmare/antibalus.vim'
+hook_source = '''
+colorscheme antibalus
 '''
 # }}}
 # gruvbox-material {{{
-[[plugins]]
-repo = 'sainnhe/gruvbox-material'
-on_event = 'UIEnter'
-hook_source = '''
-let g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
-'''
+# [[plugins]]
+# repo = 'sainnhe/gruvbox-material'
+# on_event = 'UIEnter'
+# hook_source = '''
+# let g:gruvbox_material_better_performance = 1
+# let g:gruvbox_material_background = 'hard'
+# let g:gruvbox_material_foreground = 'mix'
+# let g:gruvbox_material_colors_override = {
+#   \ 'fg0':              ['#c4c4c4',   '223'],
+#   \ 'fg1':              ['#dedede',   '223'],
+#   \ 'red':              ['#ef3f5f',   '167'],
+#   \ 'orange':           ['#ff7755',   '208'],
+#   \ 'yellow':           ['#d19a61',   '214'],
+#   \ 'green':            ['#62b283',   '142'],
+#   \ 'aqua':             ['#2db3bb',   '108'],
+#   \ 'blue':             ['#759ee2',   '109'],
+#   \ 'purple':           ['#ad88ce',   '175'],
+#   \ 'bg_red':           ['#ef3f5f',   '167'],
+#   \ 'bg_green':         ['#62b283',   '142'],
+#   \ 'bg_yellow':        ['#d19a61',   '214']
+#   \ }
+# colorscheme gruvbox-material
+# '''
 # }}}
 # vim: fdm=marker

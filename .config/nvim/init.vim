@@ -13,10 +13,7 @@ language messages en_US.UTF-8
 
 " Vim keybindings {{{
 nmap <space>n :<C-u>setlocal relativenumber!<CR>
-let g:mapleader = "\<Space>"
-nnoremap <Leader> <Nop>
-xnoremap <Leader> <Nop>
-autocmd InsertLeave * call system('fcitx5-remote -c &')
+autocmd FocusGained * call system('fcitx5-remote -c &')
 " }}}
 " splitted scripts {{{
 nnoremap <silent> <C-w>t :<C-u>source ~/.config/nvim/scripts/terminal.vim<cr>

@@ -1,0 +1,75 @@
+{
+  "csvtable": {
+    "prefix": "csvtable",
+    "body":[
+      "\begin{table}[H] % {{{",
+      "  \centering",
+      "  \caption{$1}",
+      "  \label{$2}",
+      "  \begin{tabular}{llll}",
+      "    \  oprule",
+      "    $3 \\",
+      "    \midrule",
+      "    \csvreader[",
+      "    column names = {1=\a, 2=\b, 3=\c, 4=\d},",
+      "    late after line = \\",
+      "    ]{$4}{}{%",
+      "      \a & \b & \c & \d",
+      "    }%",
+      "    \bottomrule",
+      "  \end{tabular}",
+      "\end{table}"
+    ],
+    "description": "csv table by csvsimple"
+  },
+  "csvlongtable": {
+    "prefix": "csvlongtable",
+    "body":[
+      "\begin{longtable}{llll}",
+      "  \caption{$1}",
+      "  \vspace{-5mm}",
+      "  \label{$2}",
+      "  \\",
+      "  \  oprule",
+      "  $3",
+      "  \midrule",
+      "  \endfirsthead",
+      "  \  oprule",
+      "  $3",
+      "  \midrule",
+      "  \endhead",
+      "  \multicolumn{4}{r}{\small\it 表は次ページに続く}\\",
+      "  \bottomrule",
+      "  \endfoot",
+      "  \bottomrule",
+      "  \endlastfoot",
+      "  \csvreader[",
+      "  separator=tab,",
+      "  column names = {1=\a, 2=\b, 3=\c, 4=\d},",
+      "  late after line = \\",
+      "  ]{$4}{}{%",
+      "  \a & \b & \c & \d",
+      "  }%",
+      "\end{longtable}"
+    ],
+    "description": "csv longtable by csvsimple"
+  },
+  "gnuplot": {
+    "prefix": "gnuplot",
+    "body":[
+      "\begin{figure}[H] % {{{",
+      "  \centering",
+      "  \  ikzsetnextfilename{$1}",
+      "  \begin{tikzpicture}[gnuplot]",
+      "    \begin{gnuplot}[terminal=tikz]",
+      "      set key spacing 2",
+      "      set key right top",
+      "    \end{gnuplot}",
+      "  \end{tikzpicture}",
+      "  \caption{$1}",
+      "  \label{$2}",
+      "\end{figure} % }}}"
+    ],
+    "description": "make gnuplot plot"
+  },
+}
