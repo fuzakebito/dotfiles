@@ -18,9 +18,11 @@ bindkey -v
 KEYTIMEOUT=2
 # }}}
 # env {{{
-export PATH=$HOME/asobi/bin:$HOME/.bun/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+export DENO_INSTALL="$HOME/.deno"
+export PATH=$HOME/asobi/bin:$HOME/go/bin:$DENO_INSTALL/bin:$HOME/.bun/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
 export EDITOR=nvim
 export BAT_THEME=base16
+export MANPAGER='nvim +Man!'
 # colorize
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
