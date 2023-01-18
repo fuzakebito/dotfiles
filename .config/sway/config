@@ -10,8 +10,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-# set $term Exec=env WINIT_UNIX_BACKEND=x11 FONTCONFIG_PATH=$HOME/.config/fc-local/hintfull footclient
-set $term footclient
+set $term Exec=env FONTCONFIG_PATH=$HOME/.config/fc-local/hintfull alacritty
+# set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -28,8 +28,8 @@ mouse_warping container
     bindsym $mod+Return exec $term
 
     # Popup vim
-    # bindsym $mod+i exec $term -t Alacritty-floating -e nvim
-    bindsym $mod+i exec 'swaymsg default_border pixel 1; $term -T foot-floating -e zsh ~/.config/sway/scripts/edit-clipboard.zsh & (sleep 0.05 ; swaymsg default_border pixel 0)'
+    bindsym $mod+i exec $term -t Alacritty-floating -e nvim
+    # bindsym $mod+i exec 'swaymsg default_border pixel 1; $term -T foot-floating -e zsh ~/.config/sway/scripts/edit-clipboard.zsh & (sleep 0.05 ; swaymsg default_border pixel 0)'
 
     # Kill focused window
     bindsym $mod+Shift+q kill
