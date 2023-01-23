@@ -1,6 +1,8 @@
 autocmd TermOpen * startinsert
 
-" term mode window controll {{{
+" term mode map {{{
+tnoremap <ESC> <c-\><c-n><Plug>(esc)
+nnoremap <Plug>(esc)<ESC> i<ESC>
 tnoremap <C-W>n       <cmd>new<cr>
 tnoremap <C-W><C-N>   <cmd>new<cr>
 tnoremap <C-W>q       <cmd>quit<cr>

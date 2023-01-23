@@ -1,4 +1,5 @@
 " vim: fdm=marker
+set nocompatible
 set number
 set termguicolors
 set mouse=a

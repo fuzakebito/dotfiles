@@ -238,11 +238,11 @@ on_cmd = 'Gin'
 # repo = 'lambdalisue/askpass.vim'
 # on_source = 'gin.vim'
 # }}}
-# copilot {{{
-[[plugins]]
-repo = 'github/copilot.vim'
-on_event = 'TextChangedI'
-# }}}
+## copilot {{{
+#[[plugins]]
+#repo = 'github/copilot.vim'
+#on_event = 'TextChangedI'
+## }}}
 # denops-translate {{{
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
@@ -465,7 +465,7 @@ on_path = 'gh://[^/]*/*'
 # }}}
 # chatgpt {{{
 [[plugins]]
-repo = 'mattn/vim-chatgpt'
-on_cmd = ['ChatGPT', 'CodeReviewPlease']
+repo = 'lambdalisue/butler.vim'
+on_cmd = ['Butler']
 # }}}
 # vim: fdm=marker
