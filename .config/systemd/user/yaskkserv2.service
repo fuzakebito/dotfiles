@@ -1,0 +1,12 @@
+[Unit]
+Description=yaskkserv2
+
+[Service]
+KillMode=process
+ExecStart=/home/fuzakebito/.local/bin/yaskkserv2 /home/fuzakebito/.config/skk/dict/merged.yaskkserv2
+Type=simple
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=default.target

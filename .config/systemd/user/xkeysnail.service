@@ -4,7 +4,7 @@ Description=xkeysnail
 [Service]
 KillMode=process
 #ExecStartPre=/usr/bin/i3 +SI:localuser:root
-ExecStart=/usr/bin/xkeysnail /home/fuzakebito/.config/xkeysnail/config.py
+ExecStart=/usr/bin/xkeysnail --watch /home/fuzakebito/.config/xkeysnail/config.py
 Type=simple
 Restart=always
 RestartSec=3s
