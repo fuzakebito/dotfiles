@@ -4,7 +4,6 @@ repo = 'Shougo/ddc.vim'
 depends = ['denops.vim', 'pum.vim']
 on_event = ['InsertEnter', 'CmdlineEnter', 'CursorHold', 'CursorHoldI']
 hook_source = '''
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
 if has('nvim')
   call ddc#custom#patch_global('sources',
       \ ['around', 'buffer', 'file', 'rg', 'vsnip', 'nvim-lsp']
@@ -15,7 +14,7 @@ else
       \ )
 endif
 call ddc#custom#patch_global('cmdlineSources',
-    \ ['cmdline', 'cmdline-history', 'input', 'file', 'around']
+    \ ['cmdline', 'input', 'file', 'around']
     \ )
 " sourceOptions {{{
 call ddc#custom#patch_global('sourceOptions', {
@@ -243,6 +242,7 @@ repo = 'vim-skk/skkeleton'
 on_map = { ic = '<Plug>(skkeleton-toggle)' }
 depends = ['ddc.vim']
 hook_add = '''
+nmap <C-j> i<Plug>(skkeleton-toggle)
 imap <C-j> <Plug>(skkeleton-toggle)
 cmap <C-j> <Plug>(skkeleton-toggle)
 '''
@@ -283,6 +283,10 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'minAutoCompleteLength': 2,
     \ }})
 '''
+
+#[[plugins]]
+#repo = 'shg-eo/skkeleton-azik'
+#on_source = 'skkeleton'
 
 [[plugins]]
 repo = 'Matts966/skk-vconv.vim'

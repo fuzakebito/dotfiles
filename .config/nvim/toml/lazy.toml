@@ -70,6 +70,7 @@ nnoremap <silent> <space>ff <cmd>lua require('telescope.builtin').find_files()<c
 nnoremap <silent> <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <silent> <space>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <silent> <space>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <silent> <space>fc <cmd>lua require('telescope.builtin').command_history()<cr>
 '''
 # }}}
 # fern {{{
@@ -78,6 +79,9 @@ repo = 'lambdalisue/fern.vim'
 on_cmd = 'Fern'
 hook_add = '''
 nnoremap <silent> <space>e :<C-u>Fern . -drawer -reveal=% -toggle<CR>
+'''
+hook_source = '''
+let g:fern#default_hidden=1
 autocmd FileType fern set nonu
 function! s:fern_highlight() abort
   highlight! link FernRootSymbol   Comment
@@ -95,11 +99,14 @@ autocmd FileType fern call s:fern_highlight()
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
 on_source = 'fern.vim'
+hook_source = '''
+call fern_git_status#init()
+'''
 
 [[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
 on_source = 'fern.vim'
-hook_add = '''
+hook_source = '''
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
@@ -107,43 +114,55 @@ augroup END
 '''
 
 [[plugins]]
-repo = 'fuzmare/fern-renderer-devicons.nvim'
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 on_source = 'fern.vim'
-hook_add = '''
-let g:fern#renderer = "nvim_devicons"
-function! Fern_renderer_ornament(choice)
-  if a:choice == 1
-    let g:fern#renderer#nvim_devicons#leading = "│ "
-    let g:fern#renderer#nvim_devicons#root_symbol = ""
-    let g:fern#renderer#nvim_devicons#leaf_symbol = ""
-    let g:fern#renderer#nvim_devicons#expanded_symbol = ""
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = ""
-  elseif a:choice == 2
-    let g:fern#renderer#nvim_devicons#leading = " "
-    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
-    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
-    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
-  elseif a:choice == 3
-    let g:fern#renderer#nvim_devicons#leading = " │"
-    let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
-    let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
-    let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
-    let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
-  endif
-endfunction
-call Fern_renderer_ornament(1)
+hook_source = '''
+let g:fern#renderer = "nerdfont"
+let g:fern#renderer#nerdfont#indent_markers = 1
 '''
+
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+on_source = 'fern-renderer-nerdfont.vim'
+
+# [[plugins]]
+# repo = 'fuzmare/fern-renderer-devicons.nvim'
+# on_source = 'fern.vim'
+# hook_add = '''
+# let g:fern#renderer = "nvim_devicons"
+# function! Fern_renderer_ornament(choice)
+#   if a:choice == 1
+#     let g:fern#renderer#nvim_devicons#leading = "│ "
+#     let g:fern#renderer#nvim_devicons#root_symbol = ""
+#     let g:fern#renderer#nvim_devicons#leaf_symbol = ""
+#     let g:fern#renderer#nvim_devicons#expanded_symbol = ""
+#     let g:fern#renderer#nvim_devicons#collapsed_symbol = ""
+#   elseif a:choice == 2
+#     let g:fern#renderer#nvim_devicons#leading = " "
+#     let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+#     let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+#     let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+#     let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+#   elseif a:choice == 3
+#     let g:fern#renderer#nvim_devicons#leading = " │"
+#     let g:fern#renderer#nvim_devicons#root_symbol = "⏷ "
+#     let g:fern#renderer#nvim_devicons#leaf_symbol = "   "
+#     let g:fern#renderer#nvim_devicons#expanded_symbol = " ⏷ "
+#     let g:fern#renderer#nvim_devicons#collapsed_symbol = " ⏵ "
+#   endif
+# endfunction
+# call Fern_renderer_ornament(1)
+# '''
 
 [[plugins]]
 repo = 'yuki-yano/fern-preview.vim'
 on_source = 'fern.vim'
-hook_add = '''
+hook_source = '''
 function! s:fern_settings() abort
-  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+  nnoremap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nnoremap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nnoremap <silent><expr><buffer> <C-d> fern_preview#visible() ? '<Plug>(fern-action-preview:scroll:down:half)' : "<cmd> lua require('neoscroll').scroll(vim.wo.scroll, true, 350)<CR>"
+  nnoremap <silent><expr><buffer> <C-u> fern_preview#visible() ? '<Plug>(fern-action-preview:scroll:up:half)' : "<cmd> lua require('neoscroll').scroll(-vim.wo.scroll, true, 350)<CR>"
 endfunction
 augroup fern-settings
   autocmd!
@@ -200,32 +219,21 @@ xnoremap sd  <Plug>(sandwich-delete)
 xnoremap sr  <Plug>(sandwich-replace)
 '''
 # }}}
-# hop.nvim {{{
+# kensaku.vim {{{
 [[plugins]]
-repo = 'phaazon/hop.nvim'
-on_lua = 'hop'
-lua_add = '''
--- vim.keymap.set('', 'f', function()
---   require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })
--- end, {remap=true})
--- vim.keymap.set('', 'F', function()
---   require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })
--- end, {remap=true})
--- vim.keymap.set('', 't', function()
---   require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
--- end, {remap=true})
--- vim.keymap.set('', 'T', function()
---   require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
--- end, {remap=true})
-vim.keymap.set('', ' j', function()
-  require'hop'.hint_lines_skip_whitespace()
-end, {remap=true})
-vim.keymap.set('', ' h', function()
-  require'hop'.hint_with(require'hop.jump_target'.jump_targets_by_scanning_lines(require'hop.jump_target'.regex_by_searching([[\<\k\{-}\>]])))
-end, {remap=true})
+repo = 'lambdalisue/kensaku.vim'
+on_source = ['fuzzy-motion.vim']
+# }}}
+# fuzzy-motion.vim {{{
+[[plugins]]
+repo = 'yuki-yano/fuzzy-motion.vim'
+on_cmd = ['FuzzyMotion']
+hook_add = '''
+nnoremap <space>j <cmd>FuzzyMotion<cr>
 '''
-lua_source = '''
-require('hop').setup{}
+hook_source = '''
+let g:fuzzy_motion_auto_jump = v:true
+let g:fuzzy_motion_matchers = ['fzf','kensaku']
 '''
 # }}}
 # gin {{{
@@ -238,26 +246,29 @@ on_cmd = 'Gin'
 # repo = 'lambdalisue/askpass.vim'
 # on_source = 'gin.vim'
 # }}}
-## copilot {{{
-#[[plugins]]
-#repo = 'github/copilot.vim'
-#on_event = 'TextChangedI'
-## }}}
+# copilot {{{
+[[plugins]]
+repo = 'github/copilot.vim'
+on_event = 'TextChangedI'
+# }}}
 # denops-translate {{{
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 on_cmd = 'Translate'
-# }}}
-# tint.nvim {{{
-[[plugins]]
-repo = 'levouh/tint.nvim'
-on_event = 'WinNew'
-lua_source = '''
-require("tint").setup({
-  highlight_ignore_patterns = { "WinSeparator", "Status.*", "LineNr" },  -- Highlight group patterns to ignore, see `string.find`
-})
+hook_source = '''
+let g:translate_endpoint = 'https://api-free.deepl.com/v2/translate'
 '''
 # }}}
+# # tint.nvim {{{
+# [[plugins]]
+# repo = 'levouh/tint.nvim'
+# on_event = 'WinNew'
+# lua_source = '''
+# require("tint").setup({
+#   highlight_ignore_patterns = { "WinSeparator", "Status.*", "LineNr" },  -- Highlight group patterns to ignore, see `string.find`
+# })
+# '''
+# # }}}
 # quickrun {{{
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -298,6 +309,10 @@ require("which-key").setup {
 [[plugins]]
 repo = 'thinca/vim-scouter'
 on_cmd = 'Scouter'
+# }}}
+# deol {{{
+[[plugins]]
+repo = 'Shougo/deol.nvim'
 # }}}
 # dependency plugins
 # nvim-web-devicons {{{

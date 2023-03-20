@@ -6,6 +6,10 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 # }}}
+# guise.vim {{{
+[[plugins]]
+repo = 'lambdalisue/guise.vim'
+# }}}
 # lualine {{{
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'

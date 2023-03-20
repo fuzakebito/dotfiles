@@ -13,7 +13,8 @@ set helplang=ja
 language messages en_US.UTF-8
 
 " Vim keybindings {{{
-nmap <space>n :<C-u>setlocal relativenumber!<CR>
+nnoremap @@ @@<Plug>(atmark)
+nnoremap <Plug>(atmark)@ @@<Plug>(atmark)
 autocmd FocusGained * call system('fcitx5-remote -c &')
 " }}}
 " splitted scripts {{{
