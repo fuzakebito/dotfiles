@@ -22,4 +22,5 @@ for_window [class="QjackCtl"] floating enable
 for_window [class="ピクチャー　イン　ピクチャー"] floating enable
 for_window [title="Alacritty-floating"] floating enable
 for_window [title="foot-floating"] floating enable
+for_window [title="New Event:"] resize set 700 920, move left 355, move down 20
 assign [class="zoom"] 2

@@ -10,8 +10,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term Exec=env FONTCONFIG_PATH=$HOME/.config/fc-local/hintfull alacritty
-# set $term footclient
+# set $term Exec=env FONTCONFIG_PATH=$HOME/.config/fc-local/hintfull alacritty
+set $term footclient
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -207,14 +207,6 @@ mode "layout" {
 
 	bindsym Escape mode "default"
 }
-mode "notification" {
-	bindsym h exec '$HOME/.local/bin/notify-send.py a --hint boolean:deadd-notification-center:true int:id:0 boolean:state:true type:string:buttons'
-	bindsym Shift+h exec '$HOME/.local/bin/notify-send.py a --hint boolean:deadd-notification-center:true int:id:0 boolean:state:false type:string:buttons'
-	bindsym d exec '$HOME/.local/bin/notify-send.py a --hint boolean:deadd-notification-center:true string:type:clearInCenter'
-	bindsym Escape exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "default"'
-	bindsym e mode "default"
-    bindsym $mod+i exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "default"'
-}
 mode "display" {
     ### Output configuration
     bindsym 1 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 1920x1080 bg ~/Downloads/1589968.jpg fill; swaymsg output eDP-1 pos 1080 480 bg ~/Downloads/1589968.jpg stretch'
@@ -228,7 +220,7 @@ mode "display" {
 
 bindsym $mod+r mode "resize"
 bindsym $mod+o mode "open"
-bindsym $mod+n exec 'kill -s USR1 $(pidof deadd-notification-center); swaymsg mode "notification"'
+bindsym $mod+n exec 'swaync-client -t'
 bindsym $mod+m mode "display"
 
 include others/*
