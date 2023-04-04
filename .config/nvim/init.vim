@@ -1,4 +1,5 @@
 " vim: fdm=marker
+lua vim.loader.enable()
 set nocompatible
 set number
 set termguicolors

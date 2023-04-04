@@ -247,9 +247,15 @@ on_cmd = 'Gin'
 # on_source = 'gin.vim'
 # }}}
 # copilot {{{
-[[plugins]]
-repo = 'github/copilot.vim'
-on_event = 'TextChangedI'
+# [[plugins]]
+# repo = 'github/copilot.vim'
+# on_event = 'TextChangedI'
+# [[plugins]]
+# repo = 'zbirenbaum/copilot.lua'
+# on_source = 'copilot.vim'
+# lua_source = '''
+# require("copilot").setup({})
+# '''
 # }}}
 # denops-translate {{{
 [[plugins]]
