@@ -32,15 +32,14 @@ client.background       #ffffff
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Gruvbox-Material-Dark'
-    gsettings set $gnome-schema icon-theme 'Gruvbox-Material-Dark'
-    gsettings set $gnome-schema font-name 'Jost* 11'
+    gsettings set $gnome-schema gtk-theme 'Materia-dark'
+    gsettings set $gnome-schema icon-theme 'Breeze Dark'
+    gsettings set $gnome-schema font-name 'IPAex ゴシック'
     gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
     gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'none'
 }
 exec_always waybar
 
 gaps inner 8
-gaps top -1
 default_border pixel 0
 default_floating_border pixel 1

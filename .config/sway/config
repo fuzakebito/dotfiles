@@ -209,10 +209,10 @@ mode "layout" {
 }
 mode "display" {
     ### Output configuration
-    bindsym 1 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 1920x1080 bg ~/Downloads/1589968.jpg fill; swaymsg output eDP-1 pos 1080 480 bg ~/Downloads/1589968.jpg stretch'
-    bindsym 2 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 res 1920x1080 bg ~/Downloads/1589968.jpg stretch; swaymsg output eDP-1 pos 1920 0 bg ~/Downloads/1589968.jpg stretch'
-    bindsym 3 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 3840x2160 bg ~/Downloads/1589968.jpg fill; swaymsg output eDP-1 pos 2160 0 bg ~/Downloads/1589968.jpg stretch'
-    bindsym 4 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 res 3840x2160 bg ~/Downloads/1589968.jpg stretch; swaymsg output eDP-1 pos 3840 0 bg ~/Downloads/1589968.jpg stretch'
+    bindsym 1 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 1920x1080 fill; swaymsg output eDP-1 pos 1080 480 stretch'
+    bindsym 2 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 res 1920x1080 stretch; swaymsg output eDP-1 pos 1920 0 stretch'
+    bindsym 3 exec 'swaymsg output HDMI-A-1 transform 90 pos 0 0 res 3840x2160 fill; swaymsg output eDP-1 pos 2160 0 stretch'
+    bindsym 4 exec 'swaymsg output HDMI-A-1 transform 0 pos 0 0 res 3840x2160 stretch; swaymsg output eDP-1 pos 3840 0 stretch'
 
 	bindsym Escape mode "default"
 }
