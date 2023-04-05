@@ -1,10 +1,10 @@
 export ZENO_HOME=$HOME/.zsh/zeno
 
 # enable fzf-tmux
-export ZENO_ENABLE_FZF_TMUX=1
+# export ZENO_ENABLE_FZF_TMUX=0
 
 # setting fzf-tmux options
-export ZENO_FZF_TMUX_OPTIONS="-p 70% --ansi"
+# export ZENO_FZF_TMUX_OPTIONS="-p 70% --ansi"
 
 # Experimental: Use UNIX Domain Socket
 export ZENO_ENABLE_SOCK=1
