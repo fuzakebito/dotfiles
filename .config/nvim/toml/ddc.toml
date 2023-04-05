@@ -249,7 +249,6 @@ cmap <C-j> <Plug>(skkeleton-toggle)
 hook_post_source = '''
 " let g:skkeleton#debug = v:true
 call skkeleton#config({
-      \ 'useSkkServer': v:true,
       \ 'eggLikeNewline': v:true,
       \ 'registerConvertResult': v:true,
       \ })
