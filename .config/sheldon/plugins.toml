@@ -36,8 +36,8 @@ apply = ["zeno"]
 # github = 'marlonrichert/zsh-autocomplete'
 # apply = ["defer"]
 
-[plugins.fzf-tab]
-github = 'Aloxaf/fzf-tab'
-apply = ["defer"]
+# [plugins.fzf-tab]
+# github = 'Aloxaf/fzf-tab'
+# apply = ["defer"]
 
 # vim: fdm=marker
