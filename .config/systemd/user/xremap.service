@@ -6,9 +6,9 @@ KillMode=process
 ExecStart=/home/fuzakebito/.cargo/bin/xremap --watch /home/fuzakebito/.config/xremap/config.yml
 Type=simple
 Restart=always
-RestartSec=1s
+RestartSec=2s
 
 Environment=DISPLAY=:0
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical.target
