@@ -11,4 +11,4 @@ RestartSec=2s
 Environment=DISPLAY=:0
 
 [Install]
-WantedBy=graphical.target
+WantedBy=graphical-session.target
