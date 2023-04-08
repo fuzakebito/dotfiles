@@ -6,6 +6,8 @@ echo $HOME
 mkdir -p $HOME/.config
 #alacritty
 ln -sf $dotfiles/.config/alacritty $HOME/.config/
+#foot
+ln -sf $dotfiles/.config/foot $HOME/.config/
 #fcitx
 mkdir -p $HOME/.config/fcitx
 ln -sf $dotfiles/.config/fcitx/skin $HOME/.config/fcitx/
