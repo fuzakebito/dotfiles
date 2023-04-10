@@ -16,6 +16,8 @@ language messages en_US.UTF-8
 " Vim keybindings {{{
 nnoremap @@ @@<Plug>(atmark)
 nnoremap <Plug>(atmark)@ @@<Plug>(atmark)
+inoremap <Left> <C-G>U<Left>
+inoremap <Right> <C-G>U<Right>
 autocmd FocusGained * call system('fcitx5-remote -c &')
 " }}}
 " splitted scripts {{{
