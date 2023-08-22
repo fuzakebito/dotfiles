@@ -1,9 +1,13 @@
 virtual_modifiers:
   - CapsLock
+  - KATAKANAHIRAGANA
 modmap:
   - name: Global
     remap:
-      KATAKANAHIRAGANA: ENTER
+      KATAKANAHIRAGANA:
+        held: KATAKANAHIRAGANA
+        alone: ENTER
+        alone_timeout_millis: 200
       CAPSLOCK:
         held: CAPSLOCK
         alone: ESC
@@ -31,3 +35,13 @@ keymap:
       CapsLock-D: BACKSPACE
       CapsLock-A: HOME
       CapsLock-E: END
+      KATAKANAHIRAGANA-a: KEY_1
+      KATAKANAHIRAGANA-s: KEY_2
+      KATAKANAHIRAGANA-d: KEY_3
+      KATAKANAHIRAGANA-f: KEY_4
+      KATAKANAHIRAGANA-g: KEY_5
+      KATAKANAHIRAGANA-h: KEY_6
+      KATAKANAHIRAGANA-j: KEY_7
+      KATAKANAHIRAGANA-k: KEY_8
+      KATAKANAHIRAGANA-l: KEY_9
+      KATAKANAHIRAGANA-SEMICOLON: KEY_0
