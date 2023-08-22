@@ -34,6 +34,12 @@ snippets:
   - name: bd
     keyword: bd
     snippet: cd ..
+  - name: alias ranger -> joshuto
+    keyword: ranger
+    snippet: joshuto
+  - name: abbr fastfetch
+    keyword: ffetch
+    snippet: fastfetch
   - name: install package by paru
     keyword: inst
     snippet: paru -S
@@ -58,7 +64,7 @@ completions:
     callback: "awk '{print $2}'"
   - name: install package by pacman
     patterns:
-      - "^pacman -S $"
+      - "^sudo pacman -S $"
     sourceCommand: "pacman -Sl"
     options:
       --multi: true
