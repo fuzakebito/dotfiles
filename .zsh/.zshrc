@@ -8,7 +8,7 @@ if [[ ! -r $HOME/.zshrc.zwc  ]]; then
 fi
 
 export cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}
-source $HOME/zsh-new/nonlazy.zsh
+source $HOME/.zsh/nonlazy.zsh
 # load cached sheldon
 if [[ -r "$cache_dir/zsh/sheldon.zsh" ]]; then
   source "$cache_dir/zsh/sheldon.zsh"
@@ -24,4 +24,4 @@ export PATH=$DENO_INSTALL/bin:$PATH
 ZLE_RPROMPT_INDENT=0
 source $HOME/.zsh/p10k.zsh
 # load lazy zshrc
-zsh-defer source $HOME/zsh-new/lazy.zsh
+zsh-defer source $HOME/.zsh/lazy.zsh
