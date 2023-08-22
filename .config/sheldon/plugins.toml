@@ -14,7 +14,7 @@ shell = "zsh"
 
 [templates]
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
-zeno = "{% for file in files %}zsh-defer source $HOME/.zsh/plugrc/zeno_atinit.zsh\n zsh-defer source \"{{ file }}\"\n zsh-defer source $HOME/.zsh/plugrc/zeno_atload.zsh\n{% endfor %}"
+zeno = "{% for file in files %}zsh-defer source $HOME/.zsh/plugrc/zeno_atinit.zsh\nzsh-defer source \"{{ file }}\"\nzsh-defer source $HOME/.zsh/plugrc/zeno_atload.zsh\n{% endfor %}"
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
