@@ -2,13 +2,11 @@
 Description=xremap
 
 [Service]
-KillMode=process
-ExecStart=/home/fuzakebito/.cargo/bin/xremap --watch /home/fuzakebito/.config/xremap/config.yml
 Type=simple
+KillMode=process
+ExecStart=%h/.cargo/bin/xremap --watch %h/.config/xremap/config.yml
+ExecStop=/usr/bin/killall xremap
 Restart=always
-RestartSec=2s
-
-Environment=DISPLAY=:0
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
