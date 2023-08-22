@@ -2,7 +2,6 @@ exec xrdb $HOME/.Xresources
 exec_always mako
 exec autotiling
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec fcitx5
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id 'export GDK_BACKEND=x11 ; deadd-notification-center'

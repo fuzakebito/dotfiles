@@ -22,11 +22,11 @@ bar {
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #42404e #ffffff #abaab9 #42404e   #42404e
-client.focused_inactive #42404e #ffffff #abaab9 #42404e   #42404e
-client.unfocused        #42404e #ffffff #abaab9 #42404e   #42404e
-client.urgent           #42404e #ffffff #abaab9 #42404e   #42404e
-client.placeholder      #000000 #ffffff #abaab9 #000000   #42404e
+client.focused          #373737 #ffffff #abaab9 #373737   #373737
+client.focused_inactive #373737 #ffffff #abaab9 #373737   #373737
+client.unfocused        #373737 #ffffff #abaab9 #373737   #373737
+client.urgent           #373737 #ffffff #abaab9 #373737   #373737
+client.placeholder      #000000 #ffffff #abaab9 #000000   #373737
 
 client.background       #ffffff
 
