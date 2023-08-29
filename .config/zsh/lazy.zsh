@@ -19,9 +19,9 @@ alias toilet='toilet -w $(tput cols)'
 # functions
 # hooks
 chpwd() {
-    if [[ $(pwd) != $HOME ]]; then;
-        exa -a
-    fi
+  if [[ $(pwd) != $HOME ]]; then;
+    exa -a
+  fi
 }
 # others
 eval "$(rtx activate zsh)"
