@@ -1,4 +1,3 @@
-# vim: fdm=marker
 # options
 HISTFILE=$HOME/.zsh_hist
 HISTSIZE=100000
@@ -15,13 +14,6 @@ setopt correct
 unsetopt beep
 # vi mode
 bindkey -v
-eval "$(bindkey -e && bindkey -L)"
-if [[ -r "$cache_dir/zsh/emacs-bind.zsh" ]]; then
-  source "$cache_dir/zsh/emacs-bind.zsh"
-else
-  mkdir -p $cache_dir/zsh
-  eval "$(bindkey -e && bindkey -L | tee $cache_dir/zsh/emacs-bind.zsh)"
-fi
 KEYTIMEOUT=2
 # bindings
 bindkey "^R" history-incremental-search-backward
@@ -36,5 +28,9 @@ bindkey "^[[F" end-of-line
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
+
+# setup Deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH=$DENO_INSTALL/bin:$PATH
 
 zmodload zsh/zpty

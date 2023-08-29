@@ -1,0 +1,1 @@
+export ENHANCD_FILTER=zf

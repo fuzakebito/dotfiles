@@ -1,4 +1,4 @@
-export ZENO_HOME=$HOME/.zsh/zeno
+export ZENO_HOME="$ZSHRC_DIR/zeno"
 
 # enable fzf-tmux
 # export ZENO_ENABLE_FZF_TMUX=0
@@ -11,16 +11,3 @@ export ZENO_ENABLE_SOCK=1
 
 export ZENO_GIT_CAT="bat --theme base16"
 export ZENO_GIT_TREE="exa -TFla --icons --git --git-ignore -I .git"
-
-# zeno local widgets {{{
-# vim: fdm=marker
-() {
-  local widget_dirs=(
-    "${ZENO_HOME}/widget"
-  )
-  local f
-
-  fpath+=("${(@)widget_dirs}")
-  for f in "${(@)^widget_dirs}"/*(N-.);do autoload -Uz -- "${f:t}"; zle -N -- "${f:t}"; done
-}
-# }}}

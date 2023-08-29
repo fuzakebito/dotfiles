@@ -16,5 +16,3 @@ bindkey '^i' zeno-completion
 bindkey '^r' zeno-history-selection
 bindkey '^s' zeno-insert-snippet
 bindkey '^g' zeno-ghq-cd
-bindkey '^j' fazd
-bindkey '^f' fazf

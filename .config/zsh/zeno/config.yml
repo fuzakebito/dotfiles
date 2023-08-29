@@ -2,14 +2,13 @@ snippets:
   - name: git add
     keyword: ga
     snippet: git add
-  # snippet and keyword abbrev
+  - name: git commit
+    keyword: gc
+    snippet: git commit -v
   - name: git status
     keyword: gs
     snippet: git status --short --branch
   # snippet with placeholder
-  - name: git commit message
-    keyword: gcim
-    snippet: git commit -m '{{commit_message}}'
   - name: "null"
     keyword: "null"
     snippet: ">/dev/null 2>&1"

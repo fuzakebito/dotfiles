@@ -1,0 +1,50 @@
+shell = "zsh"
+
+[templates]
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.powerlevel10k]
+github = 'romkatv/powerlevel10k'
+use = ['{{ name }}.zsh-theme']
+hooks.post = '''
+ZLE_RPROMPT_INDENT=0
+source $ZSHRC_DIR/plugrc/p10k.zsh
+'''
+
+[plugins.syntax-highlight]
+github = 'z-shell/F-Sy-H'
+apply = ["defer"]
+
+[plugins.enhancd]
+github = 'babarot/enhancd'
+use = ['init.sh']
+apply = ["defer"]
+hooks.pre = '''
+zsh-defer source $ZSHRC_DIR/plugrc/enhancd.zsh
+'''
+
+[plugins.zeno]
+github = 'yuki-yano/zeno.zsh'
+use = ['zeno.zsh']
+apply = ["defer"]
+hooks.pre = 'zsh-defer source $ZSHRC_DIR/plugrc/zeno_atinit.zsh'
+hooks.post = '''
+zsh-defer source $ZSHRC_DIR/plugrc/zeno_atload.zsh
+'''
+
+[plugins.k]
+github = 'supercrabtree/k'
+use = ['k.sh']
+apply = ["defer"]
+
+[plugins.bd]
+github = 'Tarrasch/zsh-bd'
+use = ['bd.zsh']
+apply = ["defer"]
+
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+apply = ["defer"]
