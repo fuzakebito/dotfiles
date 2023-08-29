@@ -18,12 +18,11 @@ source $ZSHRC_DIR/plugrc/p10k.zsh
 github = 'z-shell/F-Sy-H'
 apply = ["defer"]
 
-[plugins.enhancd]
-github = 'babarot/enhancd'
-use = ['init.sh']
+[plugins.z]
+github = 'agkozak/zsh-z'
 apply = ["defer"]
-hooks.pre = '''
-zsh-defer source $ZSHRC_DIR/plugrc/enhancd.zsh
+hooks.post = '''
+zsh-defer eval "ZSHZ_NO_RESOLVE_SYMLINKS=1"
 '''
 
 [plugins.zeno]
