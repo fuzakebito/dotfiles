@@ -33,7 +33,7 @@ bindkey '^j' zle-cd
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
-    exa -a
+    exa -a --group-directories-first
   fi
 }
 # others
