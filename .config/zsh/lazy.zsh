@@ -1,6 +1,6 @@
 # env
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH=$HOME/asobi/bin:$HOME/go/bin:$PNPM_HOME:$HOME/.bun/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=$HOME/asobi/bin:$HOME/go/bin:$PNPM_HOME:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
 export EDITOR=nvim
 export SHELL=/bin/zsh
 export BAT_THEME=base16
