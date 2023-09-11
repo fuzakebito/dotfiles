@@ -1,4 +1,4 @@
-export ZENO_HOME="$ZSHRC_DIR/zeno"
+export ZENO_HOME="$ZSHRC_DIR/plugrc/zeno"
 
 # enable fzf-tmux
 # export ZENO_ENABLE_FZF_TMUX=0
