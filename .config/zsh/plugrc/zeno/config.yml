@@ -30,9 +30,6 @@ snippets:
   - name: git tree view
     keyword: gls
     snippet: exa -Tla --git --git-ignore -I .git
-  - name: bd
-    keyword: bd
-    snippet: cd ..
   - name: alias ranger -> joshuto
     keyword: ranger
     snippet: joshuto
