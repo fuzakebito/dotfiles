@@ -14,6 +14,19 @@ ZLE_RPROMPT_INDENT=0
 source $ZSHRC_DIR/plugrc/p10k.zsh
 '''
 
+[plugins.zeno]
+github = 'yuki-yano/zeno.zsh'
+use = ['zeno.zsh']
+apply = ["defer"]
+hooks.pre = 'zsh-defer source $ZSHRC_DIR/plugrc/zeno_atinit.zsh'
+hooks.post = '''
+zsh-defer source $ZSHRC_DIR/plugrc/zeno_atload.zsh
+'''
+
+[plugins.fzf-tab]
+github = 'Aloxaf/fzf-tab'
+apply = ["defer"]
+
 [plugins.syntax-highlight]
 github = 'z-shell/F-Sy-H'
 apply = ["defer"]
@@ -23,15 +36,6 @@ github = 'agkozak/zsh-z'
 apply = ["defer"]
 hooks.post = '''
 zsh-defer eval "ZSHZ_NO_RESOLVE_SYMLINKS=1"
-'''
-
-[plugins.zeno]
-github = 'yuki-yano/zeno.zsh'
-use = ['zeno.zsh']
-apply = ["defer"]
-hooks.pre = 'zsh-defer source $ZSHRC_DIR/plugrc/zeno_atinit.zsh'
-hooks.post = '''
-zsh-defer source $ZSHRC_DIR/plugrc/zeno_atload.zsh
 '''
 
 [plugins.k]
@@ -46,4 +50,9 @@ apply = ["defer"]
 
 [plugins.zsh-completions]
 github = 'zsh-users/zsh-completions'
+apply = ["defer"]
+
+[plugins.ni]
+github = 'azu/ni.zsh'
+use = ['ni.zsh']
 apply = ["defer"]
