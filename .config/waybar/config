@@ -79,12 +79,12 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", "", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
         "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
     "battery": {
       "interval": 5,
@@ -95,11 +95,11 @@
         },
         "format": "{icon} {capacity}%",
         "format-alt": "{icon} {time}",
-        "format-charging": " {capacity}%",
+        "format-charging": "󰃨 {capacity}%",
         "format-plugged": " {capacity}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["󰂎", "󰁻", "󰁾", "󰂀", "󰁹"]
     },
     "battery#bat2": {
         "bat": "BAT2"
@@ -107,8 +107,8 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " {essid}",
-        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
-        "format-linked": " {ifname} (No IP)",
+        "format-ethernet": "󰈀 {ifname}: {ipaddr}/{cidr}",
+        "format-linked": "󰈀 {ifname} (No IP)",
         "format-disconnected": "⚠ offline",
         "format-alt": "{ifname}: {ipaddr}/{cidr} ({signalStrength}%)"
     },
@@ -116,14 +116,14 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
         "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟 {format_source}",
         "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
             "phone": "",
             "portable": "",
             "car": "",
