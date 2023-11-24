@@ -36,6 +36,15 @@ snippets:
   - name: abbr fastfetch
     keyword: ffetch
     snippet: fastfetch
+  - name: yazi
+    keyword: yz
+    snippet: yazi
+  - name: udisksctl mount
+    keyword: um
+    snippet: udisksctl mount -b
+  - name: udisksctl unmount
+    keyword: uum
+    snippet: udisksctl unmount -b
   - name: install package by paru
     keyword: inst
     snippet: paru -S
