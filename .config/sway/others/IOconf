@@ -38,3 +38,7 @@ input "type:touchpad" {
     tap enabled
     natural_scroll enabled
 }
+input "type:keyboard" {
+    repeat_rate 50
+    repeat_delay 250
+}
