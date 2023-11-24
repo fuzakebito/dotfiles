@@ -2,37 +2,38 @@ snippets:
   - name: git add
     keyword: ga
     snippet: git add
+  - name: git add -p
+    keyword: gap
+    snippet: git add -p
   - name: git commit
     keyword: gc
     snippet: git commit -v
+  - name: git push
+    keyword: gp
+    snippet: git push
+  - name: git diff
+    keyword: gd
+    snippet: git diff .
   - name: git status
     keyword: gs
     snippet: git status --short --branch
-  # snippet with placeholder
-  - name: "null"
-    keyword: "null"
-    snippet: ">/dev/null 2>&1"
-    # auto expand condition
-    # If not defined, it is only valid at the beginning of a line.
-    context:
-      # buffer: '' 
-      lbuffer: '.+\s'
-      # rbuffer: ''
-  - name: branch
+  - name: git branch
     keyword: B
     snippet: git symbolic-ref --short HEAD
     context:
       lbuffer: '^git\s+checkout\s+'
-    evaluate: true # eval snippet
-  - name: expand ls to exa
-    keyword: ls
-    snippet: exa
+    evaluate: true
   - name: git tree view
     keyword: gls
     snippet: exa -Tla --git --git-ignore -I .git
-  - name: alias ranger -> joshuto
-    keyword: ranger
-    snippet: joshuto
+  - name: "null"
+    keyword: "null"
+    snippet: ">/dev/null 2>&1"
+    context:
+      lbuffer: '.+\s'
+  - name: expand ls to exa
+    keyword: ls
+    snippet: exa
   - name: abbr fastfetch
     keyword: ffetch
     snippet: fastfetch
