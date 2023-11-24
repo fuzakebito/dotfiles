@@ -18,6 +18,10 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 alias exa='exa -F --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 # functions
+mcd() {
+  mkdir -p $1
+  cd $1
+}
 zle-cd() {
   local dir=$(z | while IFS= read -r line; do echo ${line##* }; done | zf)
   if [ -z "$dir" ];then
