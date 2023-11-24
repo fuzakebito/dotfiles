@@ -34,6 +34,13 @@ zle-cd() {
 }
 zle -N zle-cd
 bindkey '^j' zle-cd
+fzf-geometry() {
+selected_id=$(swaymsg -t get_tree | jq -r '.. | select(.max_render_time?) | [.id, .name] | @tsv' | fzf --delimiter='\t' --with-nth=2 --no-sort --height=~100% --layout=reverse | cut -f1)
+if [[ -z "$selected_id" ]]; then
+    return
+fi
+echo $(swaymsg -t get_tree | jq --arg id "$selected_id" '.. | select(.id? == ($id | tonumber)) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' -r)
+}
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
