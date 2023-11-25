@@ -22,7 +22,8 @@ mcd() {
   cd $1
 }
 zle-cd() {
-  local dir=$(z | while IFS= read -r line; do echo ${line##* }; done | tac | fzf --height=7 --layout=reverse --tiebreak=index --preview='exa -a --group-directories-first --color always {}' --preview-window=down:50%)
+  echo -e "\033[1A"
+  local dir=$(z | cut -d ' ' -f2- | tr -d ' ' | fzf --height=11 --layout=reverse --tac --tiebreak=index --prompt="❯ " --preview='exa -a --group-directories-first --color always {}' --preview-window=down:3,border-top)
   if [ -z "$dir" ];then
     zle reset-prompt
     return 0
