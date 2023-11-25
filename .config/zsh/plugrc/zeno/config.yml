@@ -4,7 +4,7 @@ snippets:
     snippet: git add
   - name: git add -p
     keyword: gap
-    snippet: git add -p
+    snippet: git add -p .
   - name: git commit
     keyword: gc
     snippet: git commit -v
