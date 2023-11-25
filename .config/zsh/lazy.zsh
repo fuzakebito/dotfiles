@@ -5,7 +5,6 @@ export EDITOR=nvim
 export SHELL=/bin/zsh
 export BAT_THEME=base16
 export MANPAGER='nvim +Man!'
-export ZF_PROMPT=`echo "\033[36mzf ❯ \033[m"`
 # colorize
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
@@ -23,7 +22,7 @@ mcd() {
   cd $1
 }
 zle-cd() {
-  local dir=$(z | while IFS= read -r line; do echo ${line##* }; done | zf)
+  local dir=$(z | while IFS= read -r line; do echo ${line##* }; done | tac | fzf --height=7 --layout=reverse --tiebreak=index --preview='exa -a --group-directories-first --color always {}' --preview-window=down:50%)
   if [ -z "$dir" ];then
     zle reset-prompt
     return 0
