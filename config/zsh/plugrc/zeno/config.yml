@@ -25,15 +25,15 @@ snippets:
     evaluate: true
   - name: git tree view
     keyword: gls
-    snippet: exa -Tla --git --git-ignore -I .git
+    snippet: eza -Tla --git --git-ignore -I .git
   - name: "null"
     keyword: "null"
     snippet: ">/dev/null 2>&1"
     context:
       lbuffer: '.+\s'
-  - name: expand ls to exa
+  - name: expand ls to eza
     keyword: ls
-    snippet: exa
+    snippet: eza
   - name: list path
     keyword: path
     snippet: echo $PATH | tr ':' '\n'

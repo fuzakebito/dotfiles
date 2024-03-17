@@ -10,4 +10,4 @@ export ZENO_HOME="$ZSHRC_DIR/plugrc/zeno"
 export ZENO_ENABLE_SOCK=1
 
 export ZENO_GIT_CAT="bat --theme base16"
-export ZENO_GIT_TREE="exa -TFla --icons --git --git-ignore -I .git"
+export ZENO_GIT_TREE="eza -TFla --icons --git --git-ignore -I .git"

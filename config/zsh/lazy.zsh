@@ -15,7 +15,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 # alias
-alias exa='exa -F --group-directories-first --icons --git'
+alias eza='eza -F --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 alias fzf="fzf --prompt=' ' --pointer='❯' --marker='󰄬' --color='hl:6,hl+:14,bg+:-1,info:-1,prompt:6,pointer:6,marker:2,header:1'"
 # functions
@@ -62,7 +62,7 @@ function cache_eval {
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
-    exa -a --group-directories-first
+    eza -a --group-directories-first
   fi
 }
 # others
