@@ -1,0 +1,115 @@
+snippets:
+  - name: git add
+    keyword: ga
+    snippet: git add
+  - name: git add -p
+    keyword: gap
+    snippet: git add -p .
+  - name: git commit
+    keyword: gc
+    snippet: git commit -v
+  - name: git push
+    keyword: gp
+    snippet: git push
+  - name: git diff
+    keyword: gd
+    snippet: git diff .
+  - name: git status
+    keyword: gs
+    snippet: git status --short --branch
+  - name: git branch
+    keyword: B
+    snippet: git symbolic-ref --short HEAD
+    context:
+      lbuffer: '^git\s+checkout\s+'
+    evaluate: true
+  - name: git tree view
+    keyword: gls
+    snippet: exa -Tla --git --git-ignore -I .git
+  - name: "null"
+    keyword: "null"
+    snippet: ">/dev/null 2>&1"
+    context:
+      lbuffer: '.+\s'
+  - name: expand ls to exa
+    keyword: ls
+    snippet: exa
+  - name: list path
+    keyword: path
+    snippet: echo $PATH | tr ':' '\n'
+  - name: abbr fastfetch
+    keyword: ffetch
+    snippet: fastfetch
+  - name: yazi
+    keyword: yz
+    snippet: yazi
+  - name: udisksctl mount
+    keyword: um
+    snippet: udisksctl mount -b
+  - name: udisksctl unmount
+    keyword: uum
+    snippet: udisksctl unmount -b
+  - name: install package by paru
+    keyword: inst
+    snippet: paru -S
+  - name: remove package by paru
+    keyword: unst
+    snippet: paru -Rns
+  - name: remove package no longer needed
+    keyword: autoremove
+    snippet: sudo sh -c 'pacman -Qdtq | pacman -Rs -'
+  - name: expand :q to exit
+    keyword: :q
+    snippet: exit
+  - name: grim with slurp
+    keyword: grims
+    snippet: grim -g "$(slurp)" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
+  - name: grim with fzf
+    keyword: grimf
+    snippet: grim -g "$(fzf-geometry)" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
+  - name: wf-recorder with slurp
+    keyword: wfrs
+    snippet: wf-recorder -g "$(slurp)" -f "$HOME/Videos/record-$(date +%Y%m%d-%H%M%S).mp4"
+  - name: wf-recorder with fzf
+    keyword: wfrf
+    snippet: wf-recorder -g "$(fzf-geometry)" -f "$HOME/Videos/record-$(date +%Y%m%d-%H%M%S).mp4"
+
+completions:
+  - name: kill
+    patterns: 
+      - "^kill( -9)? $"
+    sourceCommand: "ps -ef | sed 1d"
+    options:
+      --multi: true
+      --prompt: "'Kill Process> '"
+    callback: "awk '{print $2}'"
+  - name: install package by pacman
+    patterns:
+      - "^sudo pacman -S $"
+    sourceCommand: "pacman -Sl"
+    options:
+      --multi: true
+      --prompt: "'Package to install> '"
+      --nth: "2"
+      --preview: "read _ i _ <<< {}; pacman -Sii \\$i"
+    callback: "awk '{print $2}'"
+  - name: install package by paru
+    patterns:
+      - "^paru -S $"
+    sourceCommand: "paru -Sl"
+    options:
+      --multi: true
+      --prompt: "'Package to install> '"
+      --nth: "2"
+      --preview: "read _ i _ <<< {}; paru -Sii \\$i"
+    callback: "awk '{print $2}'"
+  - name: remove package
+    patterns:
+      - "^paru -Rns $"
+    sourceCommand: "pacman -Qe"
+    options:
+      --multi: true
+      --prompt: "'Package to remove> '"
+      --nth: "1"
+      --preview: "read i _ <<< {}; paru -Sii \\$i"
+    callback: "awk '{print $1}'"

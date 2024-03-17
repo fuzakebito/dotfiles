@@ -1,0 +1,47 @@
+shell = "zsh"
+
+[templates]
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer -t 0.0001 source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+hooks.post = '''
+zsh-defer source $ZSHRC_DIR/lazy.zsh
+zsh-defer -t 0.001 autoload -Uz compinit
+zsh-defer -t 0.001 compinit
+'''
+
+[plugins.powerlevel10k]
+github = 'romkatv/powerlevel10k'
+use = ['{{ name }}.zsh-theme']
+hooks.pre = '''
+ZLE_RPROMPT_INDENT=0
+source $ZSHRC_DIR/plugrc/p10k.zsh
+'''
+
+[plugins.zeno]
+github = 'yuki-yano/zeno.zsh'
+use = ['zeno.zsh']
+apply = ["defer"]
+hooks.pre = 'zsh-defer source $ZSHRC_DIR/plugrc/zeno_atinit.zsh'
+hooks.post = '''
+zsh-defer source $ZSHRC_DIR/plugrc/zeno_atload.zsh
+'''
+
+[plugins.fzf-tab]
+github = 'Aloxaf/fzf-tab'
+use = ['fzf-tab.zsh']
+apply = ["defer"]
+
+[plugins.syntax-highlight]
+github = 'z-shell/F-Sy-H'
+apply = ["defer"]
+
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+apply = ["defer"]
+
+[plugins.ni]
+github = 'azu/ni.zsh'
+use = ['ni.zsh']
+apply = ["defer"]

@@ -1,0 +1,27 @@
+workspace 1 output eDP-1
+workspace 3 output eDP-1
+workspace 5 output eDP-1
+workspace 7 output eDP-1
+workspace 9 output eDP-1
+workspace 2 output HDMI-A-1
+workspace 4 output HDMI-A-1
+workspace 6 output HDMI-A-1
+workspace 8 output HDMI-A-1
+workspace 10 output HDMI-A-1
+
+for_window [class="feh"] fullscreen enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Pavucontrol"] floating enable, resize set 600 400
+for_window [app_id="pavucontrol"] floating enable, resize set 800 800
+for_window [class="Fcitx-config-gtk3"] floating enable, resize set 600 400
+for_window [class="mozc_tool"] floating enable, resize set 600 400
+for_window [class="Blueman-manager"] floating enable, resize set 600 400
+for_window [class="minecraft-launcher"] floating enable, resize set 600 400
+for_window [class="anbox"] floating enable, resize set 600 800
+for_window [class="QjackCtl"] floating enable
+for_window [class="ピクチャー　イン　ピクチャー"] floating enable
+for_window [title="Alacritty-floating"] floating enable
+for_window [title="foot-floating"] floating enable
+for_window [app_id="FloatingVim"] floating enable, border pixel 1
+for_window [title="New Event:"] resize set 700 920, move left 355, move down 20
+assign [class="zoom"] 2

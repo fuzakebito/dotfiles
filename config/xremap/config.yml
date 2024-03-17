@@ -1,0 +1,47 @@
+virtual_modifiers:
+  - CapsLock
+  - KATAKANAHIRAGANA
+modmap:
+  - name: Global
+    remap:
+      KATAKANAHIRAGANA:
+        held: KATAKANAHIRAGANA
+        alone: ENTER
+        alone_timeout_millis: 200
+      CAPSLOCK:
+        held: CAPSLOCK
+        alone: ESC
+        alone_timeout_millis: 200
+      HENKAN:
+        held: LEFTSHIFT
+        alone: HENKAN
+        alone_timeout_millis: 200
+      MUHENKAN:
+        held: LEFTCTRL
+        alone: MUHENKAN
+        alone_timeout_millis: 200
+      SEMICOLON:
+        held: LEFTMETA
+        alone: SEMICOLON
+        alone_timeout_millis: 200
+
+keymap:
+  - name: Global
+    remap:
+      CapsLock-h: LEFT
+      CapsLock-j: DOWN
+      CapsLock-k: UP
+      CapsLock-l: RIGHT
+      CapsLock-D: BACKSPACE
+      CapsLock-A: HOME
+      CapsLock-E: END
+      KATAKANAHIRAGANA-a: KEY_1
+      KATAKANAHIRAGANA-s: KEY_2
+      KATAKANAHIRAGANA-d: KEY_3
+      KATAKANAHIRAGANA-f: KEY_4
+      KATAKANAHIRAGANA-g: KEY_5
+      KATAKANAHIRAGANA-h: KEY_6
+      KATAKANAHIRAGANA-j: KEY_7
+      KATAKANAHIRAGANA-k: KEY_8
+      KATAKANAHIRAGANA-l: KEY_9
+      KATAKANAHIRAGANA-SEMICOLON: KEY_0

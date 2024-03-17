@@ -1,0 +1,152 @@
+# ddc.vim {{{
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim', 'ddc-ui-pum']
+hooks_file = '$HOOKS_DIR/ddc/ddc.vim'
+# }}}
+# ddc-ui-pum {{{
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+depends = 'pum.vim'
+hook_add = '''
+call ddc#custom#patch_global('ui', 'pum')
+'''
+# }}}
+# pum.vim {{{
+[[plugins]]
+repo = 'Shougo/pum.vim'
+hook_add = '''
+call pum#set_option('border', 'rounded')
+call pum#set_option('scrollbar_char','┃')
+call pum#set_option('max_height', 10)
+call pum#set_option('preview', v:true)
+call pum#set_option('preview_border', 'rounded')
+call pum#set_option('preview_height', 30)
+call pum#set_option('preview_width', 78)
+'''
+# }}}
+# ddc sources {{{
+# around buffer necovim nvim-lua cmdline codeium input line mocword nvim-lsp rtags file cmdline-history shell shell-native rg skkeleton
+# necovim nvim-lua codeium line rtags shell-history shell-native skkeleton
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-lsp'
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = ['vim', 'toml', 'markdown']
+depends='ddc.vim'
+hook_source = '''
+  call ddc#custom#patch_filetype(
+    \   ['vim'],
+    \   'sources',
+    \   ['codeium', 'vsnip', 'necovim', 'around', 'buffer', 'file', 'rg']
+    \ )
+'''
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-nvim-lua'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-codeium'
+
+[[plugins]]
+repo = 'Exafunction/codeium.vim'
+on_event = 'InsertEnter'
+on_cmd = ['Codeium']
+hooks_file = '$HOOKS_DIR/ddc/codeium.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-line'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-rtags'
+on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'Shougo/ddc-source-shell-native'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-rg'
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-mocword'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_cmd = 'vsnip'
+hook_source = '''
+" Expand
+snoremap <expr> <C-l>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-l>'
+
+" Jump forward or backward
+snoremap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+snoremap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+let g:vsnip_snippet_dir = expand('$BASE_DIR/vsnip')
+'''
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_source = 'vim-vsnip'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline-history'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-input'
+# }}}
+# ddc filters {{{
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_length'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_vimregexp'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-matcher_prefix'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-converter_remove_overlap'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-converter_truncate_abbr'
+# }}}
+# compdoc {{{
+#[[plugins]]
+#repo = 'matsui54/denops-popup-preview.vim'
+#hook_source = '''
+#highlight default link PopupPreviewBorder FloatBorder
+#call popup_preview#enable()
+#let g:popup_preview_config = {
+#  \ 'delay': 200,
+#  \ }
+#'''
+[[plugins]]
+repo = 'matsui54/denops-signature_help'
+hook_source = '''
+call signature_help#enable()
+'''
+# }}}
+# vim: fdm=marker

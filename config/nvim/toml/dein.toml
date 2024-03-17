@@ -1,0 +1,23 @@
+# dein {{{
+[[plugins]]
+repo = 'Shougo/dein.vim'
+# }}}
+# denops {{{
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+hook_add = '''
+let g:denops#server#deno_args += ['--unstable-kv']
+if !exists('$denops_standalone')
+  let g:denops_server_addr = '127.0.0.1:32123'
+endif
+'''
+# }}}
+# guise.vim {{{
+[[plugins]]
+repo = 'lambdalisue/guise.vim'
+# }}}
+# heirline {{{
+[[plugins]]
+repo = 'rebelot/heirline.nvim'
+# }}}
+# vim: fdm=marker

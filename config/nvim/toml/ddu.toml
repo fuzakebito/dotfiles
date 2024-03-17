@@ -1,0 +1,148 @@
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = 'denops.vim'
+hooks_file = '$HOOKS_DIR/ddu/ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+depends = 'ddu.vim'
+on_cmd = 'Ddu'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+hooks_file = '$HOOKS_DIR/ddu/ddu-ui-ff.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+hooks_file = '$HOOKS_DIR/ddu/ddu-ui-filer.vim'
+
+# yuki-yano/ai-review.vim {{{
+[[plugins]]
+repo = 'yuki-yano/ai-review.vim'
+depends = 'ddu.vim'
+on_cmd = 'AiReview'
+hook_add = '''
+nnoremap <space>a <Cmd>AiReview<CR>
+vnoremap <space>a <Cmd>'<,'>AiReview<CR>
+'''
+hook_source = '''
+call denops#request('vimrc', 'set_openai_key', [vimrc#bw('notes', 'openai_api')])
+call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-1106-preview' } })
+call ddu#custom#patch_global({
+  \ 'kindOptions': {
+  \   'ai-review-request': {
+  \     'defaultAction': 'open',
+  \   },
+  \   'ai-review-log': {
+  \     'defaultAction': 'resume',
+  \   },
+  \ }
+  \ })
+command! AiReview3 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-3.5-turbo-0125' } })
+command! AiReview4 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-0125-preview' } })
+'''
+# }}}
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_old'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_point'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-register'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-action'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-path_history'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-dummy'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+
+[[plugins]]
+repo = 'mikanIchinose/ddu-source-markdown'
+
+[[plugins]]
+repo = 'kamecha/ddu-source-jumplist'
+
+[[plugins]]
+repo = 'yuki-yano/ddu-source-nvim-notify'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_relative'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_hidden'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_files'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_ignore_files'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_ignores'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-sorter_alpha'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-converter_display_word'
+
+[[plugins]]
+repo = 'kyoh86/ddu-filter-converter_hl_dir'
+
+[[plugins]]
+repo = 'Milly/ddu-filter-kensaku'
+depends = 'kensaku.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
+# }}}
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-word'
+
+[[plugins]]
+repo = '4513ECHO/vim-readme-viewer'
+on_source = ['ddu.vim']
+hook_add = '''
+  let g:readme_viewer#plugin_manager = 'dein.vim'
+'''
+on_cmd = 'DeinOpen'
+
+[[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
+on_source = ['ddu.vim']

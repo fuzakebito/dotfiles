@@ -1,0 +1,192 @@
+* {
+  border: none;
+  border-radius: 0;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Firge35Nerd Console;
+  font-size: 15px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+window#waybar > box {
+  background-color: #202020;
+  /*padding: 2px;
+  margin: 7px 8px 0px 8px;*/
+}
+
+/*
+window#waybar.hidden {
+  opacity: 0.2;
+}
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+#workspaces button {
+  padding: 0 0px;
+  background-color: transparent;
+  color: #d4d4d4;
+  min-width: 10px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: #2db3bb;
+  color: #2b2b2b;
+}
+
+#workspaces button.urgent {
+  background-color: #fd5970;
+  color: #2b2b2b;
+}
+
+#window,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+  padding: 0 10px;
+  color: #d4d4d4;
+  background-color: transparent;
+  margin: 0 1px;
+}
+
+#window {
+}
+
+#clock {
+  background-color: #d4d4d4;
+  color: #2b2b2b;
+}
+
+#battery {
+}
+
+#battery.charging {
+  background-color: #51b57d;
+  color: #2b2b2b;
+}
+
+@keyframes blink {
+  to {
+    background-color: #fd5970;
+  }
+}
+
+#battery.warning:not(.charging) {
+  color: #d4d4d4;
+  animation-name: blink;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+  color: #d4d4d4;
+  animation-name: blink;
+  animation-duration: 0.1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#backlight {
+}
+
+#network {
+}
+
+#network.disconnected {
+  background-color: #fd5970;
+}
+
+#pulseaudio {
+  background-color: #2db3bb;
+  color: #2b2b2b;
+}
+
+#pulseaudio.muted {
+  background-color: #383838;
+  color: #d4d4d4;
+}
+
+#custom-media {
+}
+
+#custom-media.custom-spotify {
+}
+
+#custom-media.custom-vlc {
+}
+
+#temperature {
+}
+
+#temperature.critical {
+  color: #d4d4d4;
+  animation-name: blink;
+  animation-duration: 0.1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray {
+  margin-left: -3px;
+  margin-right: -3px;
+}
+
+#idle_inhibitor {
+}
+
+#idle_inhibitor.activated {
+}
+
+#mpd {
+}
+
+#mpd.disconnected {
+}
+
+#mpd.stopped {
+}
+
+#mpd.paused {
+}
+
+#custom-waybar-mpris {
+  padding-left: 8px;
+  color: #d4d4d4;
+  background-color: #383838;
+}

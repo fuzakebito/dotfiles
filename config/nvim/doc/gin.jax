@@ -1,0 +1,671 @@
+*gin.txt*					GinはGitで酔っ払います
+
+著者: Alisue <lambdalisue@gmail.com>
+ライセンス: MITライセンス（LICENSEを参照してください）
+
+
+=============================================================================
+CONTENTS					*gin-contents*
+
+INTRODUCTION			|gin-introduction|
+要件				|gin-requirements|
+使用方法				|gin-usage|
+  アクション			  |gin-action|
+  プロキシ			  |gin-proxy|
+インターフェース			|gin-interface|
+  コマンド			  |gin-commands|
+  変数			  |gin-variables|
+  関数			  |gin-functions|
+  コンポーネント			  |gin-components|
+  マッピング			  |gin-mappings|
+  アクション			  |gin-actions|
+  自動コマンド			  |git-autocmds|
+
+
+=============================================================================
+INTRODUCTION					*gin-introduction*
+
+Gin ( *gin.vim* )はVim/NeovimからGitリポジトリを操作するためのプラグインです。
+
+
+=============================================================================
+REQUIREMENTS					*gin-requirements*
+
+GinはDenoで書かれているため、ユーザーはdenops.vimをインストールする必要があります。
+
+denops.vim
+	Vim/Neovimプラグインを作成するためのエコシステム。
+	https://github.com/vim-denops/denops.vim
+
+
+=============================================================================
+USAGE						*gin-usage*
+
+-----------------------------------------------------------------------------
+ACTION						*gin-action*
+
+アクションは、ginバッファ上に定義される特別なマッピングで、次のようになります：
+
+	<Plug>(gin-action-{name})
+
+ここで、{name}はアクションの名前です。
+
+						*gin-action-mapping*
+Ginは次のアクションのためのマッピングを定義しています：
+
+	"?"	使用可能なマッピング/アクションをリスト表示する
+	"a"	実行するアクションを入力するためのプロンプトを開く
+	"."	直前にプロンプトから実行されたアクションを繰り返す
+
+詳細は|gin-actions|を参照してください。
+
+-----------------------------------------------------------------------------
+PROXY						*gin-proxy*
+
+Ginは、gitコマンドによって使用されるプロンプトおよびエディタをVimで実行するため、「GIT_ASKPASS」と「GIT_EDITOR」の環境変数を上書きします。
+これにより、「Gin」コマンドまたはVimの|terminal|経由で「git commit」を起動するかどうかに関係なく、Vimがネストされずに新しいバッファが開かれます。
+
+この機能は、askpass.vimやguise.vimとほぼ同等ですが、gitに特化してシンプルになっています。
+
+askpass.vim
+	https://github.com/lambdalisue/askpass.vim
+
+guise.vim
+	https://github.com/lambdalisue/guise.vim
+
+環境変数の名前が異なるため、上記のプラグインと併用することができます。
+
+|:quit|コマンドが呼び出されたときに、変更を適用するかキャンセルするかどうかを尋ねます。「yes」を選択すると変更が適用され、それ以外の場合は変更がキャンセルされます。直接変更を適用またはキャンセルするには、バッファローカルコマンドの|:Accept|または|:Cancel|を使用します。
+
+変更を確認せずに適用するには、|g:gin_proxy_apply_without_confirm|を使用します。
+
+バッファを開くためのオープナーコマンドを指定するには、|g:gin_proxy_editor_opener|を使用します。
+
+このプロキシ機能を無効にするには、|g:gin_proxy_disable_askpass|および/または|g:gin_proxy_disable_editor|を使用します。
+
+
+=============================================================================
+INTERFACE					*gin-interface*
+
+-----------------------------------------------------------------------------
+COMMANDS					*gin-commands*
+
+							*:Gin*
+:Gin [{++option}...] {command} [{args}]
+	指定された引数を使用して、非同期でgitの生の{command}を呼び出し、結果を表示します。
+
+	次のオプションが{++option}として有効です：
+
+	++wait
+		{command}を非同期ではなく同期的に呼び出します。
+		コマンドの実行を連続させる必要がある場合に使用します。たとえば
+
+		:Gin ++wait add . | Gin commit
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+							*:GinBuffer*
+:GinBuffer[!] [{++option}...] {command} [{args}]
+	指定された引数を使用して、非同期でgitの生の{command}を呼び出し、結果を表示するために「gin」バッファを開きます。なお、エラーの結果もバッファに表示されます。
+
+	次のオプションが{++option}として有効です：
+
+	++monochrome
+		結果をカラーリングせずに白黒で表示します。
+		結果のデータが大きい場合やカラーリングがパフォーマンスの問題を引き起こす場合には、このオプションを使用してください。
+
+	++emojify
+		すべての「:emoji:」を絵文字に置き換えます。
+
+	++processor={processor}
+		結果を処理するプロセッサプログラムを指定します。
+		結果が標準入力経由でプロセッサに渡され、プロセッサの出力が結果として使用されます。たとえば
+
+		:GinBuffer ++processor=delta blame README.md
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+							*:GinBranch*
+:GinBranch[!] [{++option}...] [{flags}] [-- {pattern}...]
+	「gin-branch」バッファを開いてブランチの一覧を表示します。{pattern}が指定されている場合、シェルワイルドカードとして使用されて一致するブランチに絞り込まれます。複数のパターンが指定されている場合、パターンのいずれかと一致するブランチが表示されます。
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+次のフラグが{flags}として有効です：
+
+	-a, --all
+	-r, --remotes
+	-i, --ignore-case
+	--abbrev={n}
+	--no-abbrev
+
+	各{flags}の詳細については":man git-branch(1)"を参照してください。
+
+バッファ内でいくつかのデフォルトのマッピングが定義されています。マッピングを確認するには「help」アクションを使用するか、|g:gin_branch_disable_default_mappings|で無効にします。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+							*:GinBrowse*
+:GinBrowse [{++option}...] [{flags}] [{commitish}]
+	レポジトリのホストサービスのウェブページを訪問するためにシステムブラウザを開きます。{commitish}が指定されていない場合、デフォルトでHEADになります。
+
+	次のオプションが{++option}として有効です：
+
+	++yank
+		URLをクリップボードにコピーします。
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+次のフラグが{flags}として有効です：
+
+	--commit
+	--home
+	-n, --no-browser
+	--path={PATH}
+	--permalink
+	--pr
+	--remote={REMOTE}
+
+	内部的に「git-browse」というコマンドをモジュールとして使用するため、各{flags}の使用方法についてはそのモジュールの使用方法を参照してください。
+
+任意のドメイン (例: GitHub Enterprise) をサポートするために、リモートのエイリアスを定義するには|g:gin_browse_aliases|を参照してください。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+							*:GinCd*
+							*:GinLcd*
+							*:GinTcd*
+:GinCd
+:GinLcd
+:GinTcd
+	現在の作業ディレクトリをgitのリポジトリルートディレクトリに変更します。コマンドによって|cd|、|lcd|、|tcd|が呼び出されます。
+
+							*:GinChaperon*
+:GinChaperon[!] [++{option}...] {path}
+	3つのメインバッファ（THEIRS、WORKTREE、OURS）と3つの補助バッファを開き、{path}の競合を解決するためのバッファを開きます。
+
+	次のオプションが{++option}として有効です：
+
+	++no-theirs
+		THEIRSバッファを開かないでください。
+
+	++no-ours
+		OURSバッファを開かないでください。
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+各バッファで以下のマッピングを使用するか、|g:gin_chaperon_disable_default_mappings|でデフォルトのマッピングを無効にすることができます。
+
+THEIRS
+|<Plug>(gin-diffput)|		デフォルトでは"dp"に割り当てられています。
+
+WORKTREE
+|<Plug>(gin-diffget)|		デフォルトでは"do"に割り当てられています。
+|<Plug>(gin-diffget-l)|		デフォルトでは"dol"に割り当てられています。
+|<Plug>(gin-diffget-r)|		デフォルトでは"dor"に割り当てられています。
+
+OURS
+|<Plug>(gin-diffget)|		デフォルトでは"do"に割り当てられています。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+|g:gin_chaperon_supplement_disable|を使用して補助バッファを無効にすることができます。
+
+|g:gin_chaperon_supplement_height|を使用して補助バッファの高さを調整することができます。
+
+							*:GinDiff*
+:GinDiff[!] [{++option}...] [{flags}] [{commitish}] [-- {path}...]
+	「gin-diff」バッファを開き、作業ツリーとインデックスまたはツリー、インデックスとツリーの間の変更を表示します。
+
+	次のオプションが{++option}として有効です：
+
+	++processor={processor}
+		結果を処理するプロセッサプログラムを指定します。
+		結果が標準入力経由でプロセッサに渡され、プロセッサの出力が結果として使用されます。たとえば
+
+		:GinDiff ++processor=diff-highlight HEAD %
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+次のフラグが{flags}として有効です：
+
+	--cached
+	--renames/--no-renames
+	--diff-filter={filter}
+	-R
+	--ignore-cr-at-eol
+	--ignore-space-at-eol
+	--ignore-space-change/-b
+	--ignore-all-space/-w
+	--ignore-blank-lines
+	--ignore-matching-lines={regex}/-I={regex}
+	--ignore-submodules[=none/untracked/dirty/all]
+
+各バッファで以下のマッピングを使用するか、|g:gin_diff_disable_default_mappings|でデフォルトのマッピングを無効にすることができます。
+
+|<Plug>(gin-diffjump-smart)|		デフォルトでは"<CR>"に割り当てられています。
+|<Plug>(gin-diffjump-old)|		デフォルトでは"g<CR>"に割り当てられています。
+|<Plug>(gin-diffjump-new)|		デフォルトでは"<C-g><CR>"に割り当てられています。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+							*:GinEdit*
+:GinEdit[!] [{++option}...] [{commitish}] {path}
+	「gin-edit」バッファを開き、インデックスまたはコミットした時点の{path}に対応するコンテンツを表示します。
+	{commitish}が指定されていない場合、INDEXのコンテンツを表示するバッファが開かれます。バッファは編集可能で、変更をインデックスに適用するためバッファを書き込むことができます。
+	{commitish}が指定されている場合、{commitish}のコンテンツを表示するバッファが開かれます。バッファは変更できません。
+
+共通の{++option}については|gin-commands-options|を参照してください。
+
+|g:gin_edit_default_args|でデフォルト引数を指定できます。詳細については|gin-commands-default-args|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+							*:GinLog*
+:GinLog[!] [{++option}...] [{commitish}] [-- {pathspec}...]
+	「gin-log」バッファを開き、gitのログを表示します。
+
+次のオプションが{++option}として有効です：
+
+	++emojify
+		すべての「:emoji:」を絵文字に置き換えます。
+
+							*:GinPatch*
+:GinPatch[!] [{++option}...] {path}
+	「gin-patch」コマンドを使用して{path}の変更をパッチとして適用するために、3つのバッファ（HEAD、INDEX、WORKTREE）を開きます。
+
+	次のオプションが{++option}として有効です：
+
+	++no-head
+		HEADバッファを開かないでください。
+
+	++no-worktree
+		WORKTREEバッファを開かないでください。
+
+	共通の{++option}については|gin-commands-options|を参照してください。
+
+各バッファで以下のマッピングを使用するか、|g:gin_patch_disable_default_mappings|でデフォルトのマッピングを無効にすることができます。
+
+HEAD
+|<Plug>(gin-diffput)|		デフォルトでは"dp"に割り当てられています。
+
+INDEX
+|<Plug>(gin-diffput)|		デフォルトでは"dp"に割り当てられています。
+|<Plug>(gin-diffget)|		デフォルトでは"do"に割り当てられています。
+|<Plug>(gin-diffget-l)|		デフォルトでは"dol"に割り当てられています。
+|<Plug>(gin-diffget-r)|		デフォルトでは"dor"に割り当てられています。
+
+WORKTREE
+|<Plug>(gin-diffput)|		デフォルトでは"dp"に割り当てられています。
+|<Plug>(gin-diffget)|		デフォルトでは"do"に割り当てられています。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+「!」を使用してバッファを強制的に開くことができます。
+
+							*:GinStatus*
+:GinStatus[!] [{++option}...] [{flags}] [-- {pathspec}...]
+	「gin-status」バッファを開き、現在のステータスを表示します。
+
+共通の{++option}については|gin-commands-options|を参照してください。
+
+次のフラグが{flags}として有効です：
+
+	-u[=no/normal/all], --untracked-files[=no/normal/all]
+	--ignore-submodules[=none/untracked/dirty/all]
+	--ignored[=traditional/no/matching]
+	--renames/--no-renames
+	--find-renames[={n}]
+
+各バッファで以下のデフォルトのマッピングが定義されています。マッピングを確認するには「help」アクションを使用するか、|g:gin_status_disable_default_mappings|で無効にします。
+
+ユーザーはコマンドのデフォルトと/または持続的な引数を指定できます。詳細については|gin-commands-default-args|および/または|gin-commands-persistent-args|を参照してください。
+
+							*gin-commands-options*
+Ginは、二重プラスサイン（++）で始まるいくつかのオプションをサポートしています。例：
+
+++worktree={worktree}
+	特定のgitワーキングツリーを指定します。
+
+	|gin-worktree| を参照して、ginが現在のワーキングツリーを見つける方法の詳細について説明します。
+
+	:GinStatus ++worktree=/home/john/project\ A
+
+++opener={opener}
+	バッファを開くコマンドを指定します。このオプションは、バッファを開くGinコマンドでのみ使用できます。
+
+	:GinEdit ++opener=botright\ vsplit README.md
+
+++enc={encoding}/++encoding={encoding}
+	バッファの 'fileencoding' オプションを指定します。このオプションは、バッファを開くGinコマンドでのみ使用できます。
+
+	:GinEdit ++enc=sjis README.md
+
+++ff={fileformat}/++fileformat={fileformat}
+	バッファの 'fileformat' オプションを指定します。このオプションは、バッファを開くGinコマンドでのみ使用できます。
+
+	:GinDiff ++ff=mac README.md
+
+							*gin-commands-silent*
+Ginは、|:silent|や|:silent!|修飾子を一部サポートしています。ただし、通常のVimコマンドとは異なり、コマンドに直接指定されたsilentまたはsilent!のみが影響を受けます。動作の例については、詳細を参照してください。
+
+	「Messages are suppressed」
+	:silent Gin status
+
+	「Error messages are suppressed」
+	:silent! GinEdit HEAD README.md
+
+	「No messages are suppressed」
+	:silent execute 'Gin status'
+	:silent! execute 'GinEdit HEAD README.md'
+
+							*gin-commands-file*
+gin#util#expand()関数を使用して、ginのファイルのようなバッファの適切なgitパスを取得できます。この関数は、Ginコマンドに適用される「%」を解決するために内部的に使用されます。これにより、ginのファイルのようなバッファ間を切り替えることができます。
+
+「GinLocal」バッファローカルコマンドを定義して、次のように使用することができます。
+
+	function! s:define_gin_local() abort
+	  command! -buffer -bar GinLocal execute 'edit' gin#util#expand('%')
+	endfunction
+
+	augroup my-gin-local
+	  autocmd BufReadCmd ginedit://* call s:define_gin_local()
+	  autocmd BufReadCmd gindiff://* call s:define_gin_local()
+	  autocmd BufReadCmd ginlog://* call s:define_gin_local()
+	augroup END
+
+						*gin-commands-default-args*
+ユーザーは、各Ginコマンドに対して引数が指定されなかった場合に使用されるデフォルト引数を「g:gin_{command}_default_args」のような変数で指定できます。例えば、|:GinLog|のデフォルト引数を指定するには、次のように「g:gin_log_default_args」変数を使用します。
+
+	let g:gin_log_default_args = ['--graph', '--decorate']
+
+						*gin-commands-persistent-args*
+ユーザーは、各Ginコマンドの引数の前に常に接頭辞として使用される持続的な引数を「g:gin_{command}_persistent_args」のような変数で指定できます。例えば、|:GinLog|の持続的な引数を指定するには、次のように「g:gin_log_persistent_args」変数を使用します。
+
+	let g:gin_log_persistent_args = ['++emojify']
+
+
+-----------------------------------------------------------------------------
+VARIABLES					*gin-variables*
+
+*g:gin_branch_default_args*
+	|:GinBranch|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_branch_persistent_args*
+	|:GinBranch|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_branch_disable_default_mappings*
+	|:GinBranch|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+*g:gin_browse_aliases*
+	|:GinBrowse|コマンドで特定のホスティングサービスのREMOTEにエイリアスを定義します。これは、例えばGitHub Enterpriseのようなカスタムドメインを持つ場合に便利です。
+
+	let g:gin_browse_aliases = {
+	      \ 'github.on.my.custom.domain.com': 'github.com',
+	      \}
+
+	デフォルト: {}
+
+*g:gin_browse_default_args*
+	|:GinBrowse|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_browse_persistent_args*
+	|:GinBrowse|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_chaperon_default_args*
+	|:GinChaperon|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_chaperon_persistent_args*
+	|:GinChaperon|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_chaperon_disable_default_mappings*
+	|:GinChaperon|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+*g:gin_chaperon_supplement_disable*
+	|:GinChaperon|での補助バッファを無効にします。
+
+	デフォルト: 0
+
+*g:gin_chaperon_supplement_height*
+	|:GinChaperon|コマンドの補助バッファの高さを調整するための数字（|Number|）。
+
+	デフォルト: 10
+
+*g:gin_diff_default_args*
+	|:GinDiff|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_diff_persistent_args*
+	|:GinDiff|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_diff_disable_default_mappings*
+	|:GinDiff|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+*g:gin_edit_default_args*
+	|:GinEdit|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_edit_persistent_args*
+	|:GinEdit|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_log_default_args*
+	|:GinLog|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_log_persistent_args*
+	|:GinLog|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_log_disable_default_mappings*
+	|:GinLog|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+*g:gin_patch_default_args*
+	|:GinPatch|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_patch_persistent_args*
+	|:GinPatch|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_patch_disable_default_mappings*
+	|:GinPatch|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+*g:gin_proxy_apply_without_confirm*
+	プロキシエディタで確認なしで変更を適用します。
+
+	デフォルト: 0
+
+*g:gin_proxy_disable_askpass*
+	プロンプトをプロキシするための「GIT_ASKPASS」を無効にします。
+
+	デフォルト: 0
+
+*g:gin_proxy_disable_editor*
+	エディタをプロキシするための「GIT_EDITOR」を無効にします。
+
+	デフォルト: 0
+
+*g:gin_proxy_editor_opener*
+	バッファを開くためのオープナーコマンド（例："split"、"vsplit"、"tabedit"）を指定します。
+
+	デフォルト: "tabedit"
+
+*g:gin_status_default_args*
+	|:GinStatus|のデフォルト引数を指定します。
+
+	デフォルト: []
+
+*g:gin_status_persistent_args*
+	|:GinStatus|の持続的な引数を指定します。
+
+	デフォルト: []
+
+*g:gin_status_disable_default_mappings*
+	|:GinStatus|でのデフォルトのマッピングを無効にします。
+
+	デフォルト: 0
+
+-----------------------------------------------------------------------------
+FUNCTIONS					*gin-functions*
+
+						*gin#util#reload()*
+gin#util#reload([{bufnr}])
+	{bufnr}のginバッファの内容をリロードします。
+
+						*gin#util#expand()*
+gin#util#expand({expr})
+	|expand()|と同様ですが、ginのファイルのようなバッファの場合は対象のファイル名を抽出します。
+
+						*gin#util#worktree()*
+gin#util#worktree([{path}])
+	{path}または現在のバッファのgitワーキングツリーパスを返します。
+
+-----------------------------------------------------------------------------
+COMPONENTS					*gin-components*
+
+コンポーネントは、常に失敗せずに、|statusline|や|tabline|のための文字列を返す|Function|です。現在の作業ツリーの情報を返します（ginが現在のワーキングツリーを見つける方法については|gin-worktree|を参照してください）。
+
+次のようにコンポーネント関数を使用します：
+
+	set statusline+=\ %{gin#component#worktree#name()}
+	set statusline+=\ (%{gin#component#branch#ascii()})
+	set statusline+=\ [%{gin#component#traffic#ascii()}]
+
+コンポーネントはバックグラウンドで非同期に更新され、状態が更新された時に|GinComponentPost| |User|自動コマンドが発生します。この自動コマンドを使用して|statusline|や|tabline|を更新してください。
+
+	augroup my_gin_component
+	  autocmd!
+	  autocmd User GinComponentPost redrawstatus
+	  " もしtablineを使用している場合
+	  "autocmd User GinComponentPost redrawtabline
+	augroup END
+
+					*gin#component#branch#ascii()*
+					*gin#component#branch#unicode()*
+gin#component#branch#ascii()
+gin#component#branch#unicode()
+	現在のブランチと先行ブランチのインジケータ文字列を返します。
+
+					*gin#component#traffic#ascii()*
+					*gin#component#traffic#unicode()*
+gin#component#traffic#ascii()
+gin#component#traffic#unicode()
+	先行コミットと後続コミットの数を表すインジケータ文字列を返します。
+
+					*gin#component#worktree#name()*
+					*gin#component#worktree#full()*
+gin#component#worktree#name()
+gin#component#worktree#full()
+	現在のワーキングツリーを表すインジケータ文字列を返します。
+
+-----------------------------------------------------------------------------
+MAPPINGS					*gin-mappings*
+
+*<Plug>(gin-diffput)*
+	diffのチャンクをWORKTREEバッファに追加します。
+
+*<Plug>(gin-diffget)*
+	WORKTREEまたはHEADバッファからのdiffチャンクを取得します（WORKTREEを優先します）。
+
+*<Plug>(gin-diffget-l)*
+	HEADバッファからのdiffチャンクを取得します。
+
+*<Plug>(gin-diffget-r)*
+	WORKTREEバッファからのdiffチャンクを取得します。
+
+*<Plug>(gin-diffjump-smart)*
+	比較または比較ソースの対応する行にジャンプします。
+
+*<Plug>(gin-diffjump-old)*
+	比較ソースの対応する行にジャンプします。
+
+*<Plug>(gin-diffjump-new)*
+	比較の対応する行にジャンプします。
+
+-----------------------------------------------------------------------------
+ACTIONS						*gin-actions*
+
+NOTE that we won't list all actions available here because there are too many
+of them and we cannot maintain correct documentation of that.
+Use the "help" action to check what actions are available on each gin buffer.
+
+*<Plug>(gin-action-echo)*
+	Echo active action candidates for debugging.
+
+*<Plug>(gin-action-choice)*
+	Open a prompt to select an action to invoke. It will invoke selected
+	action on active action candidates.
+	It is mapped to "a" in default when no mapping exists.
+
+*<Plug>(gin-action-repeat)*
+	Repeat a previous action triggered from |<Plug>(gin-action-choice)|.
+	Note that previous actions triggered from actual mappings are not
+	repeated.
+	It is mapped to "." in default when no mapping exists.
+
+*<Plug>(gin-action-help)*
+*<Plug>(gin-action-help:all)*
+	Show action help.
+	It is mapped to "?" in default when no mapping exists.
+
+-----------------------------------------------------------------------------
+AUTOCMDS					*gin-autocmds*
+
+Gin provides the following |User| autocmds.
+
+*GinCommandPost*
+	Emitted when |:Gin| command is invoked. Note that the autocmd is not
+	emitted for |:GinBuffer| command.
+
+*GinComponentPost*
+	Emitted when gin components are updated. Use this autocmd to update
+	|statusline| or |tabline|.
+ 
+	augroup my_fern_component_update
+	  autocmd!
+	  " Update statusline to show the latest component result
+	  autocmd User GinComponentPost ++nested redrawstatus
+	augroupEND
+ 
+=============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

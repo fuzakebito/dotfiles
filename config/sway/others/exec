@@ -1,0 +1,7 @@
+exec xrdb $HOME/.Xresources
+exec autotiling
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/kdeconnectd
+exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id 'sleep 1; systemctl --user start foot-server.socket'
+exec --no-startup-id 'wl-paste --watch cliphist store'

@@ -1,0 +1,7 @@
+[tools]
+ruby = "latest"
+bitwarden = "latest"
+zoxide = "latest"
+
+[settings]
+experimental = false

@@ -1,0 +1,40 @@
+{
+  "set text": {
+    "prefix": "set text",
+    "body": [
+      "#set text(",
+      "  font: (\"linux libertine\",\"IPAexMincho\"),",
+      "  size: 14pt",
+      ")"
+    ],
+    "description": "set text"
+  },
+  "set heading": {
+    "prefix": "set heading",
+    "body": [
+      "#set heading(numbering: \"${1:1}\")"
+    ],
+    "description": "set heading"
+  },
+  "set enum": {
+    "prefix": "set enum",
+    "body": [
+      "#set enum(numbering: \"${1:1}\")"
+    ],
+    "description": "set enum"
+  },
+  "show math.equation.where": {
+    "prefix": "show math.equation.where",
+    "body": [
+      "#show math.equation.where(block: true): it => align(left, block(it))"
+    ],
+    "description": "show math equation on the left"
+  },
+  "name": {
+    "prefix": "name",
+    "body": [
+      "#align(right)[${1:subject} \\#${2:1} - 1810517 林 直哉]"
+    ],
+    "description": "name"
+  }
+}

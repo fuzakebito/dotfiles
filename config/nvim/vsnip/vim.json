@@ -1,0 +1,10 @@
+{
+  "highlight": {
+    "prefix": "highlight",
+    "body": [
+      "highlight $1 gui=${2:NONE} guibg=${3:NONE} guifg=$4"
+    ],
+    "description": "highlight"
+  }
+}
+

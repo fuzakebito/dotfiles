@@ -1,0 +1,233 @@
+# vimdoc-ja {{{
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_cmd = 'H'
+hook_add = "command! -nargs=1 H :execute 'h ' . <q-args> . '@ja'"
+# }}}
+# vim-denops/denops-shared-server.vim {{{
+[[plugins]]
+repo = 'vim-denops/denops-shared-server.vim'
+on_func = ['denops_shared_server#install', 'denops_shared_server#uninstall']
+# }}}
+# lualine {{{
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+if = "!exists('$ime')"
+on_event = 'BufAdd'
+lua_source = '''
+require('lualine').setup {
+  options = {
+    theme = 'antibalus',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+  }
+}
+'''
+# }}}
+# treesitter {{{
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+on_event = ['BufRead','BufNew']
+hook_post_update = 'TSUpdate'
+hooks_file = '$HOOKS_DIR/treesitter.lua'
+
+[[plugins]]
+repo = 'nvim-treesitter/playground'
+on_cmd = ['TSPlaygroundToggle']
+hooks_file = '$HOOKS_DIR/treesitter-playground.lua'
+# }}}
+## fern {{{
+#[[plugins]]
+#repo = 'lambdalisue/fern.vim'
+#on_cmd = 'Fern'
+#hooks_file = '$HOOKS_DIR/fern.vim'
+#
+#[[plugins]]
+#repo = 'lambdalisue/fern-git-status.vim'
+#on_source = 'fern.vim'
+#hook_source = '''
+#call fern_git_status#init()
+#'''
+#
+#[[plugins]]
+#repo = 'fuzmare/fern-renderer-web-devicons.nvim'
+#on_source = 'fern.vim'
+#hook_source = '''
+#let g:fern#renderer = "nvim-web-devicons"
+#let g:fern#renderer#web_devicons#indent_markers = 1
+#let g:glyph_palette#palette = v:lua.require'fr-web-icons'.palette()
+#'''
+#
+#[[plugins]]
+#repo = 'lambdalisue/glyph-palette.vim'
+#on_source = 'fern.vim'
+#hook_source = '''
+#augroup my-glyph-palette
+#  autocmd! *
+#  autocmd FileType fern call glyph_palette#apply()
+#augroup END
+#'''
+#
+#[[plugins]]
+#repo = 'kat0h/fern-preview.vim'
+#on_source = 'fern.vim'
+#hooks_file = '$HOOKS_DIR/fern-preview.vim'
+## }}}
+# neoscroll {{{
+[[plugins]]
+repo = 'karb94/neoscroll.nvim'
+on_event = 'WinScrolled'
+on_lua = 'neoscroll'
+hooks_file = '$HOOKS_DIR/neoscroll.lua'
+hook_add = '''
+nnoremap n n<cmd> lua require('neoscroll').zz(250)<CR>
+nnoremap N N<cmd> lua require('neoscroll').zz(250)<CR>
+'''
+# }}}
+# lexima {{{
+# [[plugins]]
+# repo = 'cohama/lexima.vim'
+# on_event = 'InsertEnter'
+# }}}
+# sandwich {{{
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+on_map = ['<Plug>(sandwich-', '<Plug>(textobj-sandwich-']
+hooks_file = '$HOOKS_DIR/sandwich.vim'
+# }}}
+# kensaku.vim {{{
+[[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+on_source = ['fuzzy-motion.vim']
+# }}}
+# fuzzy-motion.vim {{{
+[[plugins]]
+repo = 'yuki-yano/fuzzy-motion.vim'
+on_cmd = ['FuzzyMotion']
+hooks_file = '$HOOKS_DIR/fuzzy-motion.vim'
+# }}}
+# denops-translate {{{
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_cmd = 'Translate'
+hook_source = '''
+let g:translate_endpoint = 'https://api-free.deepl.com/v2/translate'
+'''
+# }}}
+# quickrun {{{
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+# }}}
+# ccc.nvim {{{
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+on_cmd = 'Ccc'
+hooks_file = '$HOOKS_DIR/ccc.lua'
+# }}}
+# synstack {{{
+[[plugins]]
+repo = 'dylnmc/synstack.vim'
+on_cmd = ['SynAuto', 'SynPopup', '<plug>(SynStack)']
+# }}}
+# gitsigns {{{
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+on_event = ['BufRead']
+hooks_file = '$HOOKS_DIR/gitsigns.lua'
+# }}}
+# satelite {{{
+#[[plugins]]
+#repo = 'lewis6991/satellite.nvim'
+#on_event = ['BufRead']
+#hooks_file = '$HOOKS_DIR/satelite.lua'
+# }}}
+# dstein64/nvim-scrollview {{{
+[[plugins]]
+repo = 'dstein64/nvim-scrollview'
+on_event = 'BufRead'
+hooks_file = '$HOOKS_DIR/scrollview.lua'
+# }}}
+# insx {{{
+[[plugins]]
+repo = 'hrsh7th/nvim-insx'
+on_event = 'InsertEnter'
+lua_source = '''
+require('insx.preset.standard').setup()
+'''
+# }}}
+# matchup {{{
+[[plugins]]
+repo = 'andymass/vim-matchup'
+on_event = 'BufRead'
+# }}}
+# notify {{{
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
+lua_add = '''
+vim.notify = function(...)
+  vim.notify = require('notify')
+end
+'''
+# }}}
+# deol {{{
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+depends = ['ddc.vim']
+on_cmd = 'Deol'
+on_func = 'deol#start()'
+hooks_file = '$HOOKS_DIR/deol.vim'
+# }}}
+# suda {{{
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+on_cmd = ['SudaRead', 'SudaWrite']
+# }}}
+# chrisbra/unicode.vim {{{
+[[plugins]]
+repo = 'chrisbra/unicode.vim'
+on_cmd = ['Digraphs', 'UnicodeSearch', 'UnicodeSearch!', 'UnicodeName', 'UnicodeTable', 'DownloadUnicode', 'UnicodeCache']
+# }}}
+# lukas-reineke/indent-blankline.nvim {{{
+#[[plugins]]
+#repo = 'lukas-reineke/indent-blankline.nvim'
+#on_event = 'BufRead'
+#hooks_file = '$HOOKS_DIR/indent-blankline.lua'
+# }}}
+# shellRaining/hlchunk.nvim {{{
+[[plugins]]
+repo = 'shellRaining/hlchunk.nvim'
+on_event = 'BufRead'
+hooks_file = '$HOOKS_DIR/hlchunk.lua'
+# }}}
+# dependency plugins
+# nvim-web-devicons {{{
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+on_lua = 'nvim-web-devicons'
+lua_source = '''
+require'nvim-web-devicons'.setup()
+'''
+# }}}
+# filetype plugins
+# vimtex {{{
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+hooks_file = '$HOOKS_DIR/vimtex.vim'
+# }}}
+# tani/vim-glance {{{
+[[plugins]]
+repo = 'tani/vim-glance'
+on_ft = 'markdown'
+hook_source = '''
+let g:glance#markdown_breaks = v:true
+let g:glance#markdown_html = v:true
+let g:glance#markdown_linkify = v:true
+let g:glance#markdown_plugins = ['https://esm.sh/markdown-it-mathjax3?bundle']
+let g:glance#stylesheet = '@import url("https://cdn.jsdelivr.net/npm/basscss@8.1.0/css/basscss.min.css");'
+'''
+# }}}
+# vim: fdm=marker

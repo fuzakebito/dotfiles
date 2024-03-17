@@ -1,0 +1,29 @@
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_map = { ic = '<Plug>(skkeleton-toggle)' }
+depends = ['ddc.vim']
+hooks_file = '$HOOKS_DIR/skkeleton.vim'
+
+#[[plugins]]
+#repo = 'shg-eo/skkeleton-azik'
+#on_source = 'skkeleton'
+#depends = 'skkeleton'
+
+[[plugins]]
+repo = 'Matts966/skk-vconv.vim'
+on_source = ['skkeleton']
+
+# NI57721/skkeleton-state-popup {{{
+[[plugins]]
+repo = '$HOME/ghq/github.com/fuzmare/skkeleton-state-popup'
+on_source = ['skkeleton']
+hooks_file = '$HOOKS_DIR/skkeleton-state-popup.vim'
+# }}}
+
+[[plugins]]
+repo = 'skk-dev/dict'
+
+# tokuhirom/jawiki-kana-kanji-dict {{{
+[[plugins]]
+repo = 'tokuhirom/jawiki-kana-kanji-dict'
+# }}}

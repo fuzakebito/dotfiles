@@ -1,0 +1,191 @@
+{
+  "plugins": {
+    "prefix": "plugins",
+    "body": [
+      "# $1 {{{",
+      "[[plugins]]",
+      "repo = '$1'",
+      "# }}}"
+    ],
+    "description": "dein toml"
+  },
+  "on_cmd": {
+    "prefix": "on_cmd",
+    "body": [
+      "on_cmd = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_event": {
+    "prefix": "on_event",
+    "body": [
+      "on_event = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_func": {
+    "prefix": "on_func",
+    "body": [
+      "on_func = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_ft": {
+    "prefix": "on_ft",
+    "body": [
+      "on_ft = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_if": {
+    "prefix": "on_if",
+    "body": [
+      "on_if = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_lua": {
+    "prefix": "on_lua",
+    "body": [
+      "on_lua = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_map": {
+    "prefix": "on_map",
+    "body": [
+      "on_map = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_path": {
+    "prefix": "on_path",
+    "body": [
+      "on_path = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "on_source": {
+    "prefix": "on_source",
+    "body": [
+      "on_source = '$0'"
+    ],
+    "description": "dein toml"
+  },
+  "hooks_file": {
+    "prefix": "hooks_file",
+    "body": [
+      "hooks_file = '\\$HOOKS_DIR/$0'"
+    ],
+    "description": "dein toml"
+  },
+  "hook_add": {
+    "prefix": "hook_add",
+    "body": [
+      "hook_add = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_add": {
+    "prefix": "lua_add",
+    "body": [
+      "lua_add = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "hook_depends_update": {
+    "prefix": "hook_depends_update",
+    "body": [
+      "hook_depends_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_depends_update": {
+    "prefix": "lua_depends_update",
+    "body": [
+      "lua_depends_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "hook_done_update": {
+    "prefix": "hook_done_update",
+    "body": [
+      "hook_done_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_done_update": {
+    "prefix": "lua_done_update",
+    "body": [
+      "lua_done_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "hook_post_source": {
+    "prefix": "hook_post_source",
+    "body": [
+      "hook_post_source = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_post_source": {
+    "prefix": "lua_post_source",
+    "body": [
+      "lua_post_source = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "hook_post_update": {
+    "prefix": "hook_post_update",
+    "body": [
+      "hook_post_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_post_update": {
+    "prefix": "lua_post_update",
+    "body": [
+      "lua_post_update = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "hook_source": {
+    "prefix": "hook_source",
+    "body": [
+      "hook_source = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  },
+  "lua_source": {
+    "prefix": "lua_source",
+    "body": [
+      "lua_source = '''",
+      "$0",
+      "'''"
+    ],
+    "description": "dein toml"
+  }
+}
+

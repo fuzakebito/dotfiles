@@ -1,0 +1,46 @@
+[colors.bright]
+black   = "#3f3f3f"
+red     = "#f85680"
+green   = "#6fca9e"
+yellow  = "#e6b678"
+blue    = "#8ebaff"
+magenta = "#c5a2eb"
+cyan    = "#1fccd7"
+white   = "#ffffff"
+
+[colors.normal]
+black   = "#303030"
+red     = "#f4296e"
+green   = "#4abc8a"
+yellow  = "#daa45c"
+blue    = "#6faafd"
+magenta = "#b78fe4"
+cyan    = "#00becb"
+white   = "#d9d9d9"
+
+[colors.primary]
+background = "#1e1e1e"
+foreground = "#d9d9d9"
+
+[cursor]
+style = "Underline"
+thickness = 0.3
+
+[font]
+size = 11
+
+[font.bold]
+family = "Firge35 Nerd Console"
+
+[font.italic]
+family = "Firge35 Nerd Console"
+
+[font.normal]
+family = "Firge35 Nerd Console"
+
+[shell]
+program = "/usr/bin/tmux"
+
+[window]
+dynamic_title = true
+
