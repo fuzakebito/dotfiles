@@ -14,6 +14,13 @@ deno-install: ## Install deno
 mise-install: ## Install mise
 	@curl https://mise.jdx.dev/install.sh | sh
 
+paru-install: ## Install paru
+	@git clone https://aur.archlinux.org/paru-bin.git && \
+	cd paru-bin && \
+	makepkg -si && \
+	cd ../ && \
+	rm -rf paru-bin
+
 ln: ## expand config files.
 	@ln -snvf $(DOTFILES_DIR)home/.??* $(HOME)/
 	@mkdir -p .local/bin
