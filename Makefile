@@ -21,6 +21,9 @@ paru-install: ## Install paru
 	cd ../ && \
 	rm -rf paru-bin
 
+git-statuses: ## Collect git statuses from directories on the same level
+	@./scripts/gitstatuses.sh
+
 ln: ## expand config files.
 	@ln -snvf $(DOTFILES_DIR)home/.??* $(HOME)/
 	@mkdir -p .local/bin
