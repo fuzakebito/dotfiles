@@ -2,8 +2,11 @@ try
   set cmdheight=0
 
   " For recording messages
-  autocmd CmdlineEnter,RecordingEnter * set cmdheight=1
-  autocmd CmdlineLeave,RecordingLeave * set cmdheight=0
+  augroup autoCmdHeight
+    autocmd!
+    autocmd autoCmdHeight CmdlineEnter,RecordingEnter * set cmdheight=1
+    autocmd autoCmdHeight CmdlineLeave,RecordingLeave * set cmdheight=0
+  augroup END
 catch
   set cmdheight=1
 endtry
