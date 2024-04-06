@@ -15,7 +15,7 @@ on_source = ['skkeleton']
 
 # NI57721/skkeleton-state-popup {{{
 [[plugins]]
-repo = '$HOME/ghq/github.com/fuzmare/skkeleton-state-popup'
+repo = 'fuzmare/skkeleton-state-popup'
 on_source = ['skkeleton']
 hooks_file = '$HOOKS_DIR/skkeleton-state-popup.vim'
 # }}}
