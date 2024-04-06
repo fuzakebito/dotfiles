@@ -31,4 +31,5 @@ let g:terminal_color_15 = '#e6e6e6'
 " }}}
 " deol {{{
 set nu
+set winblend=0
 " }}}
