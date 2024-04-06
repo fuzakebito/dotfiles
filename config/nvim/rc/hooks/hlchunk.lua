@@ -18,8 +18,8 @@ require('hlchunk').setup({
       right_arrow = ">",
     },
     style = {
-      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Purple")), "fg", "gui") },
-      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Red")), "fg", "gui") }, -- this fg is used to highlight wrong chunk
+      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Keyword")), "fg", "gui") },
+      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("ErrorMsg")), "fg", "gui") }, -- this fg is used to highlight wrong chunk
     },
     textobject = "",
     max_file_size = 1024 * 1024,
@@ -33,14 +33,14 @@ require('hlchunk').setup({
       "│",
     },
     style = {
-      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("VertSplit")), "fg", "gui") }
+      { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("FloatBorder")), "fg", "gui") }
     },
   },
   line_num = {
-    enable = true,
+    enable = false,
     use_treesitter = true,
     exclude_filetypes = exclude_filetypes,
-    style = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Purple")), "fg", "gui"),
+    style = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Keyword")), "fg", "gui"),
   },
   blank = {
     enable = false,
