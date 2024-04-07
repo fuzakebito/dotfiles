@@ -29,7 +29,6 @@ mouse_warping container
 
     # Popup vim
     bindsym $mod+i exec XMODIFIERS=@im= ~/.config/sway/scripts/ime.sh
-    # bindsym $mod+i exec 'swaymsg default_border pixel 1; $term -T foot-floating -e zsh ~/.config/sway/scripts/edit-clipboard.zsh & (sleep 0.05 ; swaymsg default_border pixel 0)'
 
     # Kill focused window
     bindsym $mod+Shift+q kill
