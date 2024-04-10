@@ -85,3 +85,4 @@ if vim.env.plug_dev ~= nil then
 end
 
 require('user.nodefaultplugs')
+require('user.diagnostic')
