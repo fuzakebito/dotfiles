@@ -24,3 +24,6 @@ nnoremap <c-y> <c-y>gk
 nnoremap <C-Z> <NOP>
 vnoremap <C-Z> <NOP>
 onoremap <C-Z> <NOP>
+
+" Tag jump on help filetype
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
