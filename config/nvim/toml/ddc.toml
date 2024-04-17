@@ -23,6 +23,7 @@ call pum#set_option('preview', v:true)
 call pum#set_option('preview_border', 'rounded')
 call pum#set_option('preview_height', 30)
 call pum#set_option('preview_width', 78)
+call pum#set_option('highlight_matches', "Directory")
 '''
 # }}}
 # ddc sources {{{
