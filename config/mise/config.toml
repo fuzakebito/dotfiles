@@ -2,6 +2,7 @@
 ruby = "latest"
 bitwarden = "latest"
 zoxide = "latest"
+go = "latest"
 
 [settings]
 experimental = false
