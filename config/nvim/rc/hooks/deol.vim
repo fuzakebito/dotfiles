@@ -2,7 +2,7 @@
 nnoremap <c-]> <Cmd>call deol#start(#{
 \ toggle: v:true,
 \ split: 'floating',
-\ winheight: float2nr(&lines*0.9),
+\ winheight: float2nr(&lines*0.9-0.5),
 \ winwidth: float2nr(&columns*0.9),
 \ winrow: float2nr(&lines*0.05),
 \ wincol: float2nr(&columns*0.05),
