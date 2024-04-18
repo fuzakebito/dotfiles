@@ -27,7 +27,7 @@ vnoremap <space>a <Cmd>'<,'>AiReview<CR>
 '''
 hook_source = '''
 call denops#request('vimrc', 'set_openai_key', [vimrc#bw('notes', 'openai_api')])
-call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-1106-preview' } })
+call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-turbo' } })
 call ddu#custom#patch_global({
   \ 'kindOptions': {
   \   'ai-review-request': {
@@ -38,8 +38,8 @@ call ddu#custom#patch_global({
   \   },
   \ }
   \ })
-command! AiReview3 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-3.5-turbo-0125' } })
-command! AiReview4 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-0125-preview' } })
+command! AiReview3 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-3.5-turbo' } })
+command! AiReview4 call ai_review#config({ 'chat_gpt': { 'model': 'gpt-4-turbo' } })
 '''
 # }}}
 
