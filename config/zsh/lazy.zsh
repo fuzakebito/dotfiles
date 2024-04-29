@@ -19,11 +19,11 @@ alias eza='eza -F --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 alias fzf="fzf --prompt=' ' --pointer='❯' --marker='󰄬' --color='hl:6,hl+:14,bg+:-1,info:-1,prompt:6,pointer:6,marker:2,header:1'"
 # functions
-mcd() {
+function mcd() {
   mkdir -p $1
   cd $1
 }
-zle-cd() {
+function zle-cd() {
   echo -e "\033[1A"
   local dir=$(zoxide query -l | fzf --height=11 --layout=reverse --scheme=path --info=hidden --color='border:8' --prompt="cd ❯ " --preview='ptyframe ls -Cp --color=always --group-directories-first {}' --preview-window=down:3,border-top)
   if [ -z "$dir" ];then
@@ -36,19 +36,19 @@ zle-cd() {
 }
 zle -N zle-cd
 bindkey '^j' zle-cd
-fzf-geometry() {
-swaytree=$(swaymsg -t get_tree)
-selected_id=$(echo "$swaytree" \
-  | jq -r '
-  [.. | select(.visible? == true)],
-  [.. | select(.type? == "output" and .active? == true)],
-  [.. | select(.type? == "root")]
-  | .[] | [.id, .name] | @tsv' \
-  | fzf --delimiter='\t' --with-nth=2 --height=~100% --layout=reverse | cut -f1)
-if [[ -z "$selected_id" ]]; then
-    return
-fi
-echo $(echo "$swaytree" | jq --arg id "$selected_id" '.. | select(.id? == ($id | tonumber)) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' -r)
+function fzf-geometry() {
+  swaytree=$(swaymsg -t get_tree)
+  selected_id=$(echo "$swaytree" \
+    | jq -r '
+    [.. | select(.visible? == true)],
+    [.. | select(.type? == "output" and .active? == true)],
+    [.. | select(.type? == "root")]
+    | .[] | [.id, .name] | @tsv' \
+    | fzf --delimiter='\t' --with-nth=2 --height=~100% --layout=reverse | cut -f1)
+  if [[ -z "$selected_id" ]]; then
+      return
+  fi
+  echo $(echo "$swaytree" | jq --arg id "$selected_id" '.. | select(.id? == ($id | tonumber)) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' -r)
 }
 function cache_eval {
   mkdir -p $HOME/.cache/zsh
@@ -58,7 +58,6 @@ function cache_eval {
   fi
   source "$cache"
 }
-
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
