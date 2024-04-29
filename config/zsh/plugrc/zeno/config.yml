@@ -66,13 +66,13 @@ snippets:
     snippet: grim -g "$(slurp)" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
   - name: grim with fzf
     keyword: grimf
-    snippet: grim -g "$(fzf-geometry)" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
+    snippet: grim -g "$(fzf-geometry | { read i; sleep 3; echo $i })" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
   - name: wf-recorder with slurp
     keyword: wfrs
     snippet: wf-recorder -g "$(slurp)" -f "$HOME/Videos/record-$(date +%Y%m%d-%H%M%S).mp4"
   - name: wf-recorder with fzf
     keyword: wfrf
-    snippet: wf-recorder -g "$(fzf-geometry)" -f "$HOME/Videos/record-$(date +%Y%m%d-%H%M%S).mp4"
+    snippet: wf-recorder -g "$(fzf-geometry | { read i; sleep 3; echo $i })" -f "$HOME/Videos/record-$(date +%Y%m%d-%H%M%S).mp4"
 
 completions:
   - name: kill
