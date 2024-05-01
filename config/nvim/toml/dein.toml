@@ -20,4 +20,13 @@ repo = 'lambdalisue/guise.vim'
 [[plugins]]
 repo = 'rebelot/heirline.nvim'
 # }}}
+# tani/dmacro.nvim {{{
+[[plugins]]
+repo = 'tani/dmacro.nvim'
+lua_add = '''
+require('dmacro').setup({
+    dmacro_key = '<C-t>' --  you need to set the dmacro_key
+})
+'''
+# }}}
 # vim: fdm=marker
