@@ -5,4 +5,4 @@ zoxide = "latest"
 go = "latest"
 
 [settings]
-experimental = false
+experimental = true
