@@ -32,6 +32,8 @@ mason_lspconfig.setup({
   ensure_installed = {
     "lua_ls",
     "vimls",
+    "vtsls",
+    "denols",
   },
   automatic_installation = true,
 })
