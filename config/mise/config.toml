@@ -4,6 +4,8 @@ bitwarden = "latest"
 zoxide = "latest"
 go = "latest"
 "go:github.com/rhysd/vim-startuptime" = "latest"
+pnpm = "latest"
+node = "latest"
 
 [settings]
 experimental = true
