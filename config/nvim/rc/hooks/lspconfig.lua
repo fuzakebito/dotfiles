@@ -1,6 +1,5 @@
 -- lua_source {{{
 local mason_lspconfig = require("mason-lspconfig")
-local lspconfig = require("lspconfig")
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
@@ -51,35 +50,11 @@ capabilities.textDocument.foldingRange = {
 }
 
 mason_lspconfig.setup_handlers {
-  function (server_name) -- default handler
-    local opts = {}
-    opts.capabilities = capabilities
-    opts.flags = lsp_flags
-    lspconfig[server_name].setup(opts)
-  end,
-  -- handler override for specific servers.
-  lua_ls = function()
-    lspconfig.lua_ls.setup {
+  function(server_name)
+    require('user.lsp.setup')(server_name, {
       capabilities = capabilities,
       flags = lsp_flags,
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            globals = { 'vim' },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      }
-    }
+    })
   end,
 }
 -- }}}
