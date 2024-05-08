@@ -26,9 +26,9 @@ git-statuses: ## Collect git statuses from directories on the same level
 
 ln: ## expand config files.
 	@ln -snvf $(DOTFILES_DIR)home/.??* $(HOME)/
-	@mkdir -p .local/bin
+	@mkdir -p $(HOME)/.local/bin
 	@ln -snvf $(DOTFILES_DIR)bin/* $(HOME)/.local/bin/
-	@mkdir -p .config
+	@mkdir -p $(HOME)/.config
 	@ln -snvf $(DOTFILES_DIR)config/* $(HOME)/.config/
 	@ln -snvf $(HOME)/.config/zsh/.zshrc $(HOME)/.zshrc
 
