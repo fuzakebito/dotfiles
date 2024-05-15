@@ -1,17 +1,6 @@
 # nvim-lspconfig {{{
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-# }}}
-# mason {{{
-[[plugins]]
-repo = 'williamboman/mason.nvim'
-hook_post_update = 'MasonUpdate'
-hooks_file = '$HOOKS_DIR/mason.lua'
-# }}}
-# mason-lspconfig {{{
-[[plugins]]
-repo = 'williamboman/mason-lspconfig.nvim'
-depends = ['mason.nvim', 'nvim-lspconfig']
 on_event = 'BufRead'
 hooks_file = '$HOOKS_DIR/lspconfig.lua'
 # }}}

@@ -1,5 +1,4 @@
 -- lua_source {{{
-local mason_lspconfig = require("mason-lspconfig")
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
@@ -28,16 +27,6 @@ nnoremap('<space>lca', lsp.buf.code_action, bufopts)
 nnoremap('gr', lsp.buf.references, bufopts)
 nnoremap('<space>lf', lsp.buf.format, bufopts)
 
-mason_lspconfig.setup({
-  ensure_installed = {
-    "lua_ls",
-    "vimls",
-    "vtsls",
-    "denols",
-  },
-  automatic_installation = true,
-})
-
 require('lspconfig.ui.windows').default_options.border = 'single'
 
 local lsp_flags = {
@@ -51,12 +40,10 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('user.lsp.setup')(server_name, {
-      capabilities = capabilities,
-      flags = lsp_flags,
-    })
-  end,
-}
+for _, setup in pairs(require('user.lsp.setup')) do
+  setup({
+    capabilities = capabilities,
+    flags = lsp_flags,
+  })
+end
 -- }}}
