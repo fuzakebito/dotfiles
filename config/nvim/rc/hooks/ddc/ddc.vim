@@ -45,6 +45,10 @@ nnoremap ?       <Cmd>call CommandlinePre('/')<CR>?
 xnoremap :       <Cmd>call CommandlinePre(':')<CR>:
 nnoremap +       <Cmd>call CommandlinePre('dda')<CR>:Dda<Space>
 
+" Manual completions
+inoremap <c-x><c-a> <cmd>call ddc#map#manual_complete(#{ sources: ["codeium"] })<CR>
+inoremap <c-x><c-f> <cmd>call ddc#map#manual_complete(#{ sources: ["file"] })<CR>
+
 function! CommandlinePre(mode) abort
   " Overwrite sources
   let b:prev_buffer_config = ddc#custom#get_buffer()

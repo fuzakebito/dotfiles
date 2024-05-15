@@ -43,7 +43,7 @@ hook_source = '''
   call ddc#custom#patch_filetype(
     \   ['vim'],
     \   'sources',
-    \   ['codeium', 'vsnip', 'necovim', 'around', 'buffer', 'file', 'rg']
+    \   ['vsnip', 'necovim', 'around', 'buffer', 'file', 'rg']
     \ )
 '''
 

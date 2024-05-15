@@ -9,7 +9,7 @@ export class Config extends BaseConfig {
 
     args.contextBuilder.patchGlobal({
       ui: "pum",
-      sources: ["codeium", "vsnip", "lsp", "around", "buffer", "file", "rg"],
+      sources: ["vsnip", "lsp", "around", "buffer", "file", "rg"],
       autoCompleteEvents: [
         "InsertEnter",
         "TextChangedI",
@@ -64,7 +64,6 @@ export class Config extends BaseConfig {
         codeium: {
           mark: "cod",
           matchers: ["matcher_length"],
-          minAutoCompleteLength: 0,
           isVolatile: true,
         },
         input: {
@@ -147,7 +146,7 @@ export class Config extends BaseConfig {
       ]
     ) {
       args.contextBuilder.patchFiletype(filetype, {
-        sources: ["around", "codeium"],
+        sources: ["around"],
       });
     }
 
@@ -195,12 +194,12 @@ export class Config extends BaseConfig {
         ]
       ) {
         args.contextBuilder.patchFiletype(filetype, {
-          sources: ["codeium", "lsp", "around"],
+          sources: ["lsp", "around"],
         });
       }
 
       args.contextBuilder.patchFiletype("lua", {
-        sources: ["codeium", "lsp", "nvim-lua", "around"],
+        sources: ["lsp", "nvim-lua", "around"],
       });
     }
   }
