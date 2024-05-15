@@ -26,6 +26,9 @@ snippets:
   - name: git tree view
     keyword: gls
     snippet: eza -Tla --git --git-ignore -I .git
+  - name: git home
+    keyword: gh
+    snippet: cd "$(git rev-parse --show-toplevel)"
   - name: "null"
     keyword: "null"
     snippet: ">/dev/null 2>&1"
