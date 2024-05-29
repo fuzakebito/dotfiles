@@ -1,11 +1,13 @@
 " hook_add {{{
+let g:deol_lmargin = float2nr(&lines*0.05+0.5)
+let g:deol_cmargin = float2nr(&columns*0.05+0.5)
 nnoremap <c-]> <Cmd>call deol#start(#{
 \ toggle: v:true,
 \ split: 'floating',
-\ winheight: float2nr(&lines*0.9-0.5),
-\ winwidth: float2nr(&columns*0.9),
-\ winrow: float2nr(&lines*0.05),
-\ wincol: float2nr(&columns*0.05),
+\ winheight: &lines - 2*g:deol_lmargin-2-exists('$TMUX'),
+\ winwidth: &columns - 2*g:deol_cmargin-2,
+\ winrow: g:deol_lmargin,
+\ wincol: g:deol_cmargin,
 \ })<CR>
 tnoremap <C-]> <C-\><C-n>
 " }}}
