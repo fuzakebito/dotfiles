@@ -16,14 +16,17 @@ call ddc#custom#patch_global('ui', 'pum')
 [[plugins]]
 repo = 'Shougo/pum.vim'
 hook_add = '''
-call pum#set_option('border', 'rounded')
-call pum#set_option('scrollbar_char','┃')
-call pum#set_option('max_height', 10)
-call pum#set_option('preview', v:true)
-call pum#set_option('preview_border', 'rounded')
-call pum#set_option('preview_height', 30)
-call pum#set_option('preview_width', 78)
-call pum#set_option('highlight_matches', "Directory")
+call pum#set_option(#{
+      \   border: 'rounded',
+      \   scrollbar_char: '┃',
+      \   max_height: 10,
+      \   highlight_matches: "Directory",
+      \   offset_cmdrow: 2,
+      \   preview: v:true,
+      \   preview_border: 'rounded',
+      \   preview_height: 30,
+      \   preview_width: 78,
+      \ })
 '''
 # }}}
 # ddc sources {{{
