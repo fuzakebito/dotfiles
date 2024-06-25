@@ -58,6 +58,37 @@ function cache_eval {
   fi
   source "$cache"
 }
+function stderr_window() {
+  local cmd="$@"
+  local pipe_name="/tmp/tmux_tty_$$"
+
+  [ -z "$cmd" ] && { echo "Usage: stderr_window \"command\"" >&2; return 1; }
+  [ -z "$TMUX" ] && { echo "stderr_window can only be used within a tmux window." >&2; return 1; }
+
+  if [ -z "$_stderr_window_tty" ]; then
+    mkfifo "$pipe_name" || return 1
+    tmux split-window -v -d "tty > '$pipe_name'; printf '\033]2;error_output\033\\'; cat"
+    _stderr_window_tty=$(cat "$pipe_name")
+    rm -f "$pipe_name"
+  fi
+
+  [ -z "$_stderr_window_tty" ] && return 1
+
+  local cols=$(tmux list-panes -F '#{pane_width} #{pane_title}' | grep error_output | awk '{print $1}')
+
+  if eval "$cmd" 2> >(tee "$_stderr_window_tty" >&2); then
+    echo -n '\033[90m' >$_stderr_window_tty
+    yes ─ | head -n $cols | tr -d '\n' >$_stderr_window_tty
+    echo -n '\033[0m' >$_stderr_window_tty
+  else
+    local exit_code=$?
+    echo "Command failed (exit code: $exit_code)." >"$_stderr_window_tty"
+    echo -n '\033[90m' >$_stderr_window_tty
+    yes ─ | head -n $cols | tr -d '\n' >$_stderr_window_tty
+    echo -n '\033[0m' >$_stderr_window_tty
+    return $exit_code
+  fi
+}
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
