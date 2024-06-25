@@ -1,12 +1,12 @@
 # gin {{{
 [[plugins]]
-repo = 'lambdalisue/gin.vim'
+repo = 'lambdalisue/vim-gin'
 depends = ['denops.vim']
 on_cmd = ['Gin', 'GinBranch', 'GinCd', 'GinChaperon', 'GinDiff', 'GinLog', 'GinPatch', 'GinStatus']
 # }}}
 # askpass {{{
 # [[plugins]]
-# repo = 'lambdalisue/askpass.vim'
+# repo = 'lambdalisue/vim-askpass'
 # on_source = 'gin.vim'
 # }}}
 # vim: fdm=marker
