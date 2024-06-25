@@ -211,6 +211,11 @@ hooks_file = '$HOOKS_DIR/indent-blankline.lua'
 #on_event = 'BufRead'
 #hooks_file = '$HOOKS_DIR/hlchunk.lua'
 # }}}
+# tyru/capture.vim {{{
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
+# }}}
 # dependency plugins
 # nvim-web-devicons {{{
 [[plugins]]
