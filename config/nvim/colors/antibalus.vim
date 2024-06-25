@@ -110,3 +110,21 @@ hi DiagnosticUnderlineOk guifg=NONE guibg=NONE gui=undercurl guisp=#56bb8d
 hi GitSignsAdd guifg=#56bb8d guibg=NONE gui=NONE
 hi GitSignsChange guifg=#77aaf6 guibg=NONE gui=NONE
 hi GitSignsDelete guifg=#e24871 guibg=NONE gui=NONE
+if has('nvim')
+  let g:terminal_color_0  = '#303030'
+  let g:terminal_color_1  = '#e24871'
+  let g:terminal_color_2  = '#56bb8d'
+  let g:terminal_color_3  = '#d7a564'
+  let g:terminal_color_4  = '#77aaf6'
+  let g:terminal_color_5  = '#b691df'
+  let g:terminal_color_6  = '#00bcc8'
+  let g:terminal_color_7  = '#d9d9d9'
+  let g:terminal_color_8  = '#3f3f3f'
+  let g:terminal_color_9  = '#f26887'
+  let g:terminal_color_10 = '#77d0a4'
+  let g:terminal_color_11 = '#ebbb80'
+  let g:terminal_color_12 = '#95c0ff'
+  let g:terminal_color_13 = '#caa8ef'
+  let g:terminal_color_14 = '#38d1db'
+  let g:terminal_color_15 = '#ffffff'
+endif
