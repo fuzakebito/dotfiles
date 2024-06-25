@@ -8,12 +8,12 @@ nnoremap <c-]> <Cmd>call deol#start(#{
 \ winwidth: &columns - 2*g:deol_cmargin-2,
 \ winrow: g:deol_lmargin,
 \ wincol: g:deol_cmargin,
+\ prompt_pattern: '❯ ',
+\ floating_border: 'rounded',
 \ })<CR>
 tnoremap <C-]> <C-\><C-n>
 " }}}
 " hook_source {{{
-let g:deol#prompt_pattern = '❯ '
-let g:deol#floating_border="rounded"
 let g:terminal_color_0  = '#2b2b2b'
 let g:terminal_color_1  = '#ef3f5f'
 let g:terminal_color_2  = '#51b57d'
