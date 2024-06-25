@@ -74,15 +74,24 @@ hooks_file = '$HOOKS_DIR/treesitter-playground.lua'
 #on_source = 'fern.vim'
 #hooks_file = '$HOOKS_DIR/fern-preview.vim'
 ## }}}
-# neoscroll {{{
+# monaqa/smooth-scroll.vim {{{
 [[plugins]]
-repo = 'karb94/neoscroll.nvim'
-on_event = 'WinScrolled'
-on_lua = 'neoscroll'
-hooks_file = '$HOOKS_DIR/neoscroll.lua'
+repo = 'monaqa/smooth-scroll.vim'
+on_func = 'smooth_scroll#flick'
 hook_add = '''
-nnoremap n n<cmd> lua require('neoscroll').zz(250)<CR>
-nnoremap N N<cmd> lua require('neoscroll').zz(250)<CR>
+let g:smooth_scroll_interval = 1000.0 / 60
+let g:smooth_scroll_no_default_key_mappings = 1
+
+nnoremap <C-d> <Cmd>call smooth_scroll#flick( v:count1 * &scroll     , 15)<CR>
+nnoremap <C-u> <Cmd>call smooth_scroll#flick(-v:count1 * &scroll     , 15)<CR>
+nnoremap <C-f> <Cmd>call smooth_scroll#flick( v:count1 * winheight(0), 20)<CR>
+nnoremap <C-b> <Cmd>call smooth_scroll#flick(-v:count1 * winheight(0), 20)<CR>
+vnoremap <C-d> <Cmd>call smooth_scroll#flick( v:count1 * &scroll     , 15)<CR>
+vnoremap <C-u> <Cmd>call smooth_scroll#flick(-v:count1 * &scroll     , 15)<CR>
+vnoremap <C-f> <Cmd>call smooth_scroll#flick( v:count1 * winheight(0), 20)<CR>
+vnoremap <C-b> <Cmd>call smooth_scroll#flick(-v:count1 * winheight(0), 20)<CR>
+
+let g:smooth_scroll_scrollkind = "quadratic"
 '''
 # }}}
 # lexima {{{
