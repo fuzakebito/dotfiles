@@ -25,7 +25,7 @@ function mcd() {
 }
 function zle-cd() {
   echo -e "\033[1A"
-  local dir=$(zoxide query -l | fzf --height=11 --layout=reverse --scheme=path --info=hidden --color='border:8' --prompt="cd ❯ " --preview='ptyframe ls -Cp --color=always --group-directories-first {}' --preview-window=down:3,border-top)
+  local dir=$(zoxide query -l | fzf --height=11 --layout=reverse --no-sort --scheme=path --info=hidden --color='border:8' --prompt="cd ❯ " --preview='ptyframe ls -Cp --color=always --group-directories-first {}' --preview-window=down:3,border-top)
   if [ -z "$dir" ];then
     zle reset-prompt
     return 0
