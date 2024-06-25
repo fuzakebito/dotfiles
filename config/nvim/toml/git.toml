@@ -6,8 +6,8 @@ on_cmd = ['Gin', 'GinBranch', 'GinCd', 'GinChaperon', 'GinDiff', 'GinLog', 'GinP
 hooks_file = '$HOOKS_DIR/gin.vim'
 # }}}
 # askpass {{{
-# [[plugins]]
-# repo = 'lambdalisue/vim-askpass'
-# on_source = 'gin.vim'
+[[plugins]]
+repo = 'lambdalisue/vim-askpass'
+on_source = 'gin.vim'
 # }}}
 # vim: fdm=marker
