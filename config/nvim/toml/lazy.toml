@@ -200,16 +200,16 @@ repo = 'chrisbra/unicode.vim'
 on_cmd = ['Digraphs', 'UnicodeSearch', 'UnicodeSearch!', 'UnicodeName', 'UnicodeTable', 'DownloadUnicode', 'UnicodeCache']
 # }}}
 # lukas-reineke/indent-blankline.nvim {{{
-#[[plugins]]
-#repo = 'lukas-reineke/indent-blankline.nvim'
-#on_event = 'BufRead'
-#hooks_file = '$HOOKS_DIR/indent-blankline.lua'
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_event = 'BufRead'
+hooks_file = '$HOOKS_DIR/indent-blankline.lua'
 # }}}
 # shellRaining/hlchunk.nvim {{{
-[[plugins]]
-repo = 'shellRaining/hlchunk.nvim'
-on_event = 'BufRead'
-hooks_file = '$HOOKS_DIR/hlchunk.lua'
+#[[plugins]]
+#repo = 'shellRaining/hlchunk.nvim'
+#on_event = 'BufRead'
+#hooks_file = '$HOOKS_DIR/hlchunk.lua'
 # }}}
 # dependency plugins
 # nvim-web-devicons {{{
