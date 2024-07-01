@@ -1,0 +1,9 @@
+[user]
+	email = fuzakebito@fuzake.io
+	name = HAYASHI Naoya
+	signingkey = 61DD68A1C8EC3BDC052DF4012CBB3D7C085182D4
+[commit]
+	gpgsign = true
+	template = /home/fuzakebito/.config/git/message
+[color]
+	ui = auto

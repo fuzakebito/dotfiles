@@ -1,0 +1,15 @@
+
+# conventional commit types
+# Reference: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+#
+# :feat:      機能追加 - 新機能の導入。
+# :fix:       バグ修正 - 不具合の解消。
+# :refactor:  リファクタ - コード構造改善、機能変更なし。
+# :perf:      パフォーマンス改善 - 効率向上のためのリファクタ。
+# :style:     スタイル調整 - コードの意味に影響しないコード整形。
+# :build:     ビルド影響 - ビルドツール、設定の変更。
+# :test:      テスト修正・追加 - テスト不足の補完や調整。
+# :ci:        CI設定変更 - CIフローやツールの設定変更。
+# :docs:      文書更新 - ドキュメントだけの変更。
+# :revert:    変更撤回 - 以前の状態に戻す。
+# :chore:     雑務 - プロジェクトに直接関連しない管理的、補助的作業。
