@@ -15,7 +15,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 # alias
-alias eza='eza -F --group-directories-first --icons --git'
+alias eza='eza -a --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 alias fzf="fzf --prompt=' ' --pointer='❯' --marker='󰄬' --color='hl:6,hl+:14,bg+:-1,info:-1,prompt:6,pointer:6,marker:2,header:1'"
 # functions
@@ -25,7 +25,7 @@ function mcd() {
 }
 function zle-cd() {
   echo -e "\033[1A"
-  local dir=$(zoxide query -l | fzf --height=11 --layout=reverse --no-sort --scheme=path --info=hidden --color='border:8' --prompt="cd ❯ " --preview='ptyframe ls -Cp --color=always --group-directories-first {}' --preview-window=down:3,border-top)
+  local dir=$(zoxide query -l | fzf --height=11 --layout=reverse --no-sort --scheme=path --info=hidden --color='border:8' --prompt="cd ❯ " --preview='eza -a --color=always --group-directories-first --icons --git {}' --preview-window=down:3,border-top)
   if [ -z "$dir" ];then
     zle reset-prompt
     return 0
@@ -92,7 +92,7 @@ function stderr_window() {
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
-    eza -a --group-directories-first
+    eza -a --group-directories-first --icons --git
   fi
 }
 # others
