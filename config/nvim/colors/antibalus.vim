@@ -47,7 +47,7 @@ hi CursorLine guifg=NONE guibg=#222222 gui=NONE
 hi CursorColumn guifg=NONE guibg=#222222 gui=NONE
 hi LineNr guifg=#4e4e4e guibg=NONE gui=NONE
 hi CursorLineNr guifg=#7f7f7f guibg=NONE gui=NONE
-hi Folded guifg=#6f6f6f guibg=#222222 gui=NONE
+hi Folded guifg=#caa8ef guibg=#222222 gui=NONE
 hi FoldColumn guifg=NONE guibg=NONE gui=NONE
 hi MatchParen guifg=NONE guibg=NONE gui=reverse
 hi Pmenu guifg=#d9d9d9 guibg=NONE gui=NONE
