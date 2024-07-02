@@ -211,6 +211,17 @@ hooks_file = '$HOOKS_DIR/indent-blankline.lua'
 #on_event = 'BufRead'
 #hooks_file = '$HOOKS_DIR/hlchunk.lua'
 # }}}
+# Shougo/cmdline.vim {{{
+[[plugins]]
+repo = 'Shougo/cmdline.vim'
+on_func = 'cmdline'
+hook_source = '''
+call cmdline#set_option(#{
+  \   highlight_prompt: 'Statement',
+  \   highlight_cursor: 'CmdlineCursor',
+  \ })
+'''
+# }}}
 # tyru/capture.vim {{{
 [[plugins]]
 repo = 'tyru/capture.vim'
