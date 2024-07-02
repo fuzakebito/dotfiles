@@ -21,6 +21,11 @@ set cursorline
 set number
 set smoothscroll
 set winblend=10
+try
+  set cmdheight=0
+catch
+  set cmdheight=1
+endtry
 " indent options
 set smartindent
 set autoindent
