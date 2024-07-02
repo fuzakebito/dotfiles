@@ -10,19 +10,19 @@ repo = 'vim-denops/denops-shared-server.vim'
 on_func = ['denops_shared_server#install', 'denops_shared_server#uninstall']
 # }}}
 # lualine {{{
-[[plugins]]
-repo = 'nvim-lualine/lualine.nvim'
-if = "!exists('$ime')"
-on_event = 'BufAdd'
-lua_source = '''
-require('lualine').setup {
-  options = {
-    theme = 'antibalus',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-  }
-}
-'''
+#[[plugins]]
+#repo = 'nvim-lualine/lualine.nvim'
+#if = "!exists('$ime')"
+#on_event = 'BufAdd'
+#lua_source = '''
+#require('lualine').setup {
+#  options = {
+#    theme = 'antibalus',
+#    component_separators = { left = '', right = ''},
+#    section_separators = { left = '', right = ''},
+#  }
+#}
+#'''
 # }}}
 # treesitter {{{
 [[plugins]]
