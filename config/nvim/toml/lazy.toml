@@ -227,6 +227,27 @@ call cmdline#set_option(#{
 repo = 'tyru/capture.vim'
 on_cmd = 'Capture'
 # }}}
+# fuzmare/line-bisect.vim {{{
+[[plugins]]
+repo = 'fuzmare/line-bisect.vim'
+on_func = 'line_bisect#start'
+hook_add = '''
+nnoremap H H<Plug>(H)
+nnoremap L L<Plug>(L)
+nnoremap <Plug>(H)H zzH
+nnoremap <Plug>(L)L zzL
+sign define line_bisect_up text=┃ texthl=DiagnosticSignOk
+sign define line_bisect_down text=┃ texthl=DiagnosticSignHint
+sign define line_bisect_mid text=❯ texthl=Normal
+sign define line_bisect_blank text=\  texthl=SignColumn
+nnoremap <Plug>(L)H <Cmd>call line_bisect#start('screen')<CR><Plug>(hl_bisect)
+nnoremap <Plug>(H)L <Cmd>call line_bisect#start('screen')<CR><Plug>(hl_bisect)
+nnoremap <Plug>(hl_bisect)H <Cmd>call line_bisect#up()<CR><Plug>(hl_bisect)
+nnoremap <Plug>(hl_bisect)L <Cmd>call line_bisect#down()<CR><Plug>(hl_bisect)
+nnoremap <Plug>(H) <Nop>
+nnoremap <Plug>(L) <Nop>
+'''
+# }}}
 # dependency plugins
 # nvim-web-devicons {{{
 [[plugins]]
