@@ -120,6 +120,10 @@ setups.jdtls = function(opts)
   lspconfig.jdtls.setup(opts)
 end
 
+setups.clojure_lsp = function(opts)
+  lspconfig.clojure_lsp.setup(opts)
+end
+
 local prettier = {
   formatCommand = "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}",
   formatStdin = true,
