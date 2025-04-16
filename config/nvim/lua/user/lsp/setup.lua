@@ -116,6 +116,10 @@ setups.taplo = function(opts)
   lspconfig.taplo.setup(opts)
 end
 
+setups.jdtls = function(opts)
+  lspconfig.jdtls.setup(opts)
+end
+
 local prettier = {
   formatCommand = "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}",
   formatStdin = true,
