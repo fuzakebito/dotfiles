@@ -80,4 +80,8 @@ setups.tinymist = function(opts)
   lspconfig.tinymist.setup(opts)
 end
 
+setups.texlab = function(opts)
+  lspconfig.texlab.setup(opts)
+end
+
 return setups
