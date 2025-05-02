@@ -25,6 +25,10 @@ setups.lua_ls = function(opts)
   lspconfig.lua_ls.setup(opts)
 end
 
+setups.clangd = function(opts)
+  lspconfig.clangd.setup(opts)
+end
+
 setups.vtsls = function(opts)
   if is_node_repo then
     lspconfig.vtsls.setup(opts)
