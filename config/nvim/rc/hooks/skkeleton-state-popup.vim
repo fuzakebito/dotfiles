@@ -8,7 +8,7 @@ call skkeleton_state_popup#config(#{
   \     'latin': '_A',
   \   },
   \   opts: #{relative: 'cursor', col: 0, row: 1, anchor: 'NW', style: 'minimal'},
-  \   popupTimeMs: 800,
+  \   popupTimeMs: 1500,
   \ })
 call skkeleton_state_popup#run()
 let s:skk_sp_pum_visible_prev = v:false
