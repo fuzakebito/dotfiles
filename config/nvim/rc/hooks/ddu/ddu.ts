@@ -14,8 +14,6 @@ type Params = Record<string, unknown>;
 
 export class Config extends BaseConfig {
   override config(args: ConfigArguments): Promise<void> {
-    const columns = op.columns.get(args.denops);
-    const lines = op.lines.get(args.denops);
     args.setAlias("source", "file_rg", "file_external");
     args.setAlias("source", "file_git", "file_external");
     args.setAlias("filter", "matcher_ignore_current_buffer", "matcher_ignores");
