@@ -1,7 +1,7 @@
 " hook_add {{{
 nnoremap <silent> <Space>e <Cmd>Ddu
       \ -name=filer-`win_getid()` -ui=filer -resume -sync file
-      \ -source-option-file-path=`t:->get('ddu_ui_filer_path', getcwd())`<CR>
+      \ -source-option-file-path=`fnameescape(getcwd())`<CR>
 " }}}
 
 " ddu-filer = {{{
@@ -17,12 +17,9 @@ nnoremap <buffer> q
       \ <Cmd>call ddu#ui#do_action('quit')<CR>
 nnoremap <buffer><expr> l
       \ ddu#ui#get_item()->get('isTree', v:false) ?
-      \ "<Cmd>call ddu#ui#multi_actions(['expandItem', 'cursorNext'])<CR>" :
+      \ "<Cmd>call ddu#ui#do_action('expandItem', #{ isInTree: v:true })<CR>" :
       \ "<Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'drop' }})<CR>"
-nnoremap <buffer><expr> h
-      \ ddu#ui#get_item()->get('__expanded', v:false) ?
-      \ "<Cmd>call ddu#ui#do_action('collapseItem')<CR>" :
-      \ "<Cmd>call ClimbTree()<CR>"
+nnoremap <buffer> h <Cmd>call ddu#ui#do_action('collapseItem')<CR>
 nnoremap <buffer> c
       \ <Cmd>call ddu#ui#multi_actions([
       \   ['itemAction', #{ name: 'copy' }],
@@ -158,20 +155,6 @@ function! PreviewIfNotDir() abort
   else
     call ddu#ui#do_action('closePreviewWindow')
   endif
-endfunction
-
-function! ClimbTree() abort
-  let items = ddu#ui#get_items()
-  let num = getpos('.')[1] - 1
-  let parentTreePath = items[num]->get('treePath')->fnamemodify(':h')
-  let parentNum = num
-
-  while parentNum > 0
-    let parentNum -= 1
-    if get(items[parentNum], 'treePath', '') ==# parentTreePath
-      call ddu#ui#multi_actions([['cursorPrevious', #{ count: num - parentNum }], 'collapseItem'])
-    endif
-  endwhile
 endfunction
 
 autocmd TabEnter,BufEnter,FocusGained <buffer>
