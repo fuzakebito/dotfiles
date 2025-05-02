@@ -65,6 +65,7 @@ setups.pyright = function(opts)
 end
 
 setups.denols = function(opts)
+  opts.single_file_support = true
   if not is_node_repo then
     lspconfig.denols.setup(opts)
   end
