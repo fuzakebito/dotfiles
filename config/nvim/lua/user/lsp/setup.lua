@@ -111,4 +111,14 @@ setups.taplo = function(opts)
   lspconfig.taplo.setup(opts)
 end
 
+setups.efm = function(opts)
+  opts.init_options = { documentFormatting = true }
+  opts.settings = {
+    rootMarkers = { ".git/", "package.json" },
+    languages = {
+    }
+  }
+  lspconfig.efm.setup(opts)
+end
+
 return setups
