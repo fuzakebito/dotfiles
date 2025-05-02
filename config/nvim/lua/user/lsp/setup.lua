@@ -76,4 +76,8 @@ setups.denols = function(opts)
   end
 end
 
+setups.tinymist = function(opts)
+  lspconfig.tinymist.setup(opts)
+end
+
 return setups
