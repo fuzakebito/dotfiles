@@ -2,8 +2,7 @@ local lspconfig = require('lspconfig')
 
 local setups = {}
 
-local node_root_dir = lspconfig.util.root_pattern("package.json")
-local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+local is_node_repo = lspconfig.util.root_pattern('package.json')(vim.fn.getcwd())
 
 setups.lua_ls = function(opts)
   opts.settings = {
