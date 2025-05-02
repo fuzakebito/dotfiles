@@ -438,6 +438,17 @@ nnoremap <Plug>(H) <Nop>
 nnoremap <Plug>(L) <Nop>
 '''
 # }}}
+# junegunn/vim-easy-align {{{
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+hook_add = '''
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+'''
+# }}}
 # dependency plugins
 # nvim-web-devicons {{{
 [[plugins]]
