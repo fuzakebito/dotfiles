@@ -24,9 +24,7 @@ repo = 'rebelot/heirline.nvim'
 [[plugins]]
 repo = 'tani/dmacro.nvim'
 lua_add = '''
-require('dmacro').setup({
-    dmacro_key = '<C-t>' --  you need to set the dmacro_key
-})
+vim.keymap.set({ "i", "n" }, '<C-t>', '<Plug>(dmacro-play-macro)')
 '''
 # }}}
 # vim: fdm=marker
