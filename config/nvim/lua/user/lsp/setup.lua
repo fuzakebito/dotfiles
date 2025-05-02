@@ -45,6 +45,11 @@ end
 
 setups.vtsls = function(opts)
   if is_node_repo then
+    opts.cmd = { "pnpx", "npm:@vtsls/language-server@0.2.5", "--stdio" }
+    opts.on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end
     lspconfig.vtsls.setup(opts)
   end
 end
