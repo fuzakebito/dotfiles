@@ -13,9 +13,9 @@ nnoremap('<space>lq', diagnostic.setloclist)
 local bufopts = { noremap = true, silent = true, buffer = bufnr }
 nnoremap('gD', lsp.buf.declaration, bufopts)
 nnoremap('gd', lsp.buf.definition, bufopts)
-nnoremap('K', lsp.buf.hover, bufopts)
+nnoremap('K', function() lsp.buf.hover({ border = 'rounded' }) end, bufopts)
 nnoremap('gi', lsp.buf.implementation, bufopts)
-nnoremap('<C-k>', lsp.buf.signature_help, bufopts)
+nnoremap('<C-k>', function() lsp.buf.signature_help({ border = 'rounded' }) end, bufopts)
 nnoremap('<space>lwa', lsp.buf.add_workspace_folder, bufopts)
 nnoremap('<space>lwr', lsp.buf.remove_workspace_folder, bufopts)
 nnoremap('<space>lwl', function()
@@ -26,8 +26,6 @@ nnoremap('<space>lrn', lsp.buf.rename, bufopts)
 nnoremap('<space>la', lsp.buf.code_action, bufopts)
 nnoremap('gr', lsp.buf.references, bufopts)
 nnoremap('<space>lf', lsp.buf.format, bufopts)
-
-require('lspconfig.ui.windows').default_options.border = 'single'
 
 local lsp_flags = {
   debounce_text_changes = 150,
