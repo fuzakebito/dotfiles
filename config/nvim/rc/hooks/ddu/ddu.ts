@@ -1,24 +1,27 @@
 import {
-  ActionArguments,
+  type ActionArguments,
   ActionFlags,
+  type DduOptions,
+} from "jsr:@shougo/ddu-vim@~9.0.0/types";
+import {
   BaseConfig,
-  Ddu,
-} from "https://deno.land/x/ddu_vim@v4.1.1/types.ts";
-import { Denops, fn ,op } from "https://deno.land/x/ddu_vim@v4.1.1/deps.ts";
-import { ConfigArguments } from "https://deno.land/x/ddu_vim@v4.1.1/base/config.ts";
-import { ActionData } from "https://deno.land/x/ddu_kind_file@v0.7.1/file.ts";
-import { Params as FfParams } from "https://deno.land/x/ddu_ui_ff@v1.1.0/ff.ts";
-import { Params as FilerParams } from "https://deno.land/x/ddu_ui_filer@v1.1.0/filer.ts";
+  type ConfigArguments,
+} from "jsr:@shougo/ddu-vim@~9.0.0/config";
+import { type ActionData } from "jsr:@shougo/ddu-kind-file@~0.9.0";
+import { type Params as FfParams } from "jsr:@shougo/ddu-ui-ff@~1.5.0";
+import { type Params as FilerParams } from "jsr:@shougo/ddu-ui-filer@~1.5.0";
+import type { Denops } from "jsr:@denops/std@~7.4.0";
+import * as fn from "jsr:@denops/std@~7.4.0/function";
 
 type Params = Record<string, unknown>;
 
 export class Config extends BaseConfig {
   override config(args: ConfigArguments): Promise<void> {
-    args.setAlias("source", "file_rg", "file_external");
-    args.setAlias("source", "file_git", "file_external");
-    args.setAlias("filter", "matcher_ignore_current_buffer", "matcher_ignores");
-    args.setAlias("action", "tabopen", "open");
-    args.setAlias("column", "icon_filename_for_ff", "icon_filename")
+    args.setAlias("files", "source", "file_rg", "file_external");
+    args.setAlias("files", "source", "file_git", "file_external");
+    args.setAlias("files", "filter", "matcher_ignore_current_buffer", "matcher_ignores");
+    args.setAlias("files", "action", "tabopen", "open");
+    args.setAlias("files", "column", "icon_filename_for_ff", "icon_filename");
 
     args.contextBuilder.patchGlobal({
       ui: "ff",
@@ -28,15 +31,18 @@ export class Config extends BaseConfig {
           actions: {
             kensaku: async (args: {
               denops: Denops;
-              ddu: Ddu;
+              options: DduOptions;
             }) => {
-              args.ddu.updateOptions({
-                sourceOptions: {
-                  _: {
-                    matchers: ["matcher_kensaku"],
+              await args.denops.dispatcher.updateOptions(
+                args.options.name,
+                {
+                  sourceOptions: {
+                    _: {
+                      matchers: ["matcher_kensaku"],
+                    },
                   },
                 },
-              });
+              );
               await args.denops.cmd("echomsg 'change to kensaku matcher'");
 
               return ActionFlags.Persist;
