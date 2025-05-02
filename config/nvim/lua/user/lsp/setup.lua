@@ -99,6 +99,11 @@ setups.texlab = function(opts)
   lspconfig.texlab.setup(opts)
 end
 
+setups.eslint = function(opts)
+  opts.cmd = { "pnpm", "--package=vscode-langservers-extracted", "dlx", "vscode-eslint-language-server", "--stdio" }
+  lspconfig.eslint.setup(opts)
+end
+
 setups.zls = function(opts)
   lspconfig.zls.setup(opts)
 end
