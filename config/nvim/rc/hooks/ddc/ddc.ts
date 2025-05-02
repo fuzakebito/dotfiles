@@ -115,7 +115,7 @@ export class Config extends BaseConfig {
         skkeleton: {
           mark: "skk",
           minAutoCompleteLength: 0,
-          matchers: ["skkeleton"],
+          matchers: [],
           sorters: [],
           isVolatile: true,
         },
