@@ -110,6 +110,7 @@ hi DiagnosticUnderlineOk guifg=NONE guibg=NONE gui=undercurl guisp=#56bb8d
 hi GitSignsAdd guifg=#56bb8d guibg=NONE gui=NONE
 hi GitSignsChange guifg=#77aaf6 guibg=NONE gui=NONE
 hi GitSignsDelete guifg=#e24871 guibg=NONE gui=NONE
+hi ScrollView guifg=NONE guibg=#3f3f3f gui=NONE
 hi CmdlineCursor guifg=#000000 guibg=#ffffff gui=NONE
 if has('nvim')
   let g:terminal_color_0  = '#303030'
