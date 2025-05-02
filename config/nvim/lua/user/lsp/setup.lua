@@ -130,18 +130,35 @@ local prettier = {
   }
 }
 
+local eslint_d = {
+  lintCommand = 'pnpx eslint_d --no-color --format visualstudio --stdin-filename "${INPUT}" --stdin',
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = { '%f(%l,%c): %trror %m', '%f(%l,%c): %tarning %m' },
+  rootMarkers = {
+    '.eslintrc.js',
+    '.eslintrc.cjs',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    'eslint.config.js',
+    'eslint.config.mjs',
+    'eslint.config.cjs',
+  }
+}
+
 setups.efm = function(opts)
   opts.init_options = { documentFormatting = true }
   opts.settings = {
     rootMarkers = { ".git/", "package.json" },
     languages = {
       -- JavaScript関連
-      javascript = { prettier },
-      typescript = { prettier },
-      javascriptreact = { prettier },
-      typescriptreact = { prettier },
-      svelte = { prettier },
-      vue = { prettier },
+      javascript = { prettier, eslint_d },
+      typescript = { prettier, eslint_d },
+      javascriptreact = { prettier, eslint_d },
+      typescriptreact = { prettier, eslint_d },
+      svelte = { prettier, eslint_d },
+      vue = { prettier, eslint_d },
       -- スタイル関連
       css = { prettier },
       scss = { prettier },
