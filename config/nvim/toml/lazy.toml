@@ -449,6 +449,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 '''
 # }}}
+# thinca/vim-qfreplace {{{
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_event = 'QuickFixCmdPost'
+# }}}
 # dependency plugins
 # nvim-web-devicons {{{
 [[plugins]]
