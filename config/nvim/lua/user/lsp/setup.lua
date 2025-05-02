@@ -76,6 +76,16 @@ setups.denols = function(opts)
   end
 end
 
+setups.svelte = function(opts)
+  -- opts.cmd = deno_as_npm { "npm:svelte-language-server@0.17.0", "--stdio" }
+  opts.cmd = { "pnpx", "npm:svelte-language-server@0.17.0", "--stdio" }
+  opts.on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
+  lspconfig.svelte.setup(opts)
+end
+
 setups.tinymist = function(opts)
   lspconfig.tinymist.setup(opts)
 end
