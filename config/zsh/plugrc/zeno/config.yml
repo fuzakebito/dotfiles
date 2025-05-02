@@ -1,4 +1,7 @@
 snippets:
+  - name: git
+    keyword: g
+    snippet: git
   - name: git add
     keyword: ga
     snippet: git add
