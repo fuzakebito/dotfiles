@@ -4,6 +4,20 @@ local setups = {}
 
 local is_node_repo = lspconfig.util.root_pattern('package.json')(vim.fn.getcwd())
 
+local deno_as_npm = setmetatable({}, {
+  __call = function(_, cmd)
+    return vim.list_extend({
+      "deno",
+      "run",
+      "--allow-all",
+      "--no-config",
+      "--no-lock",
+      "--node-modules-dir=false",
+    }, cmd)
+  end,
+})
+deno_as_npm.cmd_env = { NO_COLOR = true }
+
 setups.lua_ls = function(opts)
   opts.settings = {
     Lua = {
