@@ -40,6 +40,6 @@ exec_always {
 }
 exec_always waybar
 
-gaps inner 8
+gaps inner 6
 default_border pixel 0
 default_floating_border pixel 1
