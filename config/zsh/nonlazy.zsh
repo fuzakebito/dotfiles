@@ -11,6 +11,7 @@ setopt autocd
 setopt extendedglob
 setopt noflowcontrol
 setopt correct
+setopt interactivecomments
 unsetopt beep
 # vi mode
 bindkey -v
