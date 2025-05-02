@@ -1,4 +1,4 @@
--- lua_source {{{
+-- lua_post_source {{{
 vim.notify("treesitter loaded")
 
 require('nvim-treesitter.configs').setup {
