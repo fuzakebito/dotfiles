@@ -156,7 +156,7 @@ hooks_file = '$HOOKS_DIR/gitsigns.lua'
 [[plugins]]
 repo = 'dstein64/nvim-scrollview'
 on_event = 'BufRead'
-hooks_file = '$HOOKS_DIR/scrollview.lua'
+hooks_file = ['$HOOKS_DIR/scrollview.lua', '$HOOKS_DIR/scrollview.vim']
 # }}}
 # insx {{{
 [[plugins]]
