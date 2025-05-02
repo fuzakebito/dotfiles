@@ -88,4 +88,8 @@ setups.zls = function(opts)
   lspconfig.zls.setup(opts)
 end
 
+setups.hls = function(opts)
+  lspconfig.hls.setup(opts)
+end
+
 return setups
