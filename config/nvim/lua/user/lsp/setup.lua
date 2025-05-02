@@ -86,6 +86,11 @@ setups.svelte = function(opts)
   lspconfig.svelte.setup(opts)
 end
 
+setups.unocss = function(opts)
+  opts.cmd = { "pnpx", "npm:unocss-language-server", "--stdio" }
+  lspconfig.unocss.setup(opts)
+end
+
 setups.tinymist = function(opts)
   lspconfig.tinymist.setup(opts)
 end
