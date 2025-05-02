@@ -232,8 +232,7 @@ export class Config extends BaseConfig {
           defaultAction: "open",
         },
       },
-      kindParams: {
-      },
+      kindParams: {},
       actionOptions: {
         narrow: {
           quit: false,
@@ -245,16 +244,16 @@ export class Config extends BaseConfig {
       columnParams: {
         icon_filename: {
           defaultIcon: {
-            icon: '',
+            icon: "",
           },
         },
         icon_filename_for_ff: {
           defaultIcon: {
-            icon: '',
+            icon: "",
           },
           padding: 0,
-          pathDisplayOption: 'relative',
-        }
+          pathDisplayOption: "relative",
+        },
       },
     });
 
