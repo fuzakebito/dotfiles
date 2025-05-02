@@ -60,17 +60,17 @@ nnoremap <Space>fd <Cmd>Ddu dein<CR>
 nnoremap <C-o> <Cmd>Ddu jumplist <CR>
 
 " Initialize ddu.vim lazily.
-call ddu#load('ui', ['ff', 'filer'])
-call ddu#load('source', [
+call ddu#load('default', 'ui', ['ff', 'filer'] )
+call ddu#load('default', 'source', [
 \ 'file', 'file_point', 'file_old', 'file_git',
 \ ])
-call ddu#load('filter', [
+call ddu#load('default', 'filter', [
 \ 'matcher_kensaku', 'matcher_relative', 'matcher_substring',
 \ 'matcher_ignore_current_buffer', 'matcher_hidden',
 \ 'sorter_alpha',
 \ 'column-icon_filename'
 \ ])
-call ddu#load('kind', ['file'])
+call ddu#load('default', 'kind', ['file'])
 call ddu#custom#load_config(expand('$HOOKS_DIR/ddu/ddu.ts'))
 " }}}
 
