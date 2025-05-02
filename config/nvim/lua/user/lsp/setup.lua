@@ -49,6 +49,10 @@ setups.vtsls = function(opts)
   end
 end
 
+setups.ruff = function(opts)
+  lspconfig.ruff.setup(opts)
+end
+
 setups.pylsp = function(opts)
   lspconfig.pylsp.setup(opts)
 end
