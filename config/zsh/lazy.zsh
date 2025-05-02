@@ -90,6 +90,18 @@ function stderr_window() {
     return $exit_code
   fi
 }
+function file-prompt() {
+  for file in "$@"; do
+    if [ ! -r "${file}" ]; then
+      echo "Error: '${file}' cannot be read. Skipping." >&2
+      continue
+    fi
+    
+    echo "<file=\"${file}\">"
+    cat "${file}"
+    echo "</file>"
+  done
+}
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
