@@ -23,7 +23,7 @@ nnoremap('<space>lwl', function()
 end, bufopts)
 nnoremap('<space>lD', lsp.buf.type_definition, bufopts)
 nnoremap('<space>lrn', lsp.buf.rename, bufopts)
-nnoremap('<space>lca', lsp.buf.code_action, bufopts)
+nnoremap('<space>la', lsp.buf.code_action, bufopts)
 nnoremap('gr', lsp.buf.references, bufopts)
 nnoremap('<space>lf', lsp.buf.format, bufopts)
 
