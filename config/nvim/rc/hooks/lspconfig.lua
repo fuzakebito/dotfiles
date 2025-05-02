@@ -6,8 +6,8 @@ local function nnoremap(mapping, func, opts)
   vim.keymap.set('n', mapping, func, opts or { noremap = true, silent = true })
 end
 nnoremap('<space>le', diagnostic.open_float)
-nnoremap('[d', diagnostic.goto_prev)
-nnoremap(']d', diagnostic.goto_next)
+nnoremap(']d', function() vim.diagnostic.jump({ count = 1, float = true }) end)
+nnoremap('[d', function() vim.diagnostic.jump({ count = -1, float = true }) end)
 nnoremap('<space>lq', diagnostic.setloclist)
 
 local bufopts = { noremap = true, silent = true, buffer = bufnr }
