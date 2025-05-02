@@ -102,6 +102,40 @@ function file-prompt() {
     echo "</file>"
   done
 }
+function wmd() {
+  # 引数が不足している場合は使用法を表示
+  if [ $# -lt 1 ]; then
+    echo "Usage: wmd URL [output_file]"
+    return 1
+  fi
+
+  local url="$1"
+  local outfile
+
+  if [ $# -ge 2 ]; then
+    # 第二引数で出力ファイル名が指定された場合はそれを使用
+    outfile="$2"
+  else
+    # URL の最後の部分からファイル名を自動生成
+    outfile=$(basename "$url")
+    # クエリパラメータがあれば除去
+    outfile="${outfile%%\?*}"
+    # basename が空の場合は、たとえば末尾が "/" のときは "index.md" にする
+    if [ -z "$outfile" ]; then
+      outfile="index.md"
+    else
+      # .html または .htm なら拡張子を .md に変換、そうでなければ .md を末尾に追加
+      if [[ "$outfile" =~ \.html?$ ]]; then
+        outfile="${outfile%.*}.md"
+      else
+        outfile="${outfile}.md"
+      fi
+    fi
+  fi
+
+  # curl で API を叩いて、結果を出力ファイルに保存
+  curl "https://r.jina.ai/$url" -H 'x-engine: readerlm-v2' -o "$outfile"
+}
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
