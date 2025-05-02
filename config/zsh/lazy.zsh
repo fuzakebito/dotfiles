@@ -18,6 +18,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 alias eza='eza -a --group-directories-first --icons --git'
 alias toilet='toilet -w $(tput cols)'
 alias fzf="fzf --prompt=' ' --pointer='❯' --marker='󰄬' --color='hl:6,hl+:14,bg+:-1,info:-1,prompt:6,pointer:6,marker:2,header:1'"
+alias fetch='fastfetch'
 # functions
 function mcd() {
   mkdir -p $1
