@@ -2,6 +2,7 @@
 zoxide = "latest"
 go = "latest"
 "go:github.com/rhysd/vim-startuptime" = "latest"
+"go:github.com/mattn/efm-langserver" = "latest"
 pnpm = "latest"
 node = "latest"
 
