@@ -3,7 +3,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export DENO_INSTALL="$HOME/.deno"
 export PATH=$HOME/asobi/bin:$HOME/go/bin:$DENO_INSTALL/bin:$PNPM_HOME:$HOME/.cargo/bin:$HOME/.local/bin:$PATH
 export EDITOR=nvim
-export SHELL=/bin/zsh
+export SHELL=$(/usr/bin/env which zsh)
 export BAT_THEME=base16
 export MANPAGER='nvim +Man!'
 # colorize
