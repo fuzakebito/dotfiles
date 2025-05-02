@@ -92,4 +92,8 @@ setups.hls = function(opts)
   lspconfig.hls.setup(opts)
 end
 
+setups.taplo = function(opts)
+  lspconfig.taplo.setup(opts)
+end
+
 return setups
