@@ -8,6 +8,9 @@ help: ## subcommand list and description.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+reflector: ## configure mirrorlist using reflector
+	@sudo reflector --age 6 --sort rate -c JP -c KR -c HK -c TW --save /etc/pacman.d/mirrorlist
+
 deno-install: ## Install deno
 	@curl -fsSL https://deno.land/install.sh | sh
 
