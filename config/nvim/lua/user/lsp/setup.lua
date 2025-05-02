@@ -49,6 +49,13 @@ setups.vtsls = function(opts)
   end
 end
 
+setups.pyright = function(opts)
+  opts.cmd = deno_as_npm { "npm:pyright@1.1.370/pyright-langserver", "--stdio" }
+  opts.cmd_env = deno_as_npm.cmd_env
+  opts.single_file_support = true
+  lspconfig.pyright.setup(opts)
+end
+
 setups.denols = function(opts)
   if not is_node_repo then
     lspconfig.denols.setup(opts)
