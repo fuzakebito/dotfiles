@@ -111,11 +111,49 @@ setups.taplo = function(opts)
   lspconfig.taplo.setup(opts)
 end
 
+local prettier = {
+  formatCommand = "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}",
+  formatStdin = true,
+  rootMarkers = {
+    '.prettierrc',
+    '.prettierrc.json',
+    '.prettierrc.yml',
+    '.prettierrc.yaml',
+    '.prettierrc.json5',
+    '.prettierrc.js',
+    '.prettierrc.cjs',
+    '.prettierrc.mjs',
+    'prettier.config.js',
+    'prettier.config.cjs',
+    'prettier.config.mjs',
+    '.prettierrc.toml',
+  }
+}
+
 setups.efm = function(opts)
   opts.init_options = { documentFormatting = true }
   opts.settings = {
     rootMarkers = { ".git/", "package.json" },
     languages = {
+      -- JavaScript関連
+      javascript = { prettier },
+      typescript = { prettier },
+      javascriptreact = { prettier },
+      typescriptreact = { prettier },
+      svelte = { prettier },
+      vue = { prettier },
+      -- スタイル関連
+      css = { prettier },
+      scss = { prettier },
+      less = { prettier },
+      -- マークアップ関連
+      html = { prettier },
+      json = { prettier },
+      yaml = { prettier },
+      markdown = { prettier },
+      -- その他
+      graphql = { prettier },
+      handlebars = { prettier },
     }
   }
   lspconfig.efm.setup(opts)
