@@ -7,3 +7,8 @@
 	template = /home/fuzakebito/.config/git/message
 [color]
 	ui = auto
+[alias]
+  l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+  lg = log --graph --stat --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) %C(dim green)%aD%C(reset)%C(auto)%d%C(reset)%n%C(bold white)%s%C(reset) %C(dim white)- %an <%ae>%C(reset)%n'
+  st = !git status -s && git stash list | cat
+  cfm = !git branch && git l -n 10 && echo "--status--" && git st
