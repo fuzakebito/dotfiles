@@ -84,4 +84,8 @@ setups.texlab = function(opts)
   lspconfig.texlab.setup(opts)
 end
 
+setups.zls = function(opts)
+  lspconfig.zls.setup(opts)
+end
+
 return setups
