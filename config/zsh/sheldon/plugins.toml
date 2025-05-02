@@ -45,3 +45,8 @@ apply = ["defer"]
 github = 'azu/ni.zsh'
 use = ['ni.zsh']
 apply = ["defer"]
+
+[plugins.venv]
+github = 'MichaelAquilina/zsh-autoswitch-virtualenv'
+use = ['autoswitch_virtualenv.plugin.zsh']
+apply = ["defer"]
