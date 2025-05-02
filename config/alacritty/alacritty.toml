@@ -38,7 +38,7 @@ family = "Firge35 Nerd Console"
 [font.normal]
 family = "Firge35 Nerd Console"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/tmux"
 
 [window]
