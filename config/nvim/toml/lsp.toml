@@ -121,6 +121,7 @@ require("fidget").setup {
   },
 }
 '''
+# }}}
 # https://github.com/rachartier/tiny-inline-diagnostic.nvim {{{
 [[plugins]]
 repo = 'https://github.com/rachartier/tiny-inline-diagnostic.nvim'
