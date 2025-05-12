@@ -67,6 +67,9 @@ snippets:
   - name: expand :q to exit
     keyword: :q
     snippet: exit
+  - name: nix develop
+    keyword: nd
+    snippet: nix develop -c $SHELL
   - name: grim with slurp
     keyword: grims
     snippet: grim -g "$(slurp)" "$HOME/Pictures/grim-$(date +%Y%m%d-%H%M%S).png"
