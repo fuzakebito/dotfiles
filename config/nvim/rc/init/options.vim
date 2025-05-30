@@ -1,6 +1,6 @@
 " encoding options
 set encoding=utf-8
-set fileencodings="uec-bom, utf-8, default, latin1, sjis, iso-2022-jp, euc-jp"
+set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp,default
 " set fileformats="unix, dos, mac"
 " editor options
 set title
