@@ -104,6 +104,10 @@ setups.eslint = function(opts)
   lspconfig.eslint.setup(opts)
 end
 
+setups.biome = function(opts)
+  lspconfig.biome.setup(opts)
+end
+
 setups.zls = function(opts)
   lspconfig.zls.setup(opts)
 end
