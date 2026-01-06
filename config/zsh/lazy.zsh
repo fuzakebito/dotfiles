@@ -136,50 +136,12 @@ function wmd() {
   # curl で API を叩いて、結果を出力ファイルに保存
   curl "https://r.jina.ai/$url" -H 'x-engine: readerlm-v2' -o "$outfile"
 }
-function git-glance() {
-  if git rev-parse --is-inside-work-tree &>/dev/null; then
-    # log は常に表示
-    echo -e "\n\e[1;34m log\e[m"
-    git l -n 10 -- ./
-
-    # stash 部分
-    if git rev-parse --verify refs/stash > /dev/null 2>&1; then
-      stash_cmd() {
-        git log --stat --walk-reflogs refs/stash --abbrev-commit --decorate --format=format:'%gd' ./ \
-          | sed "s/^stash@{\([0-9]*\)}$/\1/g" \
-          | sed '$a\' \
-          | while read -r STASH_REF; do
-              git stash list -n 1 --skip "$STASH_REF" --format=format:'%gd: %C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset)'
-              git stash show --color=always "$STASH_REF" --relative --stat
-              echo ""
-            done
-      }
-      if stash_cmd | grep -q .; then
-        echo -e "\n\e[1;34m stash\e[m"
-        stash_cmd
-        echo -n -e "\033[1A"
-      fi
-    fi
-
-    # stat 部分
-    if git diff --stat --relative --color=always | grep -q .; then
-      echo -e "\n\e[1;34m stat\e[m"
-      git diff --stat --relative --color=always
-    fi
-
-    # untracked 部分
-    if git ls-files --others --exclude-standard | grep -q .; then
-      echo -e "\n\e[1;34m untracked\e[m"
-      git ls-files --others --exclude-standard
-    fi
-  fi
-}
 # hooks
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
     eza -a --group-directories-first --icons --git
   fi
-  git-glance
+  git rev-parse --git-dir > /dev/null 2>&1 && git glance
 }
 _last_command=""
 preexec() {
@@ -187,7 +149,7 @@ preexec() {
 }
 precmd() {
   if [[ $_last_command == nvim* ]]; then
-    git-glance
+    git rev-parse --git-dir > /dev/null 2>&1 && git glance
   fi
 }
 # others
