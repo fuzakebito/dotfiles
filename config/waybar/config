@@ -69,7 +69,11 @@
     },
     "memory": {
 		"interval": 1,
-        "format": "<small>Mem:</small>{}%"
+        "format": "<small>Mem:</small>{}%",
+        "states": {
+            "critical": 95,
+            "warning": 90
+        },
         // "format": "{}% "
     },
     "temperature": {
