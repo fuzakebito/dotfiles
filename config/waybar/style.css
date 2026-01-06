@@ -72,16 +72,14 @@ window#waybar.solo {
   margin: 0 1px;
 }
 
-#window {
-}
+#window {}
 
 #clock {
   background-color: #d4d4d4;
   color: #2b2b2b;
 }
 
-#battery {
-}
+#battery {}
 
 #battery.charging {
   background-color: #51b57d;
@@ -112,14 +110,11 @@ window#waybar.solo {
   animation-direction: alternate;
 }
 
-label:focus {
-}
+label:focus {}
 
-#cpu {
-}
+#cpu {}
 
-#memory {
-}
+#memory {}
 
 #memory.warning {
   color: #d4d4d4;
@@ -139,11 +134,9 @@ label:focus {
   animation-direction: alternate;
 }
 
-#backlight {
-}
+#backlight {}
 
-#network {
-}
+#network {}
 
 #network.disconnected {
   background-color: #fd5970;
@@ -159,17 +152,13 @@ label:focus {
   color: #d4d4d4;
 }
 
-#custom-media {
-}
+#custom-media {}
 
-#custom-media.custom-spotify {
-}
+#custom-media.custom-spotify {}
 
-#custom-media.custom-vlc {
-}
+#custom-media.custom-vlc {}
 
-#temperature {
-}
+#temperature {}
 
 #temperature.critical {
   color: #d4d4d4;
@@ -185,23 +174,17 @@ label:focus {
   margin-right: -3px;
 }
 
-#idle_inhibitor {
-}
+#idle_inhibitor {}
 
-#idle_inhibitor.activated {
-}
+#idle_inhibitor.activated {}
 
-#mpd {
-}
+#mpd {}
 
-#mpd.disconnected {
-}
+#mpd.disconnected {}
 
-#mpd.stopped {
-}
+#mpd.stopped {}
 
-#mpd.paused {
-}
+#mpd.paused {}
 
 #custom-waybar-mpris {
   padding-left: 8px;
